@@ -1,0 +1,1576 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F7F0E4">
+<meta name="description" content="Specialty coffee roasted to order and shipped on roast day. Single origins and blends for home brewers, ground for your brewer.">
+<title>Juniper Lane Roasters — Coffee roasted to order</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Juniper Lane Roasters — Coffee roasted to order">
+<meta property="og:description" content="Single origins and blends for home brewers, roasted to order and shipped on roast day.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<!-- Add once the site is online: <meta property="og:url" content="https://your-domain/"> and <meta property="og:image" content="https://your-domain/share.jpg"> (1200×630) -->
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%2333201A'/%3E%3Cellipse cx='20' cy='20' rx='8' ry='12' fill='%23E4844A' transform='rotate(25 20 20)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..650;1,7..72,400..500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+:root{
+  --cream:#F7F0E4;
+  --cream-2:#EFE3CF;
+  --paper:#FFFBF4;
+  --kraft:#CFA77F;
+  --espresso:#33201A;
+  --espresso-2:#5A3B2C;
+  --muted:#735A4B;
+  --orange:#E4844A;
+  --orange-deep:#A34D1B;
+  --orange-soft:#F6D6BA;
+  --sage:#7E8C6E;
+  --line:rgba(51,32,26,.14);
+  --line-strong:rgba(51,32,26,.28);
+  --focus:#A34D1B;
+
+  /* Two families only; both include Cyrillic for the RU version */
+  --font-display:"Literata", Georgia, "Times New Roman", serif;
+  --font-body:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.5rem;
+  --s6:2rem; --s7:3rem; --s8:4.5rem; --s9:7rem;
+  --gutter:clamp(1rem, 4vw, 2.5rem);
+  --wrap:1180px;
+  --radius:20px; --radius-sm:12px; --radius-pill:999px;
+  --shadow:0 1px 0 rgba(51,32,26,.05), 0 18px 40px -22px rgba(51,32,26,.45);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--cream); color:var(--espresso);
+  font:400 1rem/1.6 var(--font-body);
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;margin:0;letter-spacing:-.01em;font-variation-settings:"opsz" 60}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+[tabindex="-1"]:focus{outline:none}
+.skip{position:absolute;left:var(--s4);top:-60px;background:var(--espresso);color:var(--paper);padding:var(--s2) var(--s4);border-radius:var(--radius-sm);z-index:100;text-decoration:none}
+.skip:focus{top:var(--s3)}
+
+.eyebrow{font:600 .78rem/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--orange-deep)}
+.lead{font-size:1.125rem;color:var(--espresso-2);max-width:34em}
+.muted{color:var(--muted)}
+.serif-i{font-family:var(--font-display);font-style:italic;font-weight:400}
+
+/* Buttons */
+.btn{
+  --bg:var(--espresso); --fg:var(--paper);
+  display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  min-height:48px;padding:.8em 1.4em;border-radius:var(--radius-pill);
+  border:2px solid var(--bg);background:var(--bg);color:var(--fg);
+  font-weight:600;text-decoration:none;cursor:pointer;
+  transition:transform .25s var(--ease), background .25s, color .25s, box-shadow .25s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(51,32,26,.7)}
+.btn--orange{--bg:var(--orange);--fg:var(--espresso)}
+.btn--ghost{background:transparent;color:var(--espresso);border-color:var(--line-strong)}
+.btn--ghost:hover{border-color:var(--espresso);background:var(--paper)}
+.btn--block{width:100%}
+.btn svg{width:18px;height:18px}
+.link{font-weight:600;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:var(--orange)}
+.link:hover{text-decoration-color:var(--espresso)}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(247,240,228,.92);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line)}
+.header-row{display:flex;align-items:center;gap:var(--s4);min-height:68px}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;margin-right:auto}
+.brand svg{width:38px;height:38px;flex:none}
+.brand-name{font:600 1.2rem/1 var(--font-display);letter-spacing:-.01em}
+.brand-name small{display:block;font:500 .66rem/1.4 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+.main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:var(--s2)}
+.main-nav a{display:block;padding:.55rem .9rem;border-radius:var(--radius-pill);text-decoration:none;font-weight:500;transition:background .2s}
+.main-nav a:hover{background:var(--cream-2)}
+.main-nav a[aria-current="page"]{background:var(--espresso);color:var(--paper)}
+.icon-btn{position:relative;display:inline-grid;place-items:center;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line-strong);background:var(--paper);cursor:pointer;text-decoration:none;transition:border-color .2s, transform .2s}
+.icon-btn:hover{border-color:var(--espresso);transform:translateY(-1px)}
+.icon-btn svg{width:20px;height:20px}
+.cart-count{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--orange);color:var(--espresso);font:700 .72rem/22px var(--font-body);text-align:center;border:2px solid var(--cream)}
+.cart-count[data-empty="true"]{display:none}
+.menu-btn{display:none}
+.lang-switch{display:inline-flex;border:1.5px solid var(--line-strong);border-radius:var(--radius-pill);padding:3px;background:var(--paper)}
+.lang-switch button{border:0;background:none;min-width:36px;height:36px;border-radius:var(--radius-pill);font:600 .78rem/1 var(--font-body);letter-spacing:.06em;cursor:pointer;color:var(--muted);transition:background .2s,color .2s}
+.lang-switch button:hover{color:var(--espresso)}
+.lang-switch button[aria-pressed="true"]{background:var(--espresso);color:var(--paper)}
+@media (max-width:420px){.header-row{gap:var(--s2)}.lang-switch button{min-width:32px}.brand-name small{display:none}.brand svg{width:32px;height:32px}}
+
+@media (max-width:820px){
+  .menu-btn{display:inline-grid}
+  .main-nav{
+    position:fixed;inset:68px 0 auto 0;background:var(--paper);border-bottom:1px solid var(--line);
+    padding:var(--s4) var(--gutter) var(--s6);box-shadow:0 30px 40px -30px rgba(51,32,26,.5);
+    transform:translateY(-12px);opacity:0;visibility:hidden;transition:opacity .25s, transform .3s var(--ease), visibility 0s .3s;
+  }
+  .main-nav.open{transform:none;opacity:1;visibility:visible;transition:opacity .25s, transform .3s var(--ease)}
+  .main-nav ul{flex-direction:column;gap:2px}
+  .main-nav a{font:500 1.5rem/1.2 var(--font-display);padding:.8rem .4rem;border-radius:var(--radius-sm)}
+  .main-nav a[aria-current="page"]{background:none;color:var(--orange-deep)}
+}
+
+/* =========================================================
+   PAGE TRANSITION + REVEALS
+   ========================================================= */
+#app{min-height:70vh}
+#app.page-enter{animation:pageIn .5s var(--ease) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* =========================================================
+   HOME
+   ========================================================= */
+.hero{padding:var(--s7) 0 var(--s8);position:relative}
+.hero-grid{display:grid;gap:var(--s7);align-items:center}
+.hero h1{font-size:clamp(2.4rem, 7.4vw, 4.6rem);font-weight:500;margin:var(--s4) 0 var(--s5)}
+.hero h1 em{font-style:italic;color:var(--orange-deep);font-weight:400}
+.hero .actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.hero-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:var(--s4);margin-top:var(--s6);padding-top:var(--s5);border-top:1px dashed var(--line-strong);font-size:.92rem;color:var(--muted)}
+.hero-meta strong{display:block;font:600 1.05rem/1.3 var(--font-body);color:var(--espresso)}
+.hero-art{position:relative;aspect-ratio:1/1;max-width:520px;width:100%;margin-inline:auto}
+.hero-blob{position:absolute;inset:6%;background:
+   radial-gradient(circle at 30% 30%, #F9DCC2 0 35%, transparent 36%),
+   radial-gradient(circle at 70% 75%, rgba(126,140,110,.28) 0 30%, transparent 31%),
+   var(--orange-soft);
+  border-radius:58% 42% 47% 53% / 48% 56% 44% 52%}
+.hero-photo{position:absolute;inset:6%;border-radius:58% 42% 47% 53% / 48% 56% 44% 52%;background-size:cover;background-position:center}
+.hero-bag{position:absolute;width:52%;left:24%;top:16%;transform:rotate(-6deg);filter:drop-shadow(0 24px 22px rgba(51,32,26,.25))}
+.bean{position:absolute;width:44px}
+.bean.b1{left:6%;top:62%;transform:rotate(-30deg)}
+.bean.b2{left:16%;top:74%;width:34px;transform:rotate(20deg)}
+.bean.b3{right:10%;top:20%;width:30px;transform:rotate(60deg)}
+.bean.b4{right:4%;top:70%;transform:rotate(-12deg)}
+.stamp{position:absolute;right:2%;bottom:4%;width:30%;max-width:150px}
+.stamp .ring{transform-origin:60px 60px;animation:spin 22s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.wavy{display:block;width:100%;height:28px;color:var(--cream-2)}
+
+.section{padding:var(--s8) 0}
+.section-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s6)}
+.section-head h2{font-size:clamp(1.9rem, 4.6vw, 3rem);font-weight:500;max-width:16ch}
+
+/* Roast log */
+.log{background:var(--cream-2);padding:var(--s7) 0}
+.log-grid{display:grid;gap:var(--s6)}
+.log h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:500}
+.log-sheet{background:var(--paper);border-radius:var(--radius-sm);padding:var(--s4) var(--s5);box-shadow:var(--shadow);
+  background-image:repeating-linear-gradient(to bottom, transparent 0 47px, rgba(51,32,26,.08) 47px 48px);background-position:0 12px}
+.log-row{display:grid;grid-template-columns:5.2rem 1fr auto;gap:var(--s3);align-items:center;min-height:48px;font-size:.95rem}
+.log-row + .log-row{border-top:1px solid transparent}
+.log-date{font-family:var(--font-display);font-style:italic;color:var(--muted)}
+.log-name a{font-weight:600;text-decoration:none}
+.log-name a:hover{text-decoration:underline;text-decoration-color:var(--orange)}
+.log-temp{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.85rem;text-align:right}
+
+/* Featured asymmetric */
+.featured{display:grid;gap:var(--s5)}
+.feature-big{display:grid;gap:var(--s5);background:var(--paper);border-radius:var(--radius);padding:var(--s5);box-shadow:var(--shadow);text-decoration:none;transition:transform .35s var(--ease)}
+.feature-big:hover{transform:translateY(-4px)}
+.feature-big .art{border-radius:var(--radius-sm);padding:var(--s5);display:grid;place-items:center}
+.feature-big .art svg,.feature-big .art img{width:min(240px,70%)}
+.feature-big h3{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:500;margin:var(--s2) 0 var(--s3)}
+.feature-small{display:grid;grid-template-columns:110px 1fr;gap:var(--s4);align-items:center;padding:var(--s4);border-radius:var(--radius);border:1.5px solid var(--line);text-decoration:none;transition:border-color .25s, background .25s}
+.feature-small:hover{border-color:var(--espresso);background:var(--paper)}
+.feature-small .art{border-radius:var(--radius-sm);padding:.6rem}
+.feature-small h3{font-size:1.3rem;font-weight:500;margin-bottom:.2rem}
+
+.notes{display:flex;flex-wrap:wrap;gap:.4rem;margin:0;padding:0;list-style:none}
+.notes li{font-size:.82rem;padding:.25rem .7rem;border-radius:var(--radius-pill);background:var(--cream);border:1px solid var(--line)}
+
+/* Quiz teaser */
+.quiz-band{background:var(--espresso);color:var(--cream);border-radius:var(--radius);padding:var(--s7) var(--s5);display:grid;gap:var(--s5);position:relative;overflow:hidden}
+.quiz-band h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:400}
+.quiz-band h2 em{color:var(--orange)}
+.quiz-band p{color:#E6D7C3;max-width:32em}
+.quiz-band .cups{position:absolute;right:-30px;bottom:-30px;width:240px;opacity:.16}
+
+/* Process */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:var(--s6);counter-reset:s}
+.steps li{position:relative;padding-left:4.2rem}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-.3rem;font:italic 400 3.4rem/1 var(--font-display);color:var(--orange)}
+.steps h3{font-size:1.35rem;font-weight:600;margin-bottom:.4rem}
+
+/* Visit */
+.visit{display:grid;gap:var(--s6);align-items:center}
+.visit-card{background:var(--paper);border-radius:var(--radius);padding:var(--s6) var(--s5);box-shadow:var(--shadow)}
+.visit-card dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem var(--s5);margin:var(--s5) 0 0}
+.visit-card dt{font-weight:600}
+.visit-card dd{margin:0;color:var(--espresso-2)}
+.map{border-radius:var(--radius);overflow:hidden;border:1.5px solid var(--line)}
+
+/* =========================================================
+   SHOP
+   ========================================================= */
+.page-head{padding:var(--s7) 0 var(--s5)}
+.page-head h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:500;margin:var(--s3) 0}
+.shop-layout{display:grid;gap:var(--s6);padding-bottom:var(--s8)}
+.filters{display:grid;gap:var(--s5);align-content:start}
+.filters fieldset{border:0;margin:0;padding:0;min-width:0}
+.filters legend{font:600 .8rem/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:var(--s3)}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;gap:.4rem;min-height:40px;padding:.45rem .95rem;border-radius:var(--radius-pill);border:1.5px solid var(--line-strong);background:var(--paper);font-size:.92rem;font-weight:500;transition:background .2s,border-color .2s,color .2s}
+.chip:hover span{border-color:var(--espresso)}
+.chip input:checked + span{background:var(--espresso);border-color:var(--espresso);color:var(--paper)}
+.chip input:focus-visible + span{outline:3px solid var(--focus);outline-offset:2px}
+.roast-dot{width:10px;height:10px;border-radius:50%;flex:none}
+.select{min-height:44px;padding:.5rem 2.2rem .5rem .9rem;border-radius:var(--radius-sm);border:1.5px solid var(--line-strong);background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2333201A' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right .8rem center/12px;appearance:none;width:100%}
+.results-bar{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);margin-bottom:var(--s4);font-size:.95rem;color:var(--muted)}
+.clear-btn{background:none;border:0;padding:.3rem;cursor:pointer;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:var(--s5)}
+.p-card{display:flex;flex-direction:column;text-decoration:none;border-radius:var(--radius);background:var(--paper);overflow:hidden;box-shadow:var(--shadow);transition:transform .35s var(--ease), box-shadow .35s}
+.p-card:hover{transform:translateY(-5px) rotate(-.4deg)}
+.p-card .art{padding:var(--s5) var(--s6);display:grid;place-items:center;aspect-ratio:5/4}
+.p-card .art svg,.p-card .art img{height:100%;width:auto;max-height:200px;object-fit:cover;transition:transform .45s var(--ease)}
+.p-card:hover .art svg{transform:rotate(-4deg) scale(1.03)}
+.p-card .body{padding:var(--s4) var(--s5) var(--s5);display:grid;gap:.5rem;flex:1}
+.p-card h2,.p-card h3{font-size:1.35rem;font-weight:500}
+.p-meta{font-size:.85rem;color:var(--muted)}
+.p-price{margin-top:auto;padding-top:.4rem;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.p-price .arrow{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--cream);transition:background .25s, transform .25s}
+.p-card:hover .arrow{background:var(--orange);transform:translateX(3px)}
+.empty{padding:var(--s7) var(--s5);text-align:center;border:2px dashed var(--line-strong);border-radius:var(--radius)}
+
+/* =========================================================
+   PRODUCT
+   ========================================================= */
+.crumbs{font-size:.88rem;color:var(--muted);padding-top:var(--s5)}
+.crumbs a{color:var(--muted)}
+.product{display:grid;gap:var(--s6);padding:var(--s5) 0 var(--s8)}
+.product-art{border-radius:var(--radius);padding:var(--s7) var(--s5);display:grid;place-items:center;position:relative;overflow:hidden;min-height:340px}
+.product-art svg.bag,.product-art img{width:min(300px,72%)}
+.product-art .bean{opacity:.9}
+.product h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:500;margin:var(--s3) 0}
+.product .desc{color:var(--espresso-2);margin:var(--s4) 0 var(--s5);max-width:36em}
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3) var(--s5);margin:0 0 var(--s5);padding:var(--s4) 0;border-block:1px dashed var(--line-strong)}
+.specs div{min-width:0}
+.specs dt{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.specs dd{margin:.1rem 0 0;font-weight:600;overflow-wrap:anywhere}
+.roast-meter{display:flex;gap:6px;align-items:center}
+.roast-meter i{width:22px;height:14px;border-radius:50%;background:var(--line);display:block}
+.roast-meter i.on{background:var(--espresso-2)}
+.opt-group{border:0;padding:0;margin:0 0 var(--s5);min-width:0}
+.opt-group legend{font-weight:600;margin-bottom:var(--s2)}
+.opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt span{display:flex;flex-direction:column;justify-content:center;min-height:48px;padding:.5rem 1rem;border-radius:var(--radius-sm);border:1.5px solid var(--line-strong);background:var(--paper);font-weight:500;line-height:1.25;transition:border-color .2s, background .2s}
+.opt span small{font-weight:400;color:var(--muted);font-size:.78rem}
+.opt:hover span{border-color:var(--espresso)}
+.opt input:checked + span{border-color:var(--orange-deep);background:#FFF1E4;box-shadow:inset 0 0 0 1px var(--orange-deep)}
+.opt input:focus-visible + span{outline:3px solid var(--focus);outline-offset:2px}
+.buy-row{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+.stepper{display:inline-flex;align-items:center;border:1.5px solid var(--line-strong);border-radius:var(--radius-pill);background:var(--paper);height:48px}
+.stepper button{width:44px;height:44px;border:0;background:none;cursor:pointer;font-size:1.2rem;border-radius:50%}
+.stepper button:hover{background:var(--cream-2)}
+.stepper output{min-width:2ch;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.buy-row .btn{flex:1;min-width:200px}
+.recipe{margin-top:var(--s6);padding:var(--s5);border-radius:var(--radius);background:var(--cream-2);display:grid;gap:var(--s2)}
+.recipe h2{font-size:1.25rem}
+.recipe ul{margin:var(--s2) 0 0;padding-left:1.1rem;color:var(--espresso-2)}
+
+/* =========================================================
+   CART & CHECKOUT
+   ========================================================= */
+.cart-layout{display:grid;gap:var(--s6);padding-bottom:var(--s8);align-items:start}
+.cart-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.cart-item{display:grid;grid-template-columns:72px 1fr;gap:var(--s4);padding:var(--s5) 0;border-bottom:1px solid var(--line)}
+.cart-item .art{border-radius:var(--radius-sm);padding:.5rem;height:88px;display:grid;place-items:center}
+.cart-item .art svg,.cart-item .art img{height:100%;width:auto}
+.cart-item h2{font-size:1.2rem;font-weight:500}
+.cart-item .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--s3);margin-top:var(--s3)}
+.cart-item .stepper{height:40px}
+.cart-item .stepper button{width:38px;height:38px}
+.remove{background:none;border:0;cursor:pointer;color:var(--muted);text-decoration:underline;text-underline-offset:3px;padding:.4rem}
+.remove:hover{color:var(--orange-deep)}
+.summary{background:var(--paper);border-radius:var(--radius);padding:var(--s5);box-shadow:var(--shadow);position:sticky;top:88px}
+.summary h2{font-size:1.4rem;font-weight:500;margin-bottom:var(--s4)}
+.sum-row{display:flex;justify-content:space-between;gap:var(--s3);padding:.4rem 0;font-variant-numeric:tabular-nums}
+.sum-row.total{border-top:1px dashed var(--line-strong);margin-top:var(--s2);padding-top:var(--s3);font:600 1.25rem/1.3 var(--font-display)}
+.ship-bar{height:8px;border-radius:4px;background:var(--cream-2);overflow:hidden;margin:var(--s2) 0 var(--s4)}
+.ship-bar i{display:block;height:100%;background:var(--sage);border-radius:4px;transition:width .5s var(--ease)}
+.mini-items{list-style:none;margin:0 0 var(--s4);padding:0;display:grid;gap:.5rem;font-size:.92rem}
+.mini-items li{display:flex;justify-content:space-between;gap:var(--s3)}
+
+.demo-note{display:flex;gap:var(--s3);align-items:flex-start;padding:var(--s4);border-radius:var(--radius-sm);background:#FFF1E4;border:1.5px dashed var(--orange-deep);color:var(--espresso);font-size:.94rem;margin-bottom:var(--s5)}
+.demo-note svg{flex:none;width:22px;height:22px;color:var(--orange-deep);margin-top:2px}
+.form-grid{display:grid;gap:var(--s4)}
+.field{display:grid;gap:.35rem}
+.field label,.field .label{font-weight:600;font-size:.94rem}
+.field input,.field select,.field textarea{min-height:48px;padding:.7rem .9rem;border-radius:var(--radius-sm);border:1.5px solid var(--line-strong);background:var(--paper);width:100%}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange-deep);outline:none;box-shadow:0 0 0 3px rgba(163,77,27,.2)}
+.field input:user-invalid{border-color:#A3271B}
+.hint{font-size:.82rem;color:var(--muted)}
+.form-section{border:0;padding:0;margin:0 0 var(--s6);min-width:0}
+.form-section legend{font:500 1.5rem/1.2 var(--font-display);margin-bottom:var(--s4)}
+
+.thanks{max-width:640px;margin-inline:auto;text-align:center;padding:var(--s8) 0}
+.thanks h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:500;margin:var(--s4) 0}
+.thanks .ticket{margin:var(--s6) auto;padding:var(--s5);background:var(--paper);border-radius:var(--radius-sm);box-shadow:var(--shadow);text-align:left;
+  -webkit-mask:radial-gradient(circle 10px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat, radial-gradient(circle 10px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle 10px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat, radial-gradient(circle 10px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat}
+
+/* =========================================================
+   QUIZ
+   ========================================================= */
+.quiz{max-width:760px;margin-inline:auto;padding:var(--s7) 0 var(--s8)}
+.quiz-progress{display:flex;gap:6px;margin-bottom:var(--s6)}
+.quiz-progress i{flex:1;height:6px;border-radius:3px;background:var(--cream-2);transition:background .3s}
+.quiz-progress i.on{background:var(--orange)}
+.quiz h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:500;margin:var(--s3) 0 var(--s6)}
+.quiz-opts{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.q-opt{display:grid;grid-template-columns:44px 1fr;gap:var(--s3);align-items:center;text-align:left;padding:var(--s4);min-height:84px;border-radius:var(--radius-sm);border:1.5px solid var(--line-strong);background:var(--paper);cursor:pointer;transition:border-color .2s, transform .25s var(--ease), background .2s}
+.q-opt:hover{border-color:var(--espresso);transform:translateY(-2px)}
+.q-opt[aria-pressed="true"]{border-color:var(--orange-deep);background:#FFF1E4}
+.q-opt svg{width:44px;height:44px;color:var(--espresso-2)}
+.q-opt strong{display:block;font-weight:600}
+.q-opt small{color:var(--muted);font-size:.85rem;line-height:1.35;display:block}
+.quiz-nav{display:flex;justify-content:space-between;margin-top:var(--s6)}
+.quiz-result{display:grid;gap:var(--s6);align-items:center}
+.quiz-result .art{border-radius:var(--radius);padding:var(--s6);display:grid;place-items:center}
+.quiz-result .art svg,.quiz-result .art img{width:min(240px,70%)}
+.why{padding:var(--s4) var(--s5);border-left:3px solid var(--orange);background:var(--paper);border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin:var(--s4) 0}
+
+/* =========================================================
+   TRUST: terms, placeholders, form states
+   ========================================================= */
+.terms{display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.term{background:var(--paper);border-radius:var(--radius);padding:var(--s5);box-shadow:var(--shadow)}
+.term h3,.ph h3{font-size:1.2rem;font-weight:600;margin-bottom:.4rem}
+.term p{color:var(--espresso-2)}
+.term a{font-weight:600}
+.ph{position:relative;border:2px dashed var(--orange-deep);border-radius:var(--radius);padding:var(--s5);background:repeating-linear-gradient(135deg,transparent 0 14px,rgba(228,132,74,.06) 14px 28px)}
+.ph p{color:var(--espresso-2)}
+.ph-tag{display:inline-block;margin-bottom:var(--s3);padding:.2rem .6rem;border-radius:var(--radius-pill);background:var(--orange);color:var(--espresso);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.reviews{display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));margin-top:var(--s5)}
+.err{color:#9B2A1B;font-size:.85rem;font-weight:600;min-height:0}
+.field [aria-invalid="true"]{border-color:#9B2A1B}
+.status{display:grid;gap:var(--s3);padding:var(--s4) var(--s5);border-radius:var(--radius-sm);margin-bottom:var(--s5);font-size:.96rem}
+.status strong{font-size:1.05rem}
+.status--warn{background:#FFF1E4;border:1.5px solid var(--orange-deep)}
+.status--error{background:#FBE7E3;border:1.5px solid #9B2A1B}
+.status .row{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.status .btn{min-height:44px;padding:.5em 1.1em}
+.hero .actions .link{align-self:center}
+.btn.is-loading{opacity:.75;pointer-events:none}
+.btn.is-loading::after{content:"";width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .8s linear infinite}
+
+/* =========================================================
+   FOOTER & TOAST
+   ========================================================= */
+.site-footer{background:var(--espresso);color:#E6D7C3;padding:var(--s7) 0 var(--s5);margin-top:var(--s6)}
+.footer-grid{display:grid;gap:var(--s6)}
+.site-footer h2{font-size:1.6rem;color:var(--cream);font-weight:500}
+.site-footer ul{list-style:none;padding:0;margin:var(--s3) 0 0;display:grid;gap:.35rem}
+.site-footer a{color:#F4E7D5;text-decoration-color:rgba(228,132,74,.6)}
+.footer-demo{margin-top:var(--s6);padding-top:var(--s4);border-top:1px solid rgba(247,240,228,.18);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s3);font-size:.85rem}
+.demo-pill{display:inline-block;padding:.2rem .7rem;border-radius:var(--radius-pill);background:var(--orange);color:var(--espresso);font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+
+.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,140%);z-index:60;background:var(--espresso);color:var(--paper);padding:.8rem 1rem .8rem 1.2rem;border-radius:var(--radius-pill);display:flex;gap:var(--s4);align-items:center;box-shadow:0 18px 40px -16px rgba(0,0,0,.5);transition:transform .45s var(--ease);max-width:calc(100% - 32px);font-size:.95rem}
+.toast.show{transform:translate(-50%,0)}
+.toast a{color:var(--orange);font-weight:600}
+
+/* =========================================================
+   BREAKPOINTS (mobile-first)
+   ========================================================= */
+@media (min-width:640px){
+  .featured{grid-template-columns:1.4fr 1fr}
+  .feature-big{grid-row:span 2}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .form-grid.two{grid-template-columns:1fr 1fr}
+  .form-grid .full{grid-column:1/-1}
+  .footer-grid{grid-template-columns:2fr 1fr 1fr}
+  .cart-item{grid-template-columns:96px 1fr}
+  .cart-item .art{height:110px}
+}
+@media (min-width:900px){
+  .hero-grid{grid-template-columns:1.1fr .9fr}
+  .log-grid{grid-template-columns:.8fr 1.2fr;align-items:center}
+  .quiz-band{grid-template-columns:1.3fr auto;align-items:center;padding:var(--s7)}
+  .visit{grid-template-columns:1fr 1.1fr}
+  .shop-layout{grid-template-columns:240px 1fr}
+  .filters{position:sticky;top:96px}
+  .product{grid-template-columns:1fr 1fr;align-items:start}
+  .product-art{position:sticky;top:96px;min-height:560px}
+  .cart-layout{grid-template-columns:1fr 360px}
+  .quiz-result{grid-template-columns:.9fr 1.1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  .stamp .ring{animation:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#app" id="skipLink">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#/" aria-label="Home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#33201A"/><ellipse cx="20" cy="20" rx="8" ry="12" fill="#E4844A" transform="rotate(25 20 20)"/><path d="M15 11c6 4 4 14 10 18" stroke="#33201A" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+      <span class="brand-name"><span data-store="name"></span><small>Small-batch roasters</small></span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Main">
+      <ul>
+        <li><a href="#/" data-nav="/">Home</a></li>
+        <li><a href="#/shop" data-nav="/shop">Shop coffee</a></li>
+        <li><a href="#/quiz" data-nav="/quiz">Find your coffee</a></li>
+        <li><a href="#/info" data-nav="/info">Shipping &amp; contact</a></li>
+        <li><a href="#/cart" data-nav="/cart">Your bag</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    </div>
+    <a class="icon-btn" href="#/cart" aria-label="View bag" id="cartBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="cart-count" id="cartCount" data-empty="true" aria-hidden="true">0</span>
+    </a>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h2 data-store="name"></h2>
+        <p style="margin-top:.6rem;max-width:30em">Roasting small lots twice a week in a converted rope workshop. Every bag carries its roast date and the initials of whoever roasted it.</p>
+      </div>
+      <div>
+        <strong>Shop</strong>
+        <ul><li><a href="#/shop">All coffee</a></li><li><a href="#/quiz">Coffee quiz</a></li><li><a href="#/info">Shipping &amp; payment</a></li><li><a href="#/cart">Your bag</a></li></ul>
+      </div>
+      <div>
+        <strong>Visit</strong>
+        <ul><li><a data-store="maps-link" target="_blank" rel="noopener"></a></li><li data-store="hours"></li><li><a data-store="email-link" href="#"></a></li><li><a data-store="phone-link" href="#"></a></li></ul>
+      </div>
+    </div>
+    <div class="footer-demo">
+      <span><span class="demo-pill">Demo</span>&nbsp; Portfolio demo site. The business, products and prices are fictional. No orders are processed and no data is collected.</span>
+      <span>© <span id="year"></span> <span data-store="name"></span></span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   CONFIG — replace these values for a real client
+   ========================================================= */
+const CONFIG = {
+  storeName: "Juniper Lane Roasters",
+  shortName: "Juniper Lane",
+  address: "14 Cooper's Yard, Harbor Hill",
+  hours: "Café open Wed–Sun, 8:00–15:00",
+  email: "hello@example.com",
+  currency: "USD",
+  locale: "en-US",
+  phone: "",                    // e.g. "+1 555 010 0000". Empty = hidden.
+  shippingFlat: 6,
+  freeShippingFrom: 45,
+  roastWeekdays: [2, 5],        // 0 = Sunday. Drives the roast schedule.
+  orderCutoffHour: 18,          // orders before this hour the day before a roast day join that batch
+  paymentNote: "",              // e.g. "We email an invoice; pay by card or bank transfer." Empty = shown as a placeholder.
+  returnsPolicy: "",            // your real returns / freshness policy. Empty = shown as a placeholder.
+  /* Where the checkout form is sent: YOUR server endpoint or a form service that accepts JSON POST.
+     Leave empty until it exists: the site then says clearly that online ordering is not connected. */
+  formEndpoint: ""
+};
+
+/* =========================================================
+   IMAGES — swap in real photos here.
+   Map a product slug to an image URL. Empty = illustrated bag.
+   HERO_PHOTO replaces the hero illustration background.
+   ========================================================= */
+const PRODUCT_PHOTOS = {
+  // "sidamo-sunrise": "images/sidamo-sunrise.jpg",
+};
+const HERO_PHOTO = ""; // e.g. "images/hero-roaster.jpg"
+
+/* =========================================================
+   submitForm(data) — POSTs the order as JSON to CONFIG.formEndpoint.
+   Never put API tokens, bot keys or passwords in this file: it is public.
+   Keep secrets on your server and point formEndpoint at it.
+   Returns { ok:true } or { ok:false, reason:"not-configured" | "server" | "network" }.
+   ========================================================= */
+async function submitForm(data) {
+  if (!CONFIG.formEndpoint) return { ok:false, reason:"not-configured" };
+  try {
+    const res = await fetch(CONFIG.formEndpoint, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body:JSON.stringify(data) });
+    return res.ok ? { ok:true } : { ok:false, reason:"server", status:res.status };
+  } catch (e) { return { ok:false, reason:"network" }; }
+}
+
+/* =========================================================
+   I18N — EN/RU switcher
+   English in the markup is the source text. RU maps each
+   English phrase to Russian; RU_RULES handle phrases with
+   numbers or names in them. Add a phrase here to translate it.
+   ========================================================= */
+const RU = {
+  "Skip to content":"Перейти к содержимому", "Home":"Главная", "Main":"Основное меню", "Language":"Язык",
+  "Small-batch roasters":"Обжарка малыми партиями", "Shop coffee":"Магазин кофе", "Find your coffee":"Подобрать кофе",
+  "Your bag":"Корзина", "View bag":"Открыть корзину", "View bag, empty":"Корзина пуста", "Open menu":"Открыть меню", "Close menu":"Закрыть меню",
+  "Roasting small lots twice a week in a converted rope workshop. Every bag carries its roast date and the initials of whoever roasted it.":"Обжариваем небольшие партии дважды в неделю в бывшей канатной мастерской. На каждой пачке — дата обжарки и инициалы того, кто её обжаривал.",
+  "Shop":"Магазин", "All coffee":"Весь кофе", "Coffee quiz":"Кофейный квиз", "Visit":"Приходите",
+  "Café open Wed–Sun, 8:00–15:00":"Кафе открыто ср–вс, 8:00–15:00", "Demo":"Демо",
+  "Portfolio demo site. The business, products and prices are fictional. No orders are processed and no data is collected.":"Демо-сайт для портфолио. Компания, товары и цены вымышлены. Заказы не обрабатываются, данные не собираются.",
+  "Small-batch coffee":"Кофе малыми партиями", "Checkout":"Оформление заказа", "Demo order received":"Демо-заказ получен", "Not found":"Страница не найдена",
+  /* home */
+  "Coffee roasted slowly, by people who":"Кофе, который не спеша обжаривают люди,", "taste every batch.":"пробующие каждую партию.",
+  "We buy from nine farms we know by name, roast in twelve-kilo batches, and ship within two days of the drum cooling. Nothing sits on a shelf.":"Мы закупаем зерно у девяти ферм, которые знаем по именам, обжариваем партиями по двенадцать килограммов и отправляем в течение двух дней после обжарки. Ничего не залёживается на полке.",
+  "Shop the coffee":"Выбрать кофе", "Take the 60-second quiz":"Пройти квиз за минуту",
+  "12 kg":"12 кг", "batch size":"размер партии", "48 h":"48 ч", "roast to doorstep":"от обжарки до двери", "partner farms":"ферм-партнёров",
+  "ROASTED TO ORDER · SHIPPED FRESH ·":"ЖАРИМ ПОД ЗАКАЗ · ШЛЁМ СВЕЖИМ ·",
+  "From the roast log":"Из журнала обжарки", "What came out of the drum this week":"Что вышло из барабана на этой неделе",
+  "Every batch is logged, cupped the next morning and only then bagged. These are the latest entries.":"Каждую партию записываем, на следующее утро дегустируем и только потом фасуем. Вот последние записи.",
+  "Recent roasts":"Последние обжарки", "· light":"· светлая", "· medium":"· средняя", "· dark":"· тёмная",
+  "On the shelf right now":"Сейчас на полке", "Roaster's pick":"Выбор обжарщика",
+  "Not sure where to start?":"Не знаете, с чего начать?", "Four questions.":"Четыре вопроса.", "One coffee":"Один кофе", "that suits how you brew.":"под ваш способ заваривания.",
+  "Tell us your brewer, how you take it and what you like in a cup. We'll match you with a bag and the right grind.":"Расскажите, в чём вы завариваете, как пьёте и что любите в чашке. Мы подберём пачку и нужный помол.",
+  "How a bag gets to you":"Как пачка попадает к вам", "We cup before we buy":"Сначала дегустируем, потом покупаем",
+  "Each harvest, we taste 40-odd samples from our partner farms and pay well above market for the lots we love.":"Каждый урожай мы пробуем около сорока образцов с ферм-партнёров и платим заметно выше рынка за понравившиеся лоты.",
+  "Roast it on Tuesday or Friday":"Обжариваем во вторник или пятницу",
+  "Small batches on a cast-iron drum, profiled per coffee. Light roasts get a gentler, longer development.":"Небольшие партии в чугунном барабане, свой профиль для каждого кофе. Светлую обжарку ведём мягче и дольше.",
+  "Rest, cup, pack, post":"Отдых, дегустация, упаковка, отправка",
+  "Beans rest a day, we taste them again, then hand-fold the bags and ship in compostable mailers.":"Зерно отдыхает сутки, мы снова его пробуем, вручную складываем пачки и отправляем в компостируемых конвертах.",
+  "The roastery café":"Кафе при обжарочной", "Come smell the roaster":"Приходите на запах обжарки",
+  "Grab a filter at the bar, watch a batch drop on Friday mornings, or pick up your order and skip the shipping.":"Возьмите фильтр у бара, посмотрите на выгрузку партии в пятницу утром или заберите заказ сами без доставки.",
+  "Address":"Адрес", "Hours":"Часы работы", "Roasting":"Обжарка", "Tuesdays and Fridays, from 7:00":"По вторникам и пятницам с 7:00", "harbor":"гавань",
+  /* origins, roasts */
+  "Ethiopia":"Эфиопия", "Rwanda":"Руанда", "Kenya":"Кения", "Colombia":"Колумбия", "Guatemala":"Гватемала", "Brazil":"Бразилия", "Indonesia":"Индонезия", "Blend":"Смесь",
+  "ETHIOPIA":"ЭФИОПИЯ", "RWANDA":"РУАНДА", "KENYA":"КЕНИЯ", "COLOMBIA":"КОЛУМБИЯ", "GUATEMALA":"ГВАТЕМАЛА", "BRAZIL":"БРАЗИЛИЯ", "INDONESIA":"ИНДОНЕЗИЯ", "BLEND":"СМЕСЬ",
+  "LIGHT ROAST":"СВЕТЛАЯ", "MEDIUM ROAST":"СРЕДНЯЯ", "DARK ROAST":"ТЁМНАЯ",
+  "All":"Все", "Light":"Светлая", "Medium":"Средняя", "Dark":"Тёмная",
+  "Light roast":"Светлая обжарка", "Medium roast":"Средняя обжарка", "Dark roast":"Тёмная обжарка", "Decaf":"Без кофеина",
+  /* tasting notes */
+  "Bergamot":"Бергамот", "Apricot":"Абрикос", "Wildflower honey":"Цветочный мёд", "Hibiscus":"Гибискус", "Red currant":"Красная смородина", "Black tea":"Чёрный чай",
+  "Blackcurrant":"Чёрная смородина", "Pink grapefruit":"Розовый грейпфрут", "Cane sugar":"Тростниковый сахар", "Red apple":"Красное яблоко", "Panela":"Панела", "Cocoa":"Какао",
+  "Milk chocolate":"Молочный шоколад", "Almond":"Миндаль", "Orange zest":"Апельсиновая цедра", "Hazelnut":"Фундук", "Caramel":"Карамель", "Cocoa nib":"Какао-крупка",
+  "Dark cocoa":"Тёмное какао", "Toffee":"Ирис", "Cherry":"Вишня", "Cedar":"Кедр", "Dark chocolate":"Тёмный шоколад", "Molasses":"Патока", "Brown sugar":"Коричневый сахар", "Plum":"Слива",
+  /* producers, process */
+  "Daye Bensa washing station":"Станция обработки Daye Bensa", "Kinunu cooperative":"Кооператив Kinunu", "Gura factory smallholders":"Мелкие фермеры фабрики Gura",
+  "Seven families of La Esperanza":"Семь семей из Ла-Эсперансы", "Finca El Tablón":"Финка Эль-Таблон", "Fazenda Boa Vista":"Фазенда Боа-Виста",
+  "Three partner farms":"Три фермы-партнёра", "Lake Toba smallholders":"Мелкие фермеры у озера Тоба", "Planadas growers' association":"Ассоциация фермеров Планадаса",
+  "Washed":"Мытая", "Washed, double-fermented":"Мытая, двойная ферментация", "Natural":"Натуральная", "Natural & washed":"Натуральная и мытая",
+  "Wet-hulled":"Влажная очистка", "Sugarcane decaf":"Декаф на основе сахарного тростника", "Heirloom landraces":"Местные эфиопские сорта", "Mixed":"Разные",
+  /* descriptions */
+  "Tea-like and fragrant, with a juicy apricot middle. We stop the roast just after first crack so the florals stay intact. Our favorite way to start a slow Saturday.":"Чайный и ароматный, с сочным абрикосом в середине. Останавливаем обжарку сразу после первого крэка, чтобы сохранить цветочные ноты. Наш любимый способ начать неспешную субботу.",
+  "Tart and bright when hot, rounding into black-tea sweetness as it cools. Grown on steep slopes above the lake and dried slowly on raised beds.":"Горячим — терпкий и яркий, а остывая, раскрывается сладостью чёрного чая. Выращен на крутых склонах над озером и медленно высушен на приподнятых сушильных столах.",
+  "Loud in the best way: blackcurrant up front and a sparkling grapefruit finish. Shines in a pour-over; holds its own over ice.":"Громкий в лучшем смысле: чёрная смородина в начале и искристый грейпфрутовый финиш. Блистает в пуровере и отлично держится со льдом.",
+  "The one we drink every day. Crisp apple acidity over brown-sugar sweetness, forgiving in any brewer and lovely with a splash of milk.":"Тот, что мы пьём каждый день. Хрустящая яблочная кислотность поверх сладости коричневого сахара; прощает ошибки в любом способе заваривания и прекрасен с каплей молока.",
+  "Grown in volcanic soil between three volcanoes. Smooth, nutty and rich, with a little orange-peel brightness that keeps it lively.":"Вырос на вулканической почве между тремя вулканами. Мягкий, ореховый и насыщенный, с лёгкой яркостью апельсиновой корки, которая не даёт ему заскучать.",
+  "Low acidity, big body, pure comfort. Sun-dried in the cherry, which gives it that sweet caramel depth. Excellent in a moka pot.":"Низкая кислотность, плотное тело, чистый уют. Высушен на солнце прямо в ягоде — отсюда сладкая карамельная глубина. Отлично раскрывается в гейзерной кофеварке.",
+  "Our house espresso. Built to cut through milk: thick, syrupy and chocolate-heavy, with a cherry note from the natural Ethiopian component.":"Наш фирменный эспрессо. Создан, чтобы пробиваться сквозь молоко: густой, сиропный и очень шоколадный, с вишнёвой нотой от натуральной Эфиопии в составе.",
+  "Earthy, heavy and quietly sweet. Wet-hulling gives Sumatran coffee its signature forest-floor depth. Great in a French press on cold mornings.":"Землистый, плотный и тихо-сладкий. Влажная очистка даёт суматранскому кофе фирменную глубину лесной подстилки. Прекрасен во френч-прессе холодным утром.",
+  "Decaffeinated with a natural sugarcane process that keeps the sweetness. All the ritual of an evening cup, none of the 2 a.m. ceiling staring.":"Кофеин удалён натуральным методом на основе сахарного тростника, сладость сохранена. Весь ритуал вечерней чашки — и никакого разглядывания потолка в два часа ночи.",
+  /* shop */
+  "The coffee":"Кофе", "Everything we're roasting":"Всё, что мы обжариваем",
+  "Single origins change with the harvest; the blend and the decaf stay year-round. All prices are for 250 g; larger bags are cheaper per cup.":"Моносорта меняются с урожаем, а смесь и декаф есть круглый год. Все цены указаны за 250 г; в больших пачках чашка выходит дешевле.",
+  "Filter coffees":"Фильтры", "Roast":"Обжарка", "Origin":"Происхождение", "Sort by":"Сортировка",
+  "Roaster's order":"Рекомендуемые", "Price: low to high":"Цена: по возрастанию", "Price: high to low":"Цена: по убыванию", "Lightest roast first":"Сначала светлая обжарка",
+  "Coffee results":"Результаты", "Clear filters":"Сбросить фильтры", "Tasting notes":"Вкусовые ноты",
+  "Nothing matches that combination.":"Под эти фильтры ничего не подходит.", "Try another roast, or clear the origin filters.":"Попробуйте другую обжарку или сбросьте фильтр по странам.",
+  /* product */
+  "Breadcrumb":"Навигационная цепочка", "Producer":"Производитель", "Altitude":"Высота", "Process":"Обработка", "Varietal":"Разновидность", "Best for":"Лучше всего для",
+  "Pour-over":"Пуровер", "Espresso":"Эспрессо", "French press":"Френч-пресс",
+  "Grind":"Помол", "Whole bean":"В зёрнах", "Freshest, grind at home":"Свежее всего — мелите дома", "Very fine grind":"Очень мелкий", "Moka pot":"Гейзерная кофеварка",
+  "Fine grind":"Мелкий", "Filter / pour-over":"Фильтр / пуровер", "Medium grind":"Средний", "Coarse grind":"Крупный",
+  "Bag size":"Размер пачки", "Quantity":"Количество", "Decrease quantity":"Уменьшить количество", "Increase quantity":"Увеличить количество", "How we brew it":"Как его завариваем мы",
+  "15 g coffee to 250 g water at 94°C":"15 г кофе на 250 г воды при 94°C", "Bloom with 40 g for 40 seconds":"Пролив 40 г и 40 секунд на «цветение»", "Pour in slow circles, finish by 3:00":"Лейте медленными кругами, закончите к 3:00",
+  "18 g in, 38–40 g out":"18 г на входе, 38–40 г в чашке", "27–32 seconds":"27–32 секунды", "Pull a little longer for lighter roasts":"Для светлой обжарки проливайте чуть дольше",
+  "30 g coarse coffee to 500 g water":"30 г крупного помола на 500 г воды", "Steep 4 minutes, break the crust":"Настаивайте 4 минуты, разбейте корочку", "Skim the foam, plunge gently, pour it all":"Снимите пену, плавно опустите поршень, разлейте всё",
+  /* cart, checkout */
+  "Ready to brew?":"Готовы заваривать?", "Your bag is empty.":"Корзина пуста.", "A good place to start: the coffee quiz, or our everyday Colombian.":"Хорошее начало — кофейный квиз или наша повседневная Колумбия.",
+  "Take the quiz":"Пройти квиз", "Browse coffee":"Смотреть кофе", "Remove":"Удалить", "Summary":"Сводка", "You've unlocked free shipping.":"Доставка уже бесплатная.",
+  "Subtotal":"Сумма", "Shipping":"Доставка", "Free":"Бесплатно", "Total":"Итого", "Go to checkout":"Оформить заказ", "Keep browsing":"Продолжить покупки",
+  "whole bean":"в зёрнах", "espresso":"эспрессо", "moka pot":"гейзер", "filter / pour-over":"фильтр / пуровер", "french press":"френч-пресс",
+  "Nothing to check out yet":"Пока нечего оформлять", "Almost there":"Почти готово", "Demo checkout.":"Демо-оформление.",
+  "There is no payment step, nothing is charged, and the details you type are not stored or sent anywhere.":"Шага оплаты нет, деньги не списываются, а введённые данные никуда не сохраняются и не отправляются.",
+  "Contact":"Контакты", "Full name":"Имя и фамилия", "Email":"Эл. почта", "For the roast-day dispatch note":"Для письма об отправке",
+  "Delivery":"Доставка", "Post it to me":"Отправить почтой", "2–3 days":"2–3 дня", "Pick up at the roastery":"Самовывоз из обжарочной", "ready next roast day":"готово в следующий день обжарки",
+  "Street address":"Адрес", "Town / city":"Город", "Postcode":"Индекс", "Anything else?":"Что-то ещё?", "Note for the roaster":"Комментарий для обжарщика", "(optional)":"(необязательно)",
+  "e.g. It's a gift, please skip the invoice":"Например: это подарок, чек не вкладывайте", "Please fill in the highlighted fields.":"Заполните выделенные поля.",
+  "Place demo order":"Оформить демо-заказ", "Placing demo order…":"Оформляем демо-заказ…", "Your order":"Ваш заказ",
+  "Demo only":"Только демо", "Thank you — this was a demo order":"Спасибо — это был демо-заказ",
+  "Nothing was placed, charged, stored or sent. On a live site this is where the customer would see their confirmation.":"Ничего не заказано, не списано, не сохранено и не отправлено. На реальном сайте здесь покупатель увидел бы подтверждение.",
+  "Reference":"Номер", "Bags":"Пачек", "Ships":"Отправка", "Pickup":"Самовывоз", "Next roast day":"В следующий день обжарки", "Total (not charged)":"Итого (не списано)", "Back to the roastery":"Вернуться на главную",
+  /* quiz */
+  "How do you usually make coffee?":"Как вы обычно готовите кофе?", "Espresso machine":"Эспрессо-машина", "Short, intense shots or milk drinks":"Короткие крепкие шоты или напитки с молоком",
+  "Pour-over or drip":"Пуровер или капельная", "V60, Chemex, batch brewer":"V60, кемекс, капельная кофеварка", "Or AeroPress, cold brew":"Или аэропресс, колд брю", "Stovetop, strong and rich":"На плите, крепко и насыщенно",
+  "Which of these sounds most like your perfect cup?":"Что больше похоже на вашу идеальную чашку?", "Bright and fruity":"Яркий и фруктовый", "Berries, citrus, floral, tea-like":"Ягоды, цитрус, цветы, чайность",
+  "Sweet and chocolatey":"Сладкий и шоколадный", "Caramel, nuts, cocoa, balanced":"Карамель, орехи, какао, баланс", "Deep and bold":"Глубокий и плотный", "Dark chocolate, smoky, heavy body":"Тёмный шоколад, дымность, плотное тело",
+  "How do you take it?":"Как вы его пьёте?", "Black":"Чёрный", "Nothing to hide behind":"Ничего лишнего", "With milk":"С молоком", "Flat whites, lattes, a splash":"Флэт уайт, латте, капля молока",
+  "And when are you drinking it?":"А когда вы его пьёте?", "Mornings, mostly":"В основном утром", "Caffeine is the point":"Кофеин — главное", "Evenings too":"И вечером тоже",
+  "I'd like a decaf option":"Хочу вариант без кофеина", "Whenever":"Когда угодно", "Surprise me":"Удивите меня", "← Back":"← Назад",
+  "Your match":"Ваш кофе", "We'd grind it for":"Смелем под", ". Not quite right? Try":". Не совсем то? Попробуйте", "instead.":"— тоже хороший вариант.",
+  "See details":"Подробнее", "Start the quiz again":"Пройти квиз заново",
+  "That page has gone stale":"Эта страница выдохлась", "Let's get you back to something fresh.":"Вернёмся к чему-нибудь свежему.",
+  /* v2 */
+  "Coffee roasted to order":"Кофе под заказ", "Specialty coffee · roasted to order":"Спешелти-кофе · обжарка под заказ",
+  "Coffee roasted to order,":"Обжариваем под заказ,", "shipped on roast day.":"отправляем в день обжарки.",
+  "Single origins and blends for home brewers, ground for your brewer or left whole. Order before the cutoff and your bag goes into the next roast.":"Моносорта и смеси для домашнего заваривания — в зёрнах или смолотые под ваш способ. Закажите до дедлайна, и ваша пачка попадёт в ближайшую обжарку.",
+  "Shop coffee":"Выбрать кофе", "Not sure? Take the 60-second quiz":"Не знаете, что выбрать? Пройдите квиз за минуту",
+  "Next roast":"Ближайшая обжарка", "Free shipping":"Бесплатная доставка", "at the roastery":"в обжарочной",
+  "Roast schedule":"График обжарки", "When your coffee will be roasted":"Когда обжарят ваш кофе",
+  "We taste before we buy":"Пробуем, прежде чем купить", "Every lot is cupped at the roastery before it joins the range.":"Каждый лот дегустируем в обжарочной, прежде чем он попадёт в ассортимент.",
+  "We roast your order":"Обжариваем ваш заказ", "Small batches, with a roast profile for each coffee. Light roasts get a gentler, longer development.":"Небольшие партии и свой профиль для каждого кофе. Светлую обжарку ведём мягче и дольше.",
+  "Beans rest a day, we taste them again, then pack and post them.":"Зерно отдыхает сутки, мы снова пробуем его, затем упаковываем и отправляем.",
+  "Open in Maps":"Открыть на карте", "Shipping, pickup & payment":"Доставка, самовывоз и оплата", "Shipping & contact":"Доставка и контакты", "Shipping & payment":"Доставка и оплата",
+  "Pickup":"Самовывоз", "Payment":"Оплата", "To fill in":"Заполнить", "Placeholder review":"Место для отзыва",
+  "Fill in how customers pay, e.g. card on pickup or an invoice by email.":"Укажите, как покупатели платят: например, картой при самовывозе или по счёту на почту.",
+  "Returns & freshness guarantee":"Возврат и гарантия свежести", "Returns & freshness":"Возврат и свежесть",
+  "Fill in your real returns or replacement policy. Only promise what you will honour.":"Опишите реальные условия возврата или замены. Обещайте только то, что действительно выполните.",
+  "What customers say":"Что говорят покупатели",
+  "Paste a real customer review here, with their permission: their words, first name and the coffee they bought.":"Вставьте сюда настоящий отзыв покупателя с его разрешения: его слова, имя и какой кофе он купил.",
+  "Before you order":"Перед заказом", "Shipping, pickup & contact":"Доставка, самовывоз и контакты",
+  "Please enter your name.":"Введите имя.", "Please enter a valid email so we can confirm your order.":"Введите корректный email, чтобы мы могли подтвердить заказ.",
+  "Please enter your street address.":"Введите адрес.", "Please enter your town or city.":"Введите город.", "Please enter your postcode.":"Введите индекс.",
+  "Place order":"Оформить заказ", "Sending order…":"Отправляем заказ…", "Shipping & payment terms":"Условия доставки и оплаты",
+  "Online ordering isn't connected yet.":"Онлайн-заказ пока не подключён.",
+  "Your order has not been sent and nothing was charged. To order now, email it to us — your bag is still saved.":"Заказ не отправлен, деньги не списаны. Чтобы заказать сейчас, отправьте его нам на почту — корзина сохранена.",
+  "Email this order":"Отправить заказ письмом", "Copy order details":"Скопировать заказ", "Copied":"Скопировано", "Copy failed":"Не удалось скопировать",
+  "We couldn't send your order.":"Не удалось отправить заказ.", "Check your connection and try again. Your bag is still saved.":"Проверьте соединение и попробуйте снова. Корзина сохранена.",
+  "Order sent":"Заказ отправлен", "Thank you — your order is in":"Спасибо — заказ принят", "Total to pay":"К оплате", "Back to the shop":"Вернуться в магазин"
+};
+const plural = (n, one, few, many) => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? one : a >= 2 && a <= 4 && (b < 12 || b > 14) ? few : many; };
+const RU_RULES = [
+  [/^View bag, (\d+) items?$/, (_, n) => `Корзина: ${n} ${plural(+n, "товар", "товара", "товаров")}`],
+  [/^Roasted twice a week in (.+)$/, (_, c) => `Обжариваем дважды в неделю · ${c}`],
+  [/^drop (.+)$/, (_, t) => `выгрузка ${t}`],
+  [/^See all (\d+) coffees$/, (_, n) => `Весь кофе (${n})`],
+  [/^from (\$[\d.,]+)$/, (_, p) => `от ${p}`],
+  [/^(\d+) coffees?$/, (_, n) => `${n} ${plural(+n, "сорт", "сорта", "сортов")}`],
+  [/^(\d+(?:\.\d+)?) (k?g)$/, (_, n, u) => `${n} ${u === "kg" ? "кг" : "г"}`],
+  [/^([\d,–]+) m$/, (_, n) => `${n} м`],
+  [/^Illustrated bag of (.+)$/, (_, n) => `Иллюстрация пачки ${n}`],
+  [/^Bag of (.+)$/, (_, n) => `Пачка ${n}`],
+  [/^\/ (.+) \/$/, (_, o) => `/ ${trv(o)} /`],
+  [/^(Light|Medium|Dark) roast, (\d) of 5$/, (_, r, n) => `${trv(r)} обжарка, ${n} из 5`],
+  [/^Add to bag · (.+)$/, (_, p) => `В корзину · ${p}`],
+  [/^Add 250 g to bag · (.+)$/, (_, p) => `Добавить 250 г · ${p}`],
+  [/^Our bar recipe for (.+):$/, (_, b) => `Наш рецепт для ${({ "pour-over":"пуровера", "espresso":"эспрессо", "French press":"френч-пресса" })[b] || b}:`],
+  [/^Quantity for (.+)$/, (_, n) => `Количество: ${n}`],
+  [/^Add (\$[\d.,]+) more for free shipping\.$/, (_, p) => `Добавьте ещё ${p} до бесплатной доставки.`],
+  [/^free over (.+)$/, (_, p) => `бесплатно от ${p}`],
+  [/^Added (\d+) × (.+) \((.+)\)$/, (_, q, n, w) => `Добавлено: ${q} × ${n} (${trv(w)})`],
+  [/^Added (.+) to your bag$/, (_, n) => `${n} — в корзине`],
+  [/^Question (\d+) of (\d+)$/, (_, a, b) => `Вопрос ${a} из ${b}`],
+  [/^over (\$[\d.,]+)$/, (_, p) => `от ${p}`]
+];
+
+/* ---- i18n engine (shared by all three demo sites) ---- */
+const I18N = { lang:"en", storageKey:"jlr-lang", onChange:null };
+const I18N_ATTRS = ["aria-label", "placeholder", "title", "alt"];
+const i18nText = new WeakMap(), i18nAttr = new WeakMap();
+const i18nNorm = s => s.replace(/\s+/g, " ").trim();
+function tr(en){
+  const k = i18nNorm(en);
+  if (!k) return null;
+  if (Object.prototype.hasOwnProperty.call(RU, k)) return RU[k];
+  for (const [re, fn] of RU_RULES){ const m = k.match(re); if (m){ const out = fn(...m); if (out != null) return out; } }
+  for (const sep of [" — ", " · ", ", "]){            // translate compound strings part by part
+    if (!k.includes(sep)) continue;
+    const parts = k.split(sep), out = parts.map(tr);
+    if (out.some(x => x != null)) return out.map((x, i) => x ?? parts[i]).join(sep);
+  }
+  return null;
+}
+const trv = s => tr(s) ?? s;
+const loc = () => I18N.lang === "ru" ? "ru-RU" : CONFIG.locale;
+function i18nApplyText(node){
+  const p = node.parentNode;
+  if (!p || p.nodeName === "SCRIPT" || p.nodeName === "STYLE") return;
+  let rec = i18nText.get(node);
+  if (!rec || node.nodeValue !== rec.out) rec = { en: node.nodeValue };
+  let out = rec.en;
+  if (I18N.lang === "ru"){ const t = tr(rec.en); if (t != null) out = rec.en.match(/^\s*/)[0] + t + rec.en.match(/\s*$/)[0]; }
+  rec.out = out; i18nText.set(node, rec);
+  if (node.nodeValue !== out) node.nodeValue = out;
+}
+function i18nApplyAttr(el, a){
+  const v = el.getAttribute(a); if (v == null) return;
+  let map = i18nAttr.get(el); if (!map){ map = {}; i18nAttr.set(el, map); }
+  let rec = map[a];
+  if (!rec || v !== rec.out) rec = map[a] = { en: v };
+  rec.out = I18N.lang === "ru" ? trv(rec.en) : rec.en;
+  if (v !== rec.out) el.setAttribute(a, rec.out);
+}
+function i18nApplyTree(root){
+  if (root.nodeType === 3) return i18nApplyText(root);
+  if (root.nodeType !== 1 || root.nodeName === "SCRIPT" || root.nodeName === "STYLE") return;
+  const doEl = el => I18N_ATTRS.forEach(a => el.hasAttribute(a) && i18nApplyAttr(el, a));
+  doEl(root);
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT,
+    { acceptNode: n => (n.nodeName === "SCRIPT" || n.nodeName === "STYLE") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  let n; while ((n = w.nextNode())) n.nodeType === 3 ? i18nApplyText(n) : doEl(n);
+}
+new MutationObserver(recs => {
+  for (const r of recs){
+    if (r.type === "childList") r.addedNodes.forEach(i18nApplyTree);
+    else if (r.type === "characterData") i18nApplyText(r.target);
+    else i18nApplyAttr(r.target, r.attributeName);
+  }
+}).observe(document.documentElement, { subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:I18N_ATTRS });
+function setLang(lang, { save = true, rerender = true } = {}){
+  I18N.lang = lang === "ru" ? "ru" : "en";
+  document.documentElement.lang = I18N.lang;
+  if (save) try { localStorage.setItem(I18N.storageKey, I18N.lang); } catch (e) { /* storage unavailable */ }
+  document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === I18N.lang)));
+  if (rerender && I18N.onChange) I18N.onChange();
+  i18nApplyTree(document.documentElement);
+}
+I18N.lang = (() => { let l = null; try { l = localStorage.getItem(I18N.storageKey); } catch (e) {} return l || ((navigator.language || "").toLowerCase().startsWith("ru") ? "ru" : "en"); })();
+document.addEventListener("click", e => { const b = e.target.closest("[data-lang]"); if (b) setLang(b.dataset.lang); });
+
+/* ===================== DATA ===================== */
+const PRODUCTS = [
+  { slug:"sidamo-sunrise", name:"Sidamo Sunrise", origin:"Ethiopia", region:"Bensa, Sidama", producer:"Daye Bensa washing station", altitude:"2,050–2,250 m", process:"Washed", varietal:"Heirloom landraces", roast:"Light", level:1, price:17, notes:["Bergamot","Apricot","Wildflower honey"], flavor:"fruity", brew:["filter"], color:"#C9733D", accent:"#F3C97A", tint:"#F8E1C8",
+    desc:"Tea-like and fragrant, with a juicy apricot middle. We stop the roast just after first crack so the florals stay intact. Our favorite way to start a slow Saturday." },
+  { slug:"lake-kivu-hills", name:"Lake Kivu Hills", origin:"Rwanda", region:"Rutsiro, Western Province", producer:"Kinunu cooperative", altitude:"1,750–1,900 m", process:"Washed", varietal:"Red Bourbon", roast:"Light", level:1, price:18, notes:["Hibiscus","Red currant","Black tea"], flavor:"fruity", brew:["filter","immersion"], color:"#9E3F46", accent:"#F0A3A0", tint:"#F5D8D5",
+    desc:"Tart and bright when hot, rounding into black-tea sweetness as it cools. Grown on steep slopes above the lake and dried slowly on raised beds." },
+  { slug:"nyeri-bright", name:"Nyeri Bright", origin:"Kenya", region:"Othaya, Nyeri", producer:"Gura factory smallholders", altitude:"1,800 m", process:"Washed, double-fermented", varietal:"SL28, SL34", roast:"Light", level:2, price:19, notes:["Blackcurrant","Pink grapefruit","Cane sugar"], flavor:"fruity", brew:["filter"], color:"#5B3A6B", accent:"#E7A7C4", tint:"#EADCEC",
+    desc:"Loud in the best way: blackcurrant up front and a sparkling grapefruit finish. Shines in a pour-over; holds its own over ice." },
+  { slug:"huila-ridge", name:"Huila Ridge", origin:"Colombia", region:"Pitalito, Huila", producer:"Seven families of La Esperanza", altitude:"1,650–1,800 m", process:"Washed", varietal:"Caturra, Colombia", roast:"Medium", level:3, price:15, notes:["Red apple","Panela","Cocoa"], flavor:"chocolate", brew:["filter","espresso","immersion"], color:"#2F5D50", accent:"#E4844A", tint:"#DDE7DC",
+    desc:"The one we drink every day. Crisp apple acidity over brown-sugar sweetness, forgiving in any brewer and lovely with a splash of milk." },
+  { slug:"antigua-cocoa", name:"Antigua Cocoa", origin:"Guatemala", region:"Antigua valley", producer:"Finca El Tablón", altitude:"1,550 m", process:"Washed", varietal:"Bourbon", roast:"Medium", level:3, price:15, notes:["Milk chocolate","Almond","Orange zest"], flavor:"chocolate", brew:["espresso","immersion","filter"], color:"#7A4A2A", accent:"#F1B26B", tint:"#F0DDC8",
+    desc:"Grown in volcanic soil between three volcanoes. Smooth, nutty and rich, with a little orange-peel brightness that keeps it lively." },
+  { slug:"cerrado-comfort", name:"Cerrado Comfort", origin:"Brazil", region:"Cerrado Mineiro", producer:"Fazenda Boa Vista", altitude:"1,150 m", process:"Natural", varietal:"Yellow Catuaí", roast:"Medium", level:4, price:13, notes:["Hazelnut","Caramel","Cocoa nib"], flavor:"chocolate", brew:["espresso","immersion"], color:"#B07A33", accent:"#F6D6BA", tint:"#F2E3C6",
+    desc:"Low acidity, big body, pure comfort. Sun-dried in the cherry, which gives it that sweet caramel depth. Excellent in a moka pot." },
+  { slug:"hearth-blend", name:"Hearth Blend", origin:"Blend", region:"Brazil · Guatemala · Ethiopia", producer:"Three partner farms", altitude:"1,150–2,100 m", process:"Natural & washed", varietal:"Mixed", roast:"Dark", level:4, price:14, notes:["Dark cocoa","Toffee","Cherry"], flavor:"bold", brew:["espresso"], color:"#33201A", accent:"#E4844A", tint:"#E7D6C4",
+    desc:"Our house espresso. Built to cut through milk: thick, syrupy and chocolate-heavy, with a cherry note from the natural Ethiopian component." },
+  { slug:"lintong-lowlight", name:"Lintong Lowlight", origin:"Indonesia", region:"Lintong, North Sumatra", producer:"Lake Toba smallholders", altitude:"1,400 m", process:"Wet-hulled", varietal:"Ateng, Typica", roast:"Dark", level:5, price:15, notes:["Cedar","Dark chocolate","Molasses"], flavor:"bold", brew:["immersion","espresso"], color:"#3E4A3A", accent:"#C9B27A", tint:"#DEE0D3",
+    desc:"Earthy, heavy and quietly sweet. Wet-hulling gives Sumatran coffee its signature forest-floor depth. Great in a French press on cold mornings." },
+  { slug:"night-shift-decaf", name:"Night Shift Decaf", origin:"Colombia", region:"Tolima", producer:"Planadas growers' association", altitude:"1,700 m", process:"Sugarcane decaf", varietal:"Castillo, Caturra", roast:"Medium", level:3, price:15, notes:["Brown sugar","Cocoa","Plum"], flavor:"chocolate", brew:["filter","espresso","immersion"], color:"#28344F", accent:"#E9C46A", tint:"#DADFEA", decaf:true,
+    desc:"Decaffeinated with a natural sugarcane process that keeps the sweetness. All the ritual of an evening cup, none of the 2 a.m. ceiling staring." }
+];
+const GRINDS = [
+  { id:"whole", label:"Whole bean", hint:"Freshest, grind at home" },
+  { id:"espresso", label:"Espresso", hint:"Very fine grind" },
+  { id:"moka", label:"Moka pot", hint:"Fine grind" },
+  { id:"filter", label:"Filter / pour-over", hint:"Medium grind" },
+  { id:"press", label:"French press", hint:"Coarse grind" }
+];
+const WEIGHTS = [ { g:250, mult:1 }, { g:500, mult:1.85 }, { g:1000, mult:3.4 } ];
+const ROAST_COLORS = { Light:"#D9A066", Medium:"#9A6235", Dark:"#3E2418" };
+
+/* ===================== HELPERS ===================== */
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => [...el.querySelectorAll(s)];
+const money = n => new Intl.NumberFormat(CONFIG.locale, { style:"currency", currency:CONFIG.currency }).format(n);
+const bySlug = s => PRODUCTS.find(p => p.slug === s);
+const unitPrice = (p, g) => Math.round(p.price * (WEIGHTS.find(w => w.g === +g) || WEIGHTS[0]).mult * 100) / 100;
+const weightLabel = g => g >= 1000 ? (g/1000) + " kg" : g + " g";
+const grindLabel = id => (GRINDS.find(x => x.id === id) || GRINDS[0]).label;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const prefersReduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function beanSVG(cls=""){ return `<svg class="bean ${cls}" viewBox="0 0 40 28" aria-hidden="true"><ellipse cx="20" cy="14" rx="19" ry="13" fill="#5A3B2C"/><path d="M5 16C13 8 26 21 35 11" stroke="#33201A" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>`; }
+
+/* Illustrated coffee bag (used when no photo is set) */
+function bagSVG(p){
+  if (PRODUCT_PHOTOS[p.slug]) return `<img src="${esc(PRODUCT_PHOTOS[p.slug])}" alt="Bag of ${esc(p.name)}" loading="lazy">`;
+  const motif = p.flavor === "fruity"
+    ? `<circle cx="100" cy="114" r="15" fill="${p.accent}"/><path d="M68 144l20-18 12 9 16-20 22 29z" fill="rgba(255,251,244,.35)"/>`
+    : p.flavor === "chocolate"
+    ? `<path d="M66 144c10-26 22-36 34-36s24 10 34 36z" fill="rgba(255,251,244,.3)"/><circle cx="122" cy="106" r="9" fill="${p.accent}"/>`
+    : `<path d="M100 96c10 12 14 22 14 30a14 14 0 0 1-28 0c0-8 4-18 14-30z" fill="${p.accent}"/><path d="M68 146h64" stroke="rgba(255,251,244,.4)" stroke-width="3"/>`;
+  return `<svg class="bag" viewBox="0 0 200 240" role="img" aria-label="Illustrated bag of ${esc(p.name)}">
+    <ellipse cx="100" cy="230" rx="66" ry="7" fill="rgba(51,32,26,.16)"/>
+    <path d="M38 44h124l8 178q-70 10-140 0z" fill="#CFA77F"/>
+    <path d="M38 44h124l8 178q-12 2-24 3L150 44z" fill="rgba(51,32,26,.10)"/>
+    <path d="M44 20h112l6 24H38z" fill="#B48A60"/>
+    <path d="M48 31h104" stroke="#8B6744" stroke-width="2.5" stroke-dasharray="5 4"/>
+    <rect x="56" y="74" width="88" height="112" rx="5" fill="${p.color}"/>
+    <rect x="61" y="79" width="78" height="102" rx="3" fill="none" stroke="rgba(255,251,244,.45)"/>
+    ${motif}
+    <text x="100" y="164" text-anchor="middle" font-family="Literata, Georgia, serif" font-size="11" fill="#FFFBF4" letter-spacing="1.6">${esc(p.origin.toUpperCase())}</text>
+    <text x="100" y="176" text-anchor="middle" font-family="Manrope, sans-serif" font-size="7" fill="rgba(255,251,244,.85)" letter-spacing="1.4">${esc(p.roast.toUpperCase())} ROAST</text>
+    <text x="100" y="62" text-anchor="middle" font-family="Literata, Georgia, serif" font-style="italic" font-size="10" fill="#5A3B2C">${esc(CONFIG.shortName)}</text>
+    <circle cx="140" cy="206" r="10" fill="none" stroke="#8B6744" stroke-width="1.5"/>
+    <text x="140" y="209" text-anchor="middle" font-family="Manrope, sans-serif" font-size="7" fill="#5A3B2C">${p.level}/5</text>
+  </svg>`;
+}
+
+function productCard(p, headingTag="h3"){
+  return `<a class="p-card reveal" href="#/coffee/${p.slug}">
+    <div class="art" style="background:${p.tint}">${bagSVG(p)}</div>
+    <div class="body">
+      <p class="p-meta">${esc(p.origin)} · ${esc(p.roast)} roast${p.decaf ? " · Decaf" : ""}</p>
+      <${headingTag}>${esc(p.name)}</${headingTag}>
+      <ul class="notes" aria-label="Tasting notes">${p.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+      <p class="p-price"><span>from ${money(p.price)}</span><span class="arrow" aria-hidden="true">→</span></p>
+    </div>
+  </a>`;
+}
+
+/* ===================== CART (localStorage) ===================== */
+const CART_KEY = "jlr-cart-v1";
+let cart = loadCart();
+function loadCart(){
+  try {
+    const raw = localStorage.getItem(CART_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr.filter(i => bySlug(i.slug) && i.qty > 0) : [];
+  } catch (e) { return []; }
+}
+function saveCart(){
+  try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) { /* storage unavailable: cart stays in memory */ }
+  updateCartBadge();
+}
+function addToCart(slug, grind, weight, qty=1){
+  const found = cart.find(i => i.slug === slug && i.grind === grind && i.weight === weight);
+  if (found) found.qty = Math.min(20, found.qty + qty); else cart.push({ slug, grind, weight, qty });
+  saveCart();
+}
+const cartCount = () => cart.reduce((n, i) => n + i.qty, 0);
+const cartSubtotal = () => cart.reduce((s, i) => s + unitPrice(bySlug(i.slug), i.weight) * i.qty, 0);
+function updateCartBadge(){
+  const n = cartCount(), el = $("#cartCount");
+  el.textContent = n; el.dataset.empty = n === 0;
+  $("#cartBtn").setAttribute("aria-label", n ? `View bag, ${n} item${n>1?"s":""}` : "View bag, empty");
+}
+
+let toastTimer;
+function toast(html){
+  const t = $("#toast"); t.innerHTML = html; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 3800);
+}
+
+/* ===================== VIEWS ===================== */
+const T = (en, ru) => I18N.lang === "ru" ? ru : en;          // for sentences built from data
+const mapsUrl = () => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.address);
+const fmtDay = d => d.toLocaleDateString(loc(), { weekday:"short", day:"numeric", month:"short" });
+const fmtCutoff = d => d.toLocaleString(loc(), { weekday:"short", hour:"numeric", minute:"2-digit" });
+function nextRoasts(n = 3){
+  const out = [], now = new Date();
+  for (let i = 0; out.length < n && i < 28; i++){
+    const day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+    if (!CONFIG.roastWeekdays.includes(day.getDay())) continue;
+    const cutoff = new Date(day); cutoff.setDate(day.getDate() - 1); cutoff.setHours(CONFIG.orderCutoffHour, 0, 0, 0);
+    if (cutoff > now) out.push({ day, cutoff });
+  }
+  return out;
+}
+function roastDaysText(){
+  const names = CONFIG.roastWeekdays.map(w => { const d = new Date(2024, 0, 7 + w); return d.toLocaleDateString(loc(), { weekday:"long" }); });
+  return names.length > 1 ? names.slice(0, -1).join(", ") + T(" and ", " и ") + names[names.length - 1] : names[0];
+}
+const ph = (title, text) => `<div class="ph"><span class="ph-tag">To fill in</span><h3>${title}</h3><p>${text}</p></div>`;
+function termsBlock(){
+  return `<div class="terms">
+    <div class="term reveal"><h3>Shipping</h3><p>${T(`${money(CONFIG.shippingFlat)} flat rate, free on orders over ${money(CONFIG.freeShippingFrom)}. Posted on roast day.`, `${money(CONFIG.shippingFlat)} за заказ, бесплатно от ${money(CONFIG.freeShippingFrom)}. Отправляем в день обжарки.`)}</p></div>
+    <div class="term reveal"><h3>Pickup</h3><p>${T("Free from the roastery:", "Бесплатно в обжарочной:")} <a href="${mapsUrl()}" target="_blank" rel="noopener">${esc(CONFIG.address)}</a>. <span data-store="hours"></span>.</p></div>
+    ${CONFIG.paymentNote ? `<div class="term reveal"><h3>Payment</h3><p>${esc(CONFIG.paymentNote)}</p></div>` : `<div class="reveal">${ph("Payment", "Fill in how customers pay, e.g. card on pickup or an invoice by email.")}</div>`}
+    ${CONFIG.returnsPolicy ? `<div class="term reveal"><h3>Returns &amp; freshness</h3><p>${esc(CONFIG.returnsPolicy)}</p></div>` : `<div class="reveal">${ph("Returns &amp; freshness guarantee", "Fill in your real returns or replacement policy. Only promise what you will honour.")}</div>`}
+    <div class="term reveal"><h3>Contact</h3><p><a data-store="email-link" href="#"></a>${CONFIG.phone ? ` · <a data-store="phone-link" href="#"></a>` : ""}</p></div>
+  </div>`;
+}
+function reviewsBlock(){
+  return `<div class="reviews">${[1, 2, 3].map(() => `<div class="reveal">${ph("Placeholder review", "Paste a real customer review here, with their permission: their words, first name and the coffee they bought.")}</div>`).join("")}</div>`;
+}
+
+function viewHome(){
+  const hero = bySlug("huila-ridge");
+  const roasts = nextRoasts(3), next = roasts[0];
+  const big = bySlug("antigua-cocoa"), s1 = bySlug("nyeri-bright"), s2 = bySlug("lintong-lowlight"), s3 = bySlug("night-shift-decaf");
+  return {
+    title: "Coffee roasted to order",
+    html: `
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Specialty coffee · roasted to order</p>
+          <h1>Coffee roasted to order, <em>shipped on roast day.</em></h1>
+          <p class="lead">Single origins and blends for home brewers, ground for your brewer or left whole. Order before the cutoff and your bag goes into the next roast.</p>
+          <div class="actions">
+            <a class="btn" href="#/shop">Shop coffee</a>
+            <a class="link" href="#/quiz">Not sure? Take the 60-second quiz</a>
+          </div>
+          <div class="hero-meta">
+            <span><strong>Next roast</strong>${next ? fmtDay(next.day) : "—"}</span>
+            <span><strong>Free shipping</strong>over ${money(CONFIG.freeShippingFrom)}</span>
+            <span><strong>Pickup</strong>at the roastery</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-blob"></div>
+          ${HERO_PHOTO ? `<div class="hero-photo" style="background-image:url('${esc(HERO_PHOTO)}')"></div>` : `
+          <div class="hero-bag">${bagSVG(hero)}</div>
+          ${beanSVG("b1")}${beanSVG("b2")}${beanSVG("b3")}${beanSVG("b4")}`}
+          <svg class="stamp" viewBox="0 0 120 120">
+            <defs><path id="stampCircle" d="M60,60 m-43,0 a43,43 0 1,1 86,0 a43,43 0 1,1 -86,0"/></defs>
+            <circle cx="60" cy="60" r="58" fill="#33201A"/>
+            <g class="ring"><text font-family="Manrope, sans-serif" font-size="10.5" font-weight="600" letter-spacing="2.2" fill="#F7F0E4"><textPath href="#stampCircle">ROASTED TO ORDER · SHIPPED FRESH · </textPath></text></g>
+            <ellipse cx="60" cy="60" rx="11" ry="16" fill="#E4844A" transform="rotate(25 60 60)"/>
+            <path d="M54 48c8 5 4 19 12 24" stroke="#33201A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <svg class="wavy" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 28V14C100 0 200 28 300 14S500 0 600 14 800 28 900 14 1100 0 1200 14V28z" fill="currentColor"/></svg>
+    <section class="log" aria-labelledby="logTitle">
+      <div class="wrap log-grid">
+        <div class="reveal">
+          <p class="eyebrow">Roast schedule</p>
+          <h2 id="logTitle" style="margin-top:.8rem">When your coffee will be roasted</h2>
+          <p class="muted" style="margin-top:.8rem">${T(`We roast on ${roastDaysText()}. Order before the cutoff and your bag is roasted that day, then posted or set aside for pickup.`, `Мы обжариваем: ${roastDaysText()}. Закажите до дедлайна — и пачку обжарят в этот день, а затем отправят или отложат для самовывоза.`)}</p>
+        </div>
+        <div class="log-sheet reveal">
+          <ul style="list-style:none;margin:0;padding:0">
+          ${roasts.map(r => `
+            <li class="log-row">
+              <span class="log-date">${fmtDay(r.day)}</span>
+              <span class="log-name"><strong>${T("Roast &amp; dispatch", "Обжарка и отправка")}</strong></span>
+              <span class="log-temp">${T("order by", "заказ до")} ${fmtCutoff(r.cutoff)}</span>
+            </li>`).join("")}
+          </ul>
+        </div>
+      </div>
+    </section>
+    <svg class="wavy" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="transform:scaleY(-1)"><path d="M0 28V14C100 0 200 28 300 14S500 0 600 14 800 28 900 14 1100 0 1200 14V28z" fill="currentColor"/></svg>
+
+    <section class="section" aria-labelledby="featTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="featTitle">On the shelf right now</h2>
+          <a class="link" href="#/shop">See all ${PRODUCTS.length} coffees</a>
+        </div>
+        <div class="featured">
+          <a class="feature-big reveal" href="#/coffee/${big.slug}">
+            <div class="art" style="background:${big.tint}">${bagSVG(big)}</div>
+            <div>
+              <p class="eyebrow">Roaster's pick · ${esc(big.origin)}</p>
+              <h3>${esc(big.name)}</h3>
+              <p class="muted" style="margin-bottom:.8rem">${esc(big.desc)}</p>
+              <ul class="notes">${big.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+            </div>
+          </a>
+          ${[s1, s2, s3].map(p => `
+          <a class="feature-small reveal" href="#/coffee/${p.slug}">
+            <div class="art" style="background:${p.tint}">${bagSVG(p)}</div>
+            <div><p class="p-meta">${esc(p.origin)} · ${esc(p.roast)}</p><h3>${esc(p.name)}</h3><p class="muted" style="font-size:.92rem">${esc(p.notes.join(", "))}</p><p style="font-weight:600;margin-top:.3rem">from ${money(p.price)}</p></div>
+          </a>`).join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" aria-labelledby="quizTitle">
+      <div class="quiz-band reveal">
+        <div>
+          <p class="eyebrow" style="color:var(--orange)">Not sure where to start?</p>
+          <h2 id="quizTitle" style="margin:.8rem 0 1rem">Four questions. <em class="serif-i">One coffee</em> that suits how you brew.</h2>
+          <p>Tell us your brewer, how you take it and what you like in a cup. We'll match you with a bag and the right grind.</p>
+        </div>
+        <a class="btn btn--orange" href="#/quiz">Find your coffee</a>
+        <svg class="cups" viewBox="0 0 200 200" aria-hidden="true"><path d="M30 80h110v50a45 45 0 0 1-45 45H75a45 45 0 0 1-45-45z" fill="#F7F0E4"/><path d="M140 95h12a20 20 0 0 1 0 40h-14" stroke="#F7F0E4" stroke-width="10" fill="none"/><path d="M60 60c0-14 14-14 14-28M90 60c0-14 14-14 14-28" stroke="#F7F0E4" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="howTitle">
+      <div class="wrap">
+        <div class="section-head"><h2 id="howTitle">How a bag gets to you</h2></div>
+        <ol class="steps">
+          <li class="reveal"><h3>We taste before we buy</h3><p class="muted">Every lot is cupped at the roastery before it joins the range.</p></li>
+          <li class="reveal"><h3>We roast your order</h3><p class="muted">Small batches, with a roast profile for each coffee. Light roasts get a gentler, longer development.</p></li>
+          <li class="reveal"><h3>Rest, cup, pack, post</h3><p class="muted">Beans rest a day, we taste them again, then pack and post them.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-labelledby="visitTitle">
+      <div class="wrap visit">
+        <div class="visit-card reveal">
+          <p class="eyebrow">The roastery café</p>
+          <h2 id="visitTitle" style="font-size:clamp(1.8rem,4vw,2.4rem);font-weight:500;margin-top:.8rem">Come smell the roaster</h2>
+          <p class="muted" style="margin-top:.8rem">Grab a filter at the bar, watch a batch drop on Friday mornings, or pick up your order and skip the shipping.</p>
+          <dl>
+            <dt>Address</dt><dd data-store="address"></dd>
+            <dt>Hours</dt><dd data-store="hours"></dd>
+            <dt>Roasting</dt><dd>${roastDaysText()}</dd>
+          </dl>
+          <a class="btn btn--ghost" href="${mapsUrl()}" target="_blank" rel="noopener" style="margin-top:var(--s5)">Open in Maps</a>
+        </div>
+        <div class="map reveal" aria-hidden="true">
+          <svg viewBox="0 0 520 340" style="width:100%;height:auto">
+            <rect width="520" height="340" fill="#EFE3CF"/>
+            <path d="M0 250C120 220 180 290 300 260S460 200 520 220V340H0z" fill="#C9D4D8"/>
+            <g stroke="#FFFBF4" stroke-width="14" fill="none" stroke-linecap="round"><path d="M-10 120H530"/><path d="M180 -10V250"/><path d="M380 -10L330 240"/></g>
+            <g fill="#E3D3BA"><rect x="30" y="20" width="120" height="70" rx="6"/><rect x="210" y="20" width="140" height="70" rx="6"/><rect x="30" y="150" width="120" height="60" rx="6"/><rect x="410" y="20" width="90" height="70" rx="6"/><rect x="400" y="150" width="100" height="40" rx="6"/></g>
+            <rect x="210" y="150" width="105" height="70" rx="6" fill="#F6D6BA" stroke="#A34D1B" stroke-width="2" stroke-dasharray="5 4"/>
+            <circle cx="262" cy="170" r="16" fill="#33201A"/><ellipse cx="262" cy="170" rx="5" ry="8" fill="#E4844A" transform="rotate(25 262 170)"/>
+            <text x="262" y="208" text-anchor="middle" font-family="Literata, serif" font-size="13" fill="#33201A">Cooper's Yard</text>
+            <text x="440" y="300" font-family="Literata, serif" font-style="italic" font-size="14" fill="#5A7A84">harbor</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-labelledby="termsTitle">
+      <div class="wrap">
+        <div class="section-head"><h2 id="termsTitle">Shipping, pickup &amp; payment</h2></div>
+        ${termsBlock()}
+        <h2 style="font-size:clamp(1.6rem,3.6vw,2.2rem);font-weight:500;margin-top:var(--s7)">What customers say</h2>
+        ${reviewsBlock()}
+      </div>
+    </section>`
+  };
+}
+
+/* ---------- SHOP ---------- */
+const shopState = { roast:"All", origins:new Set(), sort:"featured" };
+function viewShop(){
+  const origins = [...new Set(PRODUCTS.map(p => p.origin))];
+  return {
+    title: "Shop coffee",
+    html: `
+    <div class="wrap">
+      <header class="page-head">
+        <p class="eyebrow">The coffee</p>
+        <h1>Everything we're roasting</h1>
+        <p class="lead">Single origins change with the harvest; the blend and the decaf stay year-round. All prices are for 250 g; larger bags are cheaper per cup.</p>
+      </header>
+      <div class="shop-layout">
+        <aside class="filters" aria-label="Filter coffees">
+          <fieldset>
+            <legend>Roast</legend>
+            <div class="chips">
+              ${["All","Light","Medium","Dark"].map(r => `
+                <label class="chip"><input type="radio" name="roast" value="${r}" ${shopState.roast===r?"checked":""}><span>${r!=="All" ? `<i class="roast-dot" style="background:${ROAST_COLORS[r]}"></i>` : ""}${r}</span></label>`).join("")}
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Origin</legend>
+            <div class="chips">
+              ${origins.map(o => `<label class="chip"><input type="checkbox" name="origin" value="${o}" ${shopState.origins.has(o)?"checked":""}><span>${o}</span></label>`).join("")}
+            </div>
+          </fieldset>
+          <div>
+            <label for="sort" class="eyebrow" style="color:var(--muted);display:block;margin-bottom:.75rem">Sort by</label>
+            <select id="sort" class="select">
+              <option value="featured">Roaster's order</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+              <option value="roast">Lightest roast first</option>
+            </select>
+          </div>
+        </aside>
+        <section aria-label="Coffee results">
+          <div class="results-bar"><span id="resultCount" aria-live="polite"></span><button class="clear-btn" id="clearFilters" type="button">Clear filters</button></div>
+          <div class="product-grid" id="grid"></div>
+        </section>
+      </div>
+    </div>`,
+    mount(root){
+      const sort = $("#sort", root); sort.value = shopState.sort;
+      const render = () => {
+        let list = PRODUCTS.filter(p => (shopState.roast === "All" || p.roast === shopState.roast) && (!shopState.origins.size || shopState.origins.has(p.origin)));
+        if (shopState.sort === "price-asc") list = [...list].sort((a,b) => a.price - b.price);
+        if (shopState.sort === "price-desc") list = [...list].sort((a,b) => b.price - a.price);
+        if (shopState.sort === "roast") list = [...list].sort((a,b) => a.level - b.level);
+        $("#resultCount", root).textContent = `${list.length} coffee${list.length===1?"":"s"}`;
+        $("#grid", root).innerHTML = list.length ? list.map(p => productCard(p, "h2")).join("")
+          : `<div class="empty" style="grid-column:1/-1"><p class="serif-i" style="font-size:1.4rem">Nothing matches that combination.</p><p class="muted" style="margin-top:.4rem">Try another roast, or clear the origin filters.</p></div>`;
+        observeReveals($("#grid", root));
+      };
+      root.addEventListener("change", e => {
+        if (e.target.name === "roast") shopState.roast = e.target.value;
+        if (e.target.name === "origin") e.target.checked ? shopState.origins.add(e.target.value) : shopState.origins.delete(e.target.value);
+        if (e.target.id === "sort") shopState.sort = e.target.value;
+        render();
+      });
+      $("#clearFilters", root).addEventListener("click", () => {
+        shopState.roast = "All"; shopState.origins.clear();
+        $$("input[name=origin]", root).forEach(i => i.checked = false);
+        $("input[name=roast][value=All]", root).checked = true;
+        render();
+      });
+      render();
+    }
+  };
+}
+
+/* ---------- PRODUCT ---------- */
+const RECIPES = {
+  filter:["15 g coffee to 250 g water at 94°C","Bloom with 40 g for 40 seconds","Pour in slow circles, finish by 3:00"],
+  espresso:["18 g in, 38–40 g out","27–32 seconds","Pull a little longer for lighter roasts"],
+  immersion:["30 g coarse coffee to 500 g water","Steep 4 minutes, break the crust","Skim the foam, plunge gently, pour it all"]
+};
+function viewProduct(slug){
+  const p = bySlug(slug);
+  if (!p) return viewNotFound();
+  const brew = p.brew[0];
+  return {
+    title: p.name,
+    html: `
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="#/shop">Shop</a> / ${esc(p.origin)} / <span aria-current="page">${esc(p.name)}</span></nav>
+      <article class="product">
+        <div class="product-art" style="background:${p.tint}">
+          ${bagSVG(p)}
+          ${beanSVG("b1")}${beanSVG("b3")}
+        </div>
+        <div>
+          <p class="eyebrow">${esc(p.origin)} · ${esc(p.region)}</p>
+          <h1>${esc(p.name)}</h1>
+          <ul class="notes" aria-label="Tasting notes">${p.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+          <p class="desc">${esc(p.desc)}</p>
+          <dl class="specs">
+            <div><dt>Producer</dt><dd>${esc(p.producer)}</dd></div>
+            <div><dt>Altitude</dt><dd>${esc(p.altitude)}</dd></div>
+            <div><dt>Process</dt><dd>${esc(p.process)}</dd></div>
+            <div><dt>Varietal</dt><dd>${esc(p.varietal)}</dd></div>
+            <div><dt>Roast</dt><dd><span class="roast-meter" role="img" aria-label="${esc(p.roast)} roast, ${p.level} of 5">${[1,2,3,4,5].map(i => `<i class="${i<=p.level?"on":""}"></i>`).join("")}</span></dd></div>
+            <div><dt>Best for</dt><dd>${p.brew.map(b => ({filter:"Pour-over",espresso:"Espresso",immersion:"French press"}[b])).join(", ")}</dd></div>
+          </dl>
+          <form id="buyForm">
+            <fieldset class="opt-group"><legend>Grind</legend>
+              <div class="opts">${GRINDS.map((g,i) => `<label class="opt"><input type="radio" name="grind" value="${g.id}" ${i===0?"checked":""}><span>${g.label}<small>${g.hint}</small></span></label>`).join("")}</div>
+            </fieldset>
+            <fieldset class="opt-group"><legend>Bag size</legend>
+              <div class="opts">${WEIGHTS.map((w,i) => `<label class="opt"><input type="radio" name="weight" value="${w.g}" ${i===0?"checked":""}><span>${weightLabel(w.g)}<small>${money(unitPrice(p, w.g))}</small></span></label>`).join("")}</div>
+            </fieldset>
+            <div class="buy-row">
+              <div class="stepper" role="group" aria-label="Quantity">
+                <button type="button" data-step="-1" aria-label="Decrease quantity">−</button>
+                <output id="qty" aria-live="polite">1</output>
+                <button type="button" data-step="1" aria-label="Increase quantity">+</button>
+              </div>
+              <button class="btn" type="submit" id="addBtn">Add to bag · ${money(p.price)}</button>
+            </div>
+          </form>
+          <aside class="recipe" aria-labelledby="recipeTitle">
+            <h2 id="recipeTitle">How we brew it</h2>
+            <p class="muted">Our bar recipe for ${{filter:"pour-over",espresso:"espresso",immersion:"French press"}[brew]}:</p>
+            <ul>${RECIPES[brew].map(r => `<li>${r}</li>`).join("")}</ul>
+          </aside>
+        </div>
+      </article>
+    </div>`,
+    mount(root){
+      const form = $("#buyForm", root);
+      let qty = 1;
+      const update = () => {
+        const w = +form.weight.value;
+        $("#qty", root).textContent = qty;
+        $("#addBtn", root).textContent = `Add to bag · ${money(unitPrice(p, w) * qty)}`;
+      };
+      form.addEventListener("change", update);
+      $$("[data-step]", form).forEach(b => b.addEventListener("click", () => { qty = Math.max(1, Math.min(20, qty + +b.dataset.step)); update(); }));
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        addToCart(p.slug, form.grind.value, +form.weight.value, qty);
+        toast(`Added ${qty} × ${esc(p.name)} (${weightLabel(+form.weight.value)}) <a href="#/cart">View bag</a>`);
+      });
+    }
+  };
+}
+
+/* ---------- CART ---------- */
+function shippingFor(sub, method="standard"){ return method === "pickup" || sub >= CONFIG.freeShippingFrom || sub === 0 ? 0 : CONFIG.shippingFlat; }
+function viewCart(){
+  return {
+    title: "Your bag",
+    html: `<div class="wrap"><header class="page-head"><p class="eyebrow">Your bag</p><h1>Ready to brew?</h1></header><div id="cartRoot"></div></div>`,
+    mount(root){
+      const el = $("#cartRoot", root);
+      const render = () => {
+        if (!cart.length){
+          el.innerHTML = `<div class="empty" style="margin-bottom:var(--s8)"><p class="serif-i" style="font-size:1.6rem">Your bag is empty.</p><p class="muted" style="margin:.5rem 0 1.5rem">A good place to start: the coffee quiz, or our everyday Colombian.</p><div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap"><a class="btn" href="#/quiz">Take the quiz</a><a class="btn btn--ghost" href="#/shop">Browse coffee</a></div></div>`;
+          return;
+        }
+        const sub = cartSubtotal(), ship = shippingFor(sub), left = Math.max(0, CONFIG.freeShippingFrom - sub);
+        el.innerHTML = `<div class="cart-layout">
+          <ul class="cart-list">${cart.map((it, idx) => { const p = bySlug(it.slug); return `
+            <li class="cart-item">
+              <div class="art" style="background:${p.tint}">${bagSVG(p)}</div>
+              <div>
+                <h2><a href="#/coffee/${p.slug}" style="text-decoration:none">${esc(p.name)}</a></h2>
+                <p class="p-meta">${weightLabel(it.weight)} · ${grindLabel(it.grind)}</p>
+                <div class="row">
+                  <div class="stepper" role="group" aria-label="Quantity for ${esc(p.name)}">
+                    <button type="button" data-idx="${idx}" data-d="-1" aria-label="Decrease quantity">−</button>
+                    <output>${it.qty}</output>
+                    <button type="button" data-idx="${idx}" data-d="1" aria-label="Increase quantity">+</button>
+                  </div>
+                  <strong>${money(unitPrice(p, it.weight) * it.qty)}</strong>
+                  <button type="button" class="remove" data-remove="${idx}">Remove<span class="visually-hidden"> ${esc(p.name)}</span></button>
+                </div>
+              </div>
+            </li>`; }).join("")}
+          </ul>
+          <aside class="summary" aria-labelledby="sumTitle">
+            <h2 id="sumTitle">Summary</h2>
+            <p class="muted" style="font-size:.9rem">${left > 0 ? `Add ${money(left)} more for free shipping.` : "You've unlocked free shipping."}</p>
+            <div class="ship-bar" aria-hidden="true"><i style="width:${Math.min(100, sub / CONFIG.freeShippingFrom * 100)}%"></i></div>
+            <div class="sum-row"><span>Subtotal</span><span>${money(sub)}</span></div>
+            <div class="sum-row"><span>Shipping</span><span>${ship ? money(ship) : "Free"}</span></div>
+            <div class="sum-row total"><span>Total</span><span>${money(sub + ship)}</span></div>
+            <a class="btn btn--block" href="#/checkout" style="margin-top:1rem">Go to checkout</a>
+            <a class="link" href="#/shop" style="display:inline-block;margin-top:1rem">Keep browsing</a>
+          </aside>
+        </div>`;
+      };
+      el.addEventListener("click", e => {
+        const b = e.target.closest("button"); if (!b) return;
+        if (b.dataset.remove !== undefined){ cart.splice(+b.dataset.remove, 1); saveCart(); render(); $("h1", root).focus(); return; }
+        if (b.dataset.idx !== undefined){
+          const it = cart[+b.dataset.idx]; it.qty += +b.dataset.d;
+          if (it.qty < 1) cart.splice(+b.dataset.idx, 1); else it.qty = Math.min(20, it.qty);
+          saveCart(); render();
+          const again = $(`button[data-idx="${b.dataset.idx}"][data-d="${b.dataset.d}"]`, el); if (again) again.focus();
+        }
+      });
+      render();
+    }
+  };
+}
+
+/* ---------- CHECKOUT ---------- */
+let lastOrder = null;
+function orderText(d){
+  const lines = cart.map(i => { const p = bySlug(i.slug); return `- ${i.qty} × ${p.name}, ${weightLabel(i.weight)}, ${grindLabel(i.grind)} — ${money(unitPrice(p, i.weight) * i.qty)}`; });
+  return [`Order from ${d.name} (${d.email})`, ...lines, `Delivery: ${d.delivery === "pickup" ? "pickup at the roastery" : `${d.street}, ${d.city} ${d.postcode}`}`, `Total: ${money(d.total)}`, d.note ? `Note: ${d.note}` : ""].filter(Boolean).join("\n");
+}
+function viewCheckout(){
+  if (!cart.length) return { title:"Checkout", html:`<div class="wrap"><div class="thanks"><h1>Nothing to check out yet</h1><p class="muted">Your bag is empty.</p><p style="margin-top:1.5rem"><a class="btn" href="#/shop">Browse coffee</a></p></div></div>` };
+  return {
+    title: "Checkout",
+    html: `
+    <div class="wrap">
+      <header class="page-head"><p class="eyebrow">Checkout</p><h1>Almost there</h1></header>
+      <div class="cart-layout">
+        <form id="checkoutForm" novalidate>
+          <div id="formStatus" role="alert"></div>
+          <fieldset class="form-section"><legend>Contact</legend>
+            <div class="form-grid two">
+              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name"></span></div>
+              <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="e-email"><span class="err" id="e-email"></span></div>
+            </div>
+          </fieldset>
+          <fieldset class="form-section"><legend>Delivery</legend>
+            <div class="opts" style="margin-bottom:1rem">
+              <label class="opt"><input type="radio" name="delivery" value="standard" checked><span>Post it to me<small>2–3 days · ${money(CONFIG.shippingFlat)}, free over ${money(CONFIG.freeShippingFrom)}</small></span></label>
+              <label class="opt"><input type="radio" name="delivery" value="pickup"><span>Pick up at the roastery<small>Free · ready next roast day</small></span></label>
+            </div>
+            <div class="form-grid two" id="addressFields">
+              <div class="field full"><label for="f-street">Street address</label><input id="f-street" name="street" autocomplete="street-address" aria-describedby="e-street"><span class="err" id="e-street"></span></div>
+              <div class="field"><label for="f-city">Town / city</label><input id="f-city" name="city" autocomplete="address-level2" aria-describedby="e-city"><span class="err" id="e-city"></span></div>
+              <div class="field"><label for="f-zip">Postcode</label><input id="f-zip" name="postcode" autocomplete="postal-code" aria-describedby="e-postcode"><span class="err" id="e-postcode"></span></div>
+            </div>
+          </fieldset>
+          <div class="field" style="margin-bottom:var(--s5)"><label for="f-note">Note for the roaster <span class="muted">(optional)</span></label><textarea id="f-note" name="note" rows="2" placeholder="e.g. It's a gift, please skip the invoice"></textarea></div>
+          ${CONFIG.paymentNote ? `<p class="hint" style="margin-bottom:var(--s4)">${esc(CONFIG.paymentNote)}</p>` : `<div style="margin-bottom:var(--s5)">${ph("Payment", "Fill in how customers pay, e.g. card on pickup or an invoice by email.")}</div>`}
+          <button class="btn btn--block" type="submit" id="placeBtn">Place order</button>
+        </form>
+        <aside class="summary" aria-labelledby="osTitle">
+          <h2 id="osTitle">Your order</h2>
+          <ul class="mini-items">${cart.map(it => { const p = bySlug(it.slug); return `<li><span>${it.qty} × ${esc(p.name)} <span class="muted">${weightLabel(it.weight)}, ${grindLabel(it.grind).toLowerCase()}</span></span><span>${money(unitPrice(p, it.weight) * it.qty)}</span></li>`; }).join("")}</ul>
+          <div class="sum-row"><span>Subtotal</span><span>${money(cartSubtotal())}</span></div>
+          <div class="sum-row"><span>Shipping</span><span id="shipCell"></span></div>
+          <div class="sum-row total"><span>Total</span><span id="totalCell"></span></div>
+          <a class="link" href="#/info" style="display:inline-block;margin-top:1rem">Shipping &amp; payment terms</a>
+        </aside>
+      </div>
+    </div>`,
+    mount(root){
+      const form = $("#checkoutForm", root), status = $("#formStatus", root), btn = $("#placeBtn", root);
+      const sync = () => {
+        const method = form.delivery.value, sub = cartSubtotal(), ship = shippingFor(sub, method);
+        $("#shipCell", root).textContent = ship ? money(ship) : "Free";
+        $("#totalCell", root).textContent = money(sub + ship);
+        $("#addressFields", root).hidden = method === "pickup";
+      };
+      form.addEventListener("change", sync); sync();
+      const validate = () => {
+        const pickup = form.delivery.value === "pickup", errs = {};
+        if (form.name.value.trim().length < 2) errs.name = "Please enter your name.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) errs.email = "Please enter a valid email so we can confirm your order.";
+        if (!pickup){
+          if (form.street.value.trim().length < 4) errs.street = "Please enter your street address.";
+          if (!form.city.value.trim()) errs.city = "Please enter your town or city.";
+          if (!form.postcode.value.trim()) errs.postcode = "Please enter your postcode.";
+        }
+        ["name", "email", "street", "city", "postcode"].forEach(k => { $("#e-" + k, root).textContent = errs[k] || ""; form[k].setAttribute("aria-invalid", errs[k] ? "true" : "false"); });
+        const first = Object.keys(errs)[0]; if (first) form[first].focus();
+        return !first;
+      };
+      form.addEventListener("submit", async e => {
+        e.preventDefault();
+        status.innerHTML = "";
+        if (!validate()) return;
+        btn.classList.add("is-loading"); btn.textContent = "Sending order…";
+        const sub = cartSubtotal(), ship = shippingFor(sub, form.delivery.value);
+        const data = { ...Object.fromEntries(new FormData(form)), items: cart.map(i => ({ ...i, name: bySlug(i.slug).name })), subtotal: sub, shipping: ship, total: sub + ship, currency: CONFIG.currency };
+        const res = await submitForm(data);
+        btn.classList.remove("is-loading"); btn.textContent = "Place order";
+        if (res.ok){
+          lastOrder = { name: data.name.split(" ")[0], email: data.email, total: data.total, count: cartCount(), pickup: data.delivery === "pickup" };
+          cart = []; saveCart(); location.hash = "#/thanks"; return;
+        }
+        if (res.reason === "not-configured"){
+          const mail = `mailto:${CONFIG.email}?subject=${encodeURIComponent("Coffee order")}&body=${encodeURIComponent(orderText(data))}`;
+          status.innerHTML = `<div class="status status--warn"><strong>Online ordering isn't connected yet.</strong><span>Your order has not been sent and nothing was charged. To order now, email it to us — your bag is still saved.</span>
+            <div class="row"><a class="btn" href="${mail}">Email this order</a><button class="btn btn--ghost" type="button" id="copyOrder">Copy order details</button></div></div>`;
+          $("#copyOrder", root).addEventListener("click", async ev => {
+            try { await navigator.clipboard.writeText(orderText(data)); ev.target.textContent = "Copied"; } catch (err) { ev.target.textContent = "Copy failed"; }
+          });
+        } else {
+          status.innerHTML = `<div class="status status--error"><strong>We couldn't send your order.</strong><span>Check your connection and try again. Your bag is still saved.</span></div>`;
+        }
+        status.scrollIntoView({ behavior: prefersReduced() ? "auto" : "smooth", block:"center" });
+      });
+    }
+  };
+}
+
+function viewThanks(){
+  if (!lastOrder) return viewNotFound();
+  return {
+    title: "Order sent",
+    html: `<div class="wrap"><section class="thanks">
+      <h1>Thank you — your order is in</h1>
+      <p class="lead" style="margin-inline:auto">${T(`Thanks, ${esc(lastOrder.name)}. We'll email ${esc(lastOrder.email)} to confirm the roast date${lastOrder.pickup ? " and pickup" : ""}.`, `Спасибо, ${esc(lastOrder.name)}. Мы напишем на ${esc(lastOrder.email)}, чтобы подтвердить дату обжарки${lastOrder.pickup ? " и самовывоз" : ""}.`)}</p>
+      <div class="ticket">
+        <div class="sum-row"><span class="muted">Bags</span><span>${lastOrder.count}</span></div>
+        <div class="sum-row"><span class="muted">${lastOrder.pickup ? "Pickup" : "Ships"}</span><span>Next roast day</span></div>
+        <div class="sum-row total"><span>Total to pay</span><span>${money(lastOrder.total)}</span></div>
+      </div>
+      <a class="btn" href="#/shop">Back to the shop</a>
+    </section></div>`
+  };
+}
+
+/* ---------- QUIZ ---------- */
+const ICONS = {
+  espresso:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h20v8a10 10 0 0 1-10 10h0a10 10 0 0 1-10-10z"/><path d="M32 23h3a4 4 0 0 1 0 8h-3M8 42h28M18 14c0-3 3-3 3-6M25 14c0-3 3-3 3-6"/></svg>`,
+  filter:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10h28l-9 16H19z"/><path d="M24 26v4M16 32h16v8H16z"/></svg>`,
+  immersion:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="13" y="14" width="18" height="26" rx="3"/><path d="M22 6v14M17 6h10M31 20h4v12h-4M17 24h10"/></svg>`,
+  moka:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M15 26h18l-3 14H18zM17 26l2-12h10l2 12M20 14l1-6h6l1 6M33 18l5 3"/></svg>`,
+  fruity:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="20" cy="28" r="10"/><circle cx="31" cy="24" r="8"/><path d="M26 16c0-5 4-8 8-8"/></svg>`,
+  chocolate:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="10" y="12" width="28" height="24" rx="3"/><path d="M10 24h28M19 12v24M29 12v24"/></svg>`,
+  bold:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M24 6c8 9 12 16 12 22a12 12 0 0 1-24 0c0-6 4-13 12-22z"/><path d="M24 22c3 4 4 6 4 8a4 4 0 0 1-8 0c0-2 1-4 4-8z"/></svg>`,
+  black:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="24" cy="24" rx="15" ry="15"/><circle cx="24" cy="24" r="10" fill="currentColor" opacity=".8"/></svg>`,
+  milk:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="24" r="15"/><path d="M24 14c-5 4-5 9 0 12s5 7 0 9M24 14c5 4 5 9 0 12" /></svg>`,
+  sun:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="24" cy="24" r="7"/><path d="M24 8v4M24 36v4M8 24h4M36 24h4M13 13l3 3M32 32l3 3M13 35l3-3M32 16l3-3"/></svg>`,
+  moon:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M32 30A13 13 0 0 1 20 12a13 13 0 1 0 12 18z"/></svg>`,
+  any:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 24h28M24 10v28"/><circle cx="24" cy="24" r="15"/></svg>`
+};
+const QUIZ = [
+  { id:"brew", q:"How do you usually make coffee?", opts:[
+    { v:"espresso", t:"Espresso machine", d:"Short, intense shots or milk drinks", icon:"espresso" },
+    { v:"filter", t:"Pour-over or drip", d:"V60, Chemex, batch brewer", icon:"filter" },
+    { v:"immersion", t:"French press", d:"Or AeroPress, cold brew", icon:"immersion" },
+    { v:"moka", t:"Moka pot", d:"Stovetop, strong and rich", icon:"moka" } ] },
+  { id:"flavor", q:"Which of these sounds most like your perfect cup?", opts:[
+    { v:"fruity", t:"Bright and fruity", d:"Berries, citrus, floral, tea-like", icon:"fruity" },
+    { v:"chocolate", t:"Sweet and chocolatey", d:"Caramel, nuts, cocoa, balanced", icon:"chocolate" },
+    { v:"bold", t:"Deep and bold", d:"Dark chocolate, smoky, heavy body", icon:"bold" } ] },
+  { id:"milk", q:"How do you take it?", opts:[
+    { v:"black", t:"Black", d:"Nothing to hide behind", icon:"black" },
+    { v:"milk", t:"With milk", d:"Flat whites, lattes, a splash", icon:"milk" } ] },
+  { id:"caf", q:"And when are you drinking it?", opts:[
+    { v:"morning", t:"Mornings, mostly", d:"Caffeine is the point", icon:"sun" },
+    { v:"evening", t:"Evenings too", d:"I'd like a decaf option", icon:"moon" },
+    { v:"any", t:"Whenever", d:"Surprise me", icon:"any" } ] }
+];
+const quizState = { step:0, answers:{} };
+function recommend(a){
+  const brewKey = a.brew === "moka" ? "espresso" : a.brew;
+  const scored = PRODUCTS.map(p => {
+    let s = 0;
+    if (p.flavor === a.flavor) s += 4;
+    if (p.brew.includes(brewKey)) s += 2;
+    if (a.milk === "milk" && p.level >= 3) s += 1.5;
+    if (a.milk === "black" && p.level <= 3) s += 1;
+    if (a.caf === "evening") s += p.decaf ? 6 : 0; else if (p.decaf) s -= 3;
+    return { p, s };
+  }).sort((x, y) => y.s - x.s || x.p.price - y.p.price);
+  return [scored[0].p, scored[1].p];
+}
+function viewQuiz(){
+  return {
+    title: "Find your coffee",
+    html: `<div class="wrap"><section class="quiz" id="quizRoot" aria-live="polite"></section></div>`,
+    mount(root){
+      const el = $("#quizRoot", root);
+      const render = (focus) => {
+        const { step, answers } = quizState;
+        if (step >= QUIZ.length){
+          const [best, alt] = recommend(answers);
+          const grind = { espresso:"espresso", filter:"filter", immersion:"press", moka:"moka" }[answers.brew];
+          el.innerHTML = `
+            <p class="eyebrow">Your match</p>
+            <div class="quiz-result" style="margin-top:1rem">
+              <div class="art" style="background:${best.tint}">${bagSVG(best)}</div>
+              <div>
+                <h1 style="margin:0 0 .5rem">${esc(best.name)}</h1>
+                <p class="muted">${esc(best.origin)} · ${esc(best.roast)} roast · ${esc(best.notes.join(", "))}</p>
+                <p class="why">${whyText(best, answers)}</p>
+                <p>We'd grind it for <strong>${grindLabel(grind).toLowerCase()}</strong>. Not quite right? Try <a class="link" href="#/coffee/${alt.slug}">${esc(alt.name)}</a> instead.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem">
+                  <button class="btn" type="button" id="quizAdd">Add 250 g to bag · ${money(best.price)}</button>
+                  <a class="btn btn--ghost" href="#/coffee/${best.slug}">See details</a>
+                </div>
+                <button class="clear-btn" type="button" id="quizRestart" style="margin-top:1.25rem">Start the quiz again</button>
+              </div>
+            </div>`;
+          $("#quizAdd", el).addEventListener("click", () => { addToCart(best.slug, grind, 250, 1); toast(`Added ${esc(best.name)} to your bag <a href="#/cart">View bag</a>`); });
+          $("#quizRestart", el).addEventListener("click", () => { quizState.step = 0; quizState.answers = {}; render(true); });
+        } else {
+          const q = QUIZ[step];
+          el.innerHTML = `
+            <div class="quiz-progress" aria-hidden="true">${QUIZ.map((_, i) => `<i class="${i<=step?"on":""}"></i>`).join("")}</div>
+            <p class="eyebrow">Question ${step + 1} of ${QUIZ.length}</p>
+            <h1 id="qTitle">${q.q}</h1>
+            <div class="quiz-opts" role="group" aria-labelledby="qTitle">
+              ${q.opts.map(o => `<button type="button" class="q-opt" data-v="${o.v}" aria-pressed="${answers[q.id]===o.v}">${ICONS[o.icon]}<span><strong>${o.t}</strong><small>${o.d}</small></span></button>`).join("")}
+            </div>
+            <div class="quiz-nav">${step > 0 ? `<button class="btn btn--ghost" type="button" id="qBack">← Back</button>` : `<span></span>`}</div>`;
+          $$(".q-opt", el).forEach(b => b.addEventListener("click", () => {
+            answers[q.id] = b.dataset.v; b.setAttribute("aria-pressed", "true");
+            setTimeout(() => { quizState.step++; render(true); }, prefersReduced() ? 0 : 220);
+          }));
+          const back = $("#qBack", el); if (back) back.addEventListener("click", () => { quizState.step--; render(true); });
+        }
+        el.classList.remove("page-enter"); void el.offsetWidth; el.classList.add("page-enter");
+        if (focus){ const h = $("h1", el); h.setAttribute("tabindex","-1"); h.focus(); }
+      };
+      render(false);
+    }
+  };
+}
+function whyText(p, a){
+  if (I18N.lang === "ru"){
+    const brewRu = { espresso:"эспрессо-машине", filter:"пуровере", immersion:"френч-прессе", moka:"гейзерной кофеварке" }[a.brew];
+    const flavRu = { fruity:"яркий фруктовый", chocolate:"сладкий шоколадный", bold:"глубокий плотный" }[a.flavor];
+    if (a.caf === "evening" && p.decaf) return `Вам нужен кофе на вечер: это наш декаф на основе сахарного тростника. Он сохраняет сладость и хорошо раскрывается в ${brewRu}.`;
+    return `Вы любите ${flavRu} кофе и завариваете в ${brewRu}. В ${p.name} есть ${trv(p.notes[0]).toLowerCase()} и ${trv(p.notes[1]).toLowerCase()}${a.milk === "milk" ? ", а его плотность хорошо раскрывается с молоком" : ", и он достаточно чистый, чтобы пить его чёрным"}.`;
+  }
+  const brew = { espresso:"your espresso machine", filter:"pour-over", immersion:"a French press", moka:"a moka pot" }[a.brew];
+  const flav = { fruity:"bright, fruit-forward", chocolate:"sweet, chocolatey", bold:"deep, full-bodied" }[a.flavor];
+  if (a.caf === "evening" && p.decaf) return `You wanted something for the evenings: this is our sugarcane decaf, still ${flav.split(",")[0]} enough to feel like a treat, and it behaves well in ${brew}.`;
+  return `You like ${flav} coffee and brew with ${brew}. ${p.name} hits ${p.notes[0].toLowerCase()} and ${p.notes[1].toLowerCase()}${a.milk === "milk" ? ", and its body holds up nicely under milk" : ", and it's clean enough to enjoy black"}.`;
+}
+
+function viewInfo(){
+  return {
+    title: "Shipping & contact",
+    html: `<div class="wrap">
+      <header class="page-head"><p class="eyebrow">Before you order</p><h1>Shipping, pickup &amp; contact</h1>
+        <p class="lead">${T(`We roast on ${roastDaysText()}. Orders placed before ${CONFIG.orderCutoffHour}:00 the day before go into that roast.`, `Мы обжариваем: ${roastDaysText()}. Заказы до ${CONFIG.orderCutoffHour}:00 накануне попадают в эту обжарку.`)}</p></header>
+      <div style="padding-bottom:var(--s8)">${termsBlock()}
+        <p style="margin-top:var(--s6)"><a class="btn" href="#/shop">Shop coffee</a></p>
+      </div>
+    </div>`
+  };
+}
+
+function viewNotFound(){
+  return { title:"Not found", html:`<div class="wrap"><section class="thanks"><p class="eyebrow">404</p><h1>That page has gone stale</h1><p class="muted">Let's get you back to something fresh.</p><p style="margin-top:1.5rem"><a class="btn" href="#/shop">Browse coffee</a></p></section></div>` };
+}
+
+/* ===================== ROUTER ===================== */
+const ROUTES = [
+  [/^\/$/, viewHome], [/^\/shop$/, viewShop], [/^\/coffee\/([\w-]+)$/, viewProduct],
+  [/^\/quiz$/, viewQuiz], [/^\/info$/, viewInfo], [/^\/cart$/, viewCart], [/^\/checkout$/, viewCheckout], [/^\/thanks$/, viewThanks]
+];
+let firstRender = true;
+function router(soft){
+  soft = soft === true;                          // soft = re-render in place (language switch)
+  const h = location.hash;
+  if (h && !h.startsWith("#/")) return;          // plain anchors (e.g. skip link) are left alone
+  const path = h ? h.slice(1) : "/";
+  let view = viewNotFound, params = [];
+  for (const [re, fn] of ROUTES){ const m = path.match(re); if (m){ view = fn; params = m.slice(1); break; } }
+  if (path === "/quiz" && !firstRender && !soft) { quizState.step = 0; quizState.answers = {}; }
+  const out = view(...params), app = $("#app");
+  app.classList.remove("page-enter"); void app.offsetWidth;
+  app.innerHTML = out.html; app.classList.add("page-enter");
+  document.title = `${out.title} — ${CONFIG.storeName}`;
+  if (!soft) window.scrollTo(0, 0);
+  fillStore(app);
+  if (out.mount) out.mount(app);
+  $$("[data-nav]").forEach(a => {
+    const active = a.dataset.nav === path || (a.dataset.nav === "/shop" && path.startsWith("/coffee"));
+    active ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current");
+  });
+  closeMenu();
+  observeReveals(app);
+  if (!firstRender && !soft){ const h1 = $("h1", app); if (h1){ h1.setAttribute("tabindex", "-1"); h1.focus({ preventScroll:true }); } }
+  firstRender = false;
+}
+
+/* ===================== GLOBAL UI ===================== */
+let io;
+function observeReveals(scope){
+  const els = $$(".reveal:not(.in)", scope);
+  if (prefersReduced() || !("IntersectionObserver" in window)){ els.forEach(e => e.classList.add("in")); return; }
+  io = io || new IntersectionObserver(entries => entries.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), { rootMargin:"0px 0px -8% 0px" });
+  els.forEach(e => io.observe(e));
+}
+function fillStore(scope=document){
+  $$("[data-store=name]", scope).forEach(e => e.textContent = CONFIG.storeName);
+  $$("[data-store=address]", scope).forEach(e => e.textContent = CONFIG.address);
+  $$("[data-store=hours]", scope).forEach(e => e.textContent = CONFIG.hours);
+  $$("[data-store=email-link]", scope).forEach(e => { e.textContent = CONFIG.email; e.href = "mailto:" + CONFIG.email; });
+  $$("[data-store=phone-link]", scope).forEach(e => { if (!CONFIG.phone){ e.closest("li") ? e.closest("li").remove() : e.remove(); return; } e.textContent = CONFIG.phone; e.href = "tel:" + CONFIG.phone.replace(/[^\d+]/g, ""); });
+  $$("[data-store=maps-link]", scope).forEach(e => { e.textContent = CONFIG.address; e.href = mapsUrl(); });
+}
+const menuBtn = $("#menuBtn"), nav = $("#mainNav");
+function closeMenu(){ nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); menuBtn.setAttribute("aria-label", "Open menu"); }
+menuBtn.addEventListener("click", () => {
+  const open = !nav.classList.contains("open");
+  nav.classList.toggle("open", open);
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  if (open) $("a", nav).focus();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape" && nav.classList.contains("open")){ closeMenu(); menuBtn.focus(); } });
+$("#skipLink").addEventListener("click", e => { e.preventDefault(); $("#app").focus(); });
+
+$("#year").textContent = new Date().getFullYear();
+fillStore();
+updateCartBadge();
+window.addEventListener("hashchange", () => router());
+I18N.onChange = () => { const p = location.hash.slice(1) || "/"; if (["/", "/quiz", "/thanks", "/info"].includes(p)) router(true); };
+router();
+setLang(I18N.lang, { save:false, rerender:false });
+</script>
+</body>
+</html>

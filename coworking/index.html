@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#151514">
+<meta name="description" content="Rent a coworking desk or a lockable studio month to month in the Old Mill District. Photo cyc, podcast booth and workshop on site. Plans from $189 a month.">
+<title>Sawtooth Works — Desks &amp; studios, month to month</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sawtooth Works — Desks & studios, month to month">
+<meta property="og:description" content="Coworking desks, lockable studios, a photo cyc, a podcast booth and a workshop under one roof. Book a free tour.">
+<!-- Add once online: <meta property="og:url" content="https://your-domain/"> and <meta property="og:image" content="https://your-domain/share.jpg"> (1200×630) -->
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 22'%3E%3Cpath d='M1 21V11l8-9v9l8-9v9l8-9v9l8-9v19z' fill='%23C8F542'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#151514;
+  --bg-2:#1E1E1C;
+  --bg-3:#2A2A27;
+  --text:#EEECE4;
+  --text-dim:#A9A79E;
+  --line:rgba(238,236,228,.14);
+  --line-2:rgba(238,236,228,.28);
+  --lime:#C8F542;
+  --lime-dim:#9BC22A;
+  --on-lime:#151514;
+
+  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  --u:8px;
+  --pad:clamp(16px, 4vw, 56px);
+  --max:1360px;
+  --r:4px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.6 var(--display);font-variation-settings:"opsz" 14;overflow-x:hidden}
+::selection{background:var(--lime);color:var(--on-lime)}
+h1,h2,h3{margin:0;font-weight:700;line-height:.95;letter-spacing:-.035em;font-variation-settings:"opsz" 96}
+p{margin:0}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+.shell{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.skip{position:fixed;top:-60px;left:16px;z-index:300;background:var(--lime);color:var(--on-lime);padding:10px 16px;font:500 .85rem var(--mono);text-decoration:none}
+.skip:focus{top:16px}
+.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+.dim{color:var(--text-dim)}
+.lime{color:var(--lime)}
+
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px;border:1.5px solid var(--text);background:transparent;color:var(--text);font:500 .85rem var(--mono);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;cursor:pointer;border-radius:var(--r);transition:background .3s var(--ease), color .3s var(--ease), border-color .3s}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn--lime{background:var(--lime);border-color:var(--lime);color:var(--on-lime)}
+.btn--lime:hover{background:var(--text);border-color:var(--text)}
+.btn .arr{transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* ============ NAV ============ */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;transition:background .3s, border-color .3s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(21,21,20,.88);backdrop-filter:blur(10px);border-bottom-color:var(--line)}
+.nav-row{display:flex;align-items:center;gap:24px;height:72px}
+.wordmark{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.02em;text-decoration:none;margin-right:auto;position:relative;z-index:2}
+.wordmark svg{width:34px;height:22px}
+.nav-links{display:none;gap:4px;list-style:none;margin:0;padding:0}
+.nav-links a{display:block;padding:8px 12px;text-decoration:none;font:500 .78rem var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--text-dim);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--lime)}
+.nav .btn{min-height:42px;padding:0 16px;display:none}
+.burger{position:relative;z-index:2;width:48px;height:48px;border:1.5px solid var(--line-2);background:transparent;border-radius:var(--r);cursor:pointer;display:grid;place-items:center}
+.burger span{display:block;width:20px;height:2px;background:var(--text);position:relative;transition:background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--text);transition:transform .35s var(--ease), top .35s var(--ease)}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.overlay{position:fixed;inset:0;z-index:1;background:var(--bg);padding:104px var(--pad) 32px;display:flex;flex-direction:column;justify-content:space-between;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .6s var(--ease), visibility 0s .6s}
+.overlay.open{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .6s var(--ease)}
+.overlay ol{list-style:none;margin:0;padding:0;counter-reset:o}
+.overlay li{border-top:1px solid var(--line)}
+.overlay li a{display:flex;align-items:baseline;gap:16px;padding:14px 0;font:700 clamp(2rem,9vw,3.4rem)/1 var(--display);letter-spacing:-.04em;text-decoration:none}
+.overlay li a::before{counter-increment:o;content:"0" counter(o);font:500 .75rem var(--mono);color:var(--lime)}
+.overlay li a:hover{color:var(--lime)}
+@media (min-width:1000px){
+  .nav-links{display:flex}
+  .nav .btn{display:inline-flex}
+  .burger,.overlay{display:none}
+}
+
+/* ============ REVEALS ============ */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease), transform .9s var(--ease)}
+.rv.on{opacity:1;transform:none}
+.wipe{clip-path:inset(0 100% 0 0);transition:clip-path 1.1s var(--ease)}
+.wipe.on{clip-path:inset(0 0 0 0)}
+
+/* ============ SECTIONS ============ */
+section{position:relative}
+.sec{padding:clamp(80px,12vw,160px) 0}
+.sec-label{display:flex;gap:16px;align-items:center;margin-bottom:40px}
+.sec-label::after{content:"";flex:1;height:1px;background:var(--line)}
+.h-xl{font-size:clamp(2.6rem,9vw,7.5rem)}
+.h-lg{font-size:clamp(2.2rem,6.4vw,5rem)}
+.h-md{font-size:clamp(1.6rem,3.4vw,2.5rem);letter-spacing:-.025em}
+
+/* Hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 0 48px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-1;background:
+  repeating-linear-gradient(90deg, transparent 0 calc(100%/12 - 1px), rgba(238,236,228,.05) calc(100%/12 - 1px) calc(100%/12)),
+  radial-gradient(70% 60% at 85% 10%, rgba(200,245,66,.14), transparent 60%), var(--bg)}
+.hero-bg svg{position:absolute;right:-5%;top:12%;width:min(70vw,820px);opacity:.9}
+.hero-photo{position:absolute;inset:0;z-index:-1;background-size:cover;background-position:center;opacity:.35}
+.hero h1{font-size:clamp(3.2rem,13vw,11.5rem);font-weight:800;line-height:.86;letter-spacing:-.055em}
+.hero h1 .indent{display:block;padding-left:clamp(0px,14vw,240px)}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero-foot{display:grid;gap:32px;margin-top:48px;padding-top:24px;border-top:1px solid var(--line)}
+.hero-foot p{max-width:30em;color:var(--text-dim);font-size:1.15rem}
+.hero-stats{display:flex;flex-wrap:wrap;gap:24px 32px}
+.hero-stats div{min-width:110px}
+.hero-stats strong{display:block;font:700 1.5rem/1.1 var(--display);letter-spacing:-.03em}
+.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:14px 0;background:var(--bg)}
+.ticker-track{display:inline-flex;gap:48px;animation:tick 40s linear infinite;padding-left:48px}
+.ticker span{font:500 .85rem var(--mono);text-transform:uppercase;letter-spacing:.06em;display:inline-flex;align-items:center;gap:48px}
+.ticker span::after{content:"✳";color:var(--lime)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* Spaces — asymmetric */
+.spaces{display:grid;gap:56px}
+.space{display:grid;gap:20px}
+.space-art{aspect-ratio:4/3;border-radius:var(--r);position:relative;overflow:hidden;background:var(--bg-3)}
+.space-art .img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s var(--ease)}
+.space:hover .space-art .img{transform:scale(1.04)}
+.space-art .tag{position:absolute;left:12px;top:12px;background:var(--bg);padding:6px 10px;border-radius:2px}
+.space-num{font:500 .8rem var(--mono);color:var(--lime)}
+.space h3{font-size:clamp(1.8rem,3.6vw,2.8rem);margin:8px 0 12px}
+.space ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.space li{border:1px solid var(--line-2);padding:4px 10px;border-radius:2px;font:400 .75rem var(--mono);text-transform:uppercase}
+
+/* Pricing */
+.price-head{display:grid;gap:32px;align-items:end;margin-bottom:48px}
+.toggle{display:inline-flex;align-items:center;gap:14px;cursor:pointer;background:none;border:0;padding:6px 0;color:var(--text)}
+.toggle .lbl{font:500 .8rem var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--text-dim);transition:color .2s}
+.toggle .lbl.cur{color:var(--text)}
+.toggle .track{width:64px;height:34px;border-radius:17px;border:1.5px solid var(--line-2);position:relative;transition:border-color .3s, background .3s}
+.toggle .knob{position:absolute;top:4px;left:4px;width:23px;height:23px;border-radius:50%;background:var(--text);transition:transform .45s var(--ease), background .3s}
+.toggle[aria-checked="true"] .track{border-color:var(--lime);background:rgba(200,245,66,.1)}
+.toggle[aria-checked="true"] .knob{transform:translateX(30px);background:var(--lime)}
+.save{display:inline-block;background:var(--lime);color:var(--on-lime);font:500 .7rem var(--mono);padding:3px 8px;text-transform:uppercase;border-radius:2px}
+.plans{display:grid;border-top:1px solid var(--line)}
+.plan{display:grid;gap:20px;padding:32px 0;border-bottom:1px solid var(--line);position:relative;transition:background .4s}
+.plan:hover{background:linear-gradient(90deg, rgba(200,245,66,.05), transparent 70%)}
+.plan h3{font-size:clamp(1.8rem,3.2vw,2.6rem)}
+.plan .for{color:var(--text-dim);max-width:24em;margin-top:8px}
+.amount{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.amount strong{font:700 clamp(2.6rem,5vw,4rem)/1 var(--display);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.amount .was{font:400 .85rem var(--mono);color:var(--text-dim);text-decoration:line-through}
+.plan .feat{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:.98rem}
+.plan .feat li{display:flex;gap:10px}
+.plan .feat li::before{content:"→";color:var(--lime);font-family:var(--mono)}
+.plan.hot{background:var(--bg-2)}
+.plan.hot::before{content:"Most picked";position:absolute;right:0;top:0;background:var(--lime);color:var(--on-lime);font:500 .7rem var(--mono);text-transform:uppercase;padding:4px 10px}
+.plan .btn{justify-self:start}
+.price-note{margin-top:24px;color:var(--text-dim)}
+
+/* Amenities */
+.amen{display:grid;gap:48px}
+.amen-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-left:1px solid var(--line)}
+.amen-list li{padding:24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:8px;align-content:start;transition:background .3s}
+.amen-list li:hover{background:var(--bg-2)}
+.amen-list svg{width:28px;height:28px;color:var(--lime)}
+.amen-list strong{font-size:1.2rem;letter-spacing:-.01em}
+.amen-list span{color:var(--text-dim);font-size:.95rem}
+.amen-list{border-top:1px solid var(--line)}
+
+/* Floor plan */
+.plan-wrap{display:grid;gap:32px;align-items:start}
+.fp{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);padding:clamp(8px,2vw,24px);position:relative}
+.fp svg{width:100%;height:auto;touch-action:manipulation}
+.room{cursor:pointer;outline:none}
+.room rect,.room path.shape{fill:var(--bg-3);stroke:rgba(238,236,228,.35);stroke-width:2;transition:fill .3s, stroke .3s}
+.room text{fill:var(--text);font-family:var(--mono);font-size:13px;text-transform:uppercase;pointer-events:none;transition:fill .3s}
+.room .sub{fill:var(--text-dim);font-size:11px}
+.room:hover rect,.room:hover path.shape{fill:#3A3A35;stroke:var(--lime)}
+.room:focus-visible rect,.room:focus-visible path.shape{stroke:var(--lime);stroke-width:4}
+.room.sel rect,.room.sel path.shape{fill:var(--lime);stroke:var(--lime)}
+.room.sel text,.room.sel .sub{fill:var(--on-lime)}
+.fp .static{fill:none;stroke:rgba(238,236,228,.2);stroke-width:2}
+.fp .legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;color:var(--text-dim)}
+.fp .legend i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;border:1.5px solid var(--line-2)}
+.room-card{border:1px solid var(--line);border-radius:var(--r);padding:28px;background:var(--bg);min-height:360px;display:flex;flex-direction:column}
+.room-card h3{font-size:clamp(2rem,4vw,3rem);margin:12px 0 16px}
+.room-card .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:20px 0}
+.room-card .stats div{background:var(--bg);padding:12px}
+.room-card .stats strong{display:block;font-size:1.3rem;letter-spacing:-.02em;margin-top:4px}
+.room-card .price-line{margin-top:auto;padding-top:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.room-card .price-line strong{font-size:2rem;letter-spacing:-.04em}
+.room-card .fresh{animation:swap .5s var(--ease)}
+@keyframes swap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.room-hint{color:var(--text-dim)}
+
+/* FAQ */
+.faq{display:grid;gap:48px}
+.faq-list details{border-top:1px solid var(--line)}
+.faq-list details:last-child{border-bottom:1px solid var(--line)}
+.faq-list summary{list-style:none;display:grid;grid-template-columns:40px 1fr 28px;gap:12px;align-items:center;padding:22px 0;cursor:pointer;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;letter-spacing:-.01em}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary .n{font:500 .75rem var(--mono);color:var(--lime)}
+.faq-list summary .x{width:28px;height:28px;position:relative}
+.faq-list summary .x::before,.faq-list summary .x::after{content:"";position:absolute;left:4px;right:4px;top:13px;height:2px;background:var(--text);transition:transform .35s var(--ease)}
+.faq-list summary .x::after{transform:rotate(90deg)}
+.faq-list details[open] summary .x::after{transform:rotate(0)}
+.faq-list details[open] summary{color:var(--lime)}
+.faq-list summary:hover{color:var(--lime)}
+.faq-list .ans{padding:0 40px 24px 52px;color:var(--text-dim);max-width:44em}
+
+/* Contact */
+.contact{display:grid;gap:48px}
+.form{display:grid;gap:28px}
+.fld{position:relative;display:grid;gap:6px}
+.fld label{font:500 .75rem var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--text-dim)}
+.fld input,.fld select,.fld textarea{background:transparent;border:0;border-bottom:1.5px solid var(--line-2);padding:10px 0 12px;font-size:1.25rem;border-radius:0;min-height:52px;width:100%;transition:border-color .3s}
+.fld select{appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23C8F542' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 4px center/14px}
+.fld select option{background:var(--bg);color:var(--text)}
+.fld textarea{min-height:110px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--lime)}
+.fld input::placeholder,.fld textarea::placeholder{color:#77756D}
+.fld .err{font:400 .75rem var(--mono);color:#FF8F7A;min-height:1em}
+.fld [aria-invalid="true"]{border-color:#FF8F7A}
+.radios{display:flex;flex-wrap:wrap;gap:8px}
+.radios label{position:relative}
+.radios input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.radios span{display:inline-block;padding:10px 16px;border:1.5px solid var(--line-2);border-radius:2px;font:500 .78rem var(--mono);text-transform:uppercase;transition:all .25s;color:var(--text)}
+.radios label:hover span{border-color:var(--text)}
+.radios input:checked + span{background:var(--lime);border-color:var(--lime);color:var(--on-lime)}
+.radios input:focus-visible + span{outline:2px solid var(--lime);outline-offset:3px}
+.done-msg{border:1.5px solid var(--lime);padding:32px;border-radius:var(--r)}
+.done-msg h3{font-size:clamp(2rem,4vw,3rem);margin:12px 0}
+.demo-chip{display:inline-block;background:var(--lime);color:var(--on-lime);font:500 .7rem var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:2px}
+.contact-side dl{display:grid;gap:20px;margin:32px 0 0}
+.contact-side dt{font:500 .75rem var(--mono);text-transform:uppercase;color:var(--text-dim);margin-bottom:4px}
+.contact-side dd{margin:0;font-size:1.25rem;letter-spacing:-.01em}
+.contact-side a{text-decoration-color:var(--lime);text-underline-offset:4px}
+
+.hero-cta{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:28px}
+.ph{border:1.5px dashed var(--lime-dim);border-radius:var(--r);padding:24px;background:repeating-linear-gradient(135deg,transparent 0 14px,rgba(200,245,66,.04) 14px 28px)}
+.ph-tag{display:inline-block;margin-bottom:12px;padding:3px 8px;border-radius:2px;background:var(--lime);color:var(--on-lime);font:500 .7rem var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.ph p{color:var(--text-dim)}
+.reviews{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.room-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.room-chips button{min-height:44px;padding:0 14px;border:1.5px solid var(--line-2);border-radius:2px;background:transparent;font:500 .78rem var(--mono);text-transform:uppercase;cursor:pointer;transition:all .2s}
+.room-chips button:hover{border-color:var(--text)}
+.room-chips button[aria-pressed="true"]{background:var(--lime);border-color:var(--lime);color:var(--on-lime)}
+.status{display:grid;gap:10px;padding:20px;border-radius:var(--r);margin-top:8px}
+.status strong{font-size:1.1rem}
+.status--warn{border:1.5px solid var(--lime)}
+.status--error{border:1.5px solid #FF8F7A}
+.status .row{display:flex;flex-wrap:wrap;gap:10px}
+.sticky-cta{position:fixed;left:16px;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:90;display:flex;justify-content:center;transform:translateY(140%);transition:transform .45s var(--ease)}
+.sticky-cta.show{transform:none}
+.sticky-cta .btn{width:100%;max-width:420px;justify-content:center;box-shadow:0 14px 30px -12px rgba(0,0,0,.7)}
+@media (min-width:1000px){.sticky-cta{display:none}}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:48px 0 32px}
+.foot-big{font:800 clamp(3rem,15vw,13rem)/.8 var(--display);letter-spacing:-.06em;color:var(--bg-3);-webkit-text-stroke:1px rgba(238,236,228,.12);user-select:none;overflow:hidden;white-space:nowrap}
+.foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:32px;color:var(--text-dim)}
+.foot-row a{color:var(--text-dim)}
+
+/* ============ BREAKPOINTS ============ */
+@media (min-width:760px){
+  .hero-foot{grid-template-columns:1.2fr 1fr;align-items:end}
+  .hero-stats{justify-content:flex-end}
+  .spaces{grid-template-columns:repeat(12,1fr);gap:80px 24px}
+  .space:nth-child(1){grid-column:1 / span 7}
+  .space:nth-child(2){grid-column:9 / span 4;margin-top:180px}
+  .space:nth-child(3){grid-column:2 / span 5}
+  .space:nth-child(4){grid-column:8 / span 5;margin-top:-120px}
+  .space:nth-child(2) .space-art{aspect-ratio:3/4}
+  .space:nth-child(3) .space-art{aspect-ratio:1/1}
+  .price-head{grid-template-columns:1.4fr 1fr}
+  .price-head .toggle-wrap{justify-self:end}
+  .plan{grid-template-columns:1.3fr 1fr 1.3fr auto;align-items:center;gap:32px;padding:36px 20px}
+  .amen{grid-template-columns:repeat(12,1fr)}
+  .amen > header{grid-column:1 / span 4}
+  .amen-list{grid-column:5 / span 8}
+  .faq{grid-template-columns:repeat(12,1fr)}
+  .faq > header{grid-column:1 / span 4}
+  .faq-list{grid-column:6 / span 7}
+  .contact{grid-template-columns:repeat(12,1fr)}
+  .contact-side{grid-column:1 / span 5}
+  .form-wrap{grid-column:7 / span 6}
+  .form .two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+}
+@media (min-width:1000px){
+  .plan-wrap{grid-template-columns:1.6fr 1fr}
+  .room-card{position:sticky;top:96px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+  .wipe{clip-path:none}
+  .ticker-track{animation:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="shell nav-row">
+    <a class="wordmark" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 34 22" aria-hidden="true"><path d="M1 21V11l8-9v9l8-9v9l8-9v9l8-9v19z" fill="#C8F542"/></svg>
+      <span data-cfg="name"></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#spaces">Spaces</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#floor">Floor plan</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn btn--lime" href="#contact">Book a tour</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="overlay"><span></span></button>
+    <nav class="overlay" id="overlay" aria-label="Mobile">
+      <ol>
+        <li><a href="#spaces">Spaces</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#floor">Floor plan</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Book a tour</a></li>
+      </ol>
+      <p class="mono dim"><span data-cfg="address"></span><br><span data-cfg="hours"></span></p>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<span id="top"></span>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 400" fill="none">
+      <path d="M0 400V200L160 40v160L320 40v160L480 40v160L640 40v160L800 40v360z" stroke="rgba(238,236,228,.12)" stroke-width="1.5"/>
+      <path d="M160 40v160M320 40v160M480 40v160M640 40v160" stroke="rgba(200,245,66,.35)" stroke-width="1.5" stroke-dasharray="4 6"/>
+      <circle cx="560" cy="120" r="6" fill="#C8F542"/>
+    </svg>
+  </div>
+  <div class="hero-photo" id="heroPhoto" aria-hidden="true"></div>
+  <div class="shell">
+    <p class="mono lime rv" style="margin-bottom:28px">Coworking · studios · workshop — <span data-cfg="district"></span></p>
+    <h1 id="hero-title" class="rv">Rent a desk<span class="indent">or a <em>studio,</em></span>month to month.</h1>
+    <div class="hero-foot rv">
+      <div>
+        <p>Coworking desks, lockable studios, a photo cyc, a podcast booth and a workshop under one roof, for freelancers and small creative teams. Cancel with 30 days' notice.</p>
+        <div class="hero-cta"><a class="btn btn--lime" href="#contact">Book a free tour <span class="arr" aria-hidden="true">→</span></a><a class="mono" href="#pricing" style="text-underline-offset:4px">See prices</a></div>
+      </div>
+      <div class="hero-stats">
+        <div><strong id="fromPrice"></strong><span class="mono dim">per month</span></div>
+        <div><strong>30 days</strong><span class="mono dim">notice to cancel</span></div>
+        <div><strong>24/7</strong><span class="mono dim">member access</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+<!-- SPACES -->
+<section class="sec" id="spaces" aria-labelledby="spaces-title">
+  <div class="shell">
+    <div class="sec-label mono"><span class="lime">01</span><span>Spaces</span></div>
+    <h2 class="h-lg rv" id="spaces-title" style="max-width:12ch;margin-bottom:72px">Four kinds of room, one big roof.</h2>
+    <div class="spaces" id="spacesList"></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" id="pricing" aria-labelledby="pricing-title" style="background:var(--bg-2)">
+  <div class="shell">
+    <div class="sec-label mono"><span class="lime">02</span><span>Pricing</span></div>
+    <div class="price-head">
+      <h2 class="h-lg rv" id="pricing-title">Pay for the way you actually work.</h2>
+      <div class="toggle-wrap rv">
+        <button class="toggle" id="billing" role="switch" aria-checked="false" aria-label="Bill yearly">
+          <span class="lbl cur" data-l="m">Monthly</span><span class="track" aria-hidden="true"><span class="knob"></span></span><span class="lbl" data-l="y">Yearly</span>
+        </button>
+        <p class="mono dim" style="margin-top:10px"><span class="save">2 months free</span> on yearly plans</p>
+      </div>
+    </div>
+    <div class="plans" id="plans" aria-live="polite"></div>
+    <p class="price-note mono">Demo prices · excl. tax · day passes always available at the door</p>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="sec" id="amenities" aria-labelledby="amen-title">
+  <div class="shell amen">
+    <header>
+      <div class="sec-label mono"><span class="lime">03</span><span>Amenities</span></div>
+      <h2 class="h-md rv" id="amen-title">Everything included, nothing to sign up for twice.</h2>
+      <p class="dim rv" style="margin-top:16px">Every membership comes with the basics done properly, plus access to the shared kit room.</p>
+    </header>
+    <ul class="amen-list" id="amenList"></ul>
+  </div>
+</section>
+
+<!-- FLOOR PLAN -->
+<section class="sec" id="floor" aria-labelledby="floor-title" style="background:var(--bg-2)">
+  <div class="shell">
+    <div class="sec-label mono"><span class="lime">04</span><span>Floor plan</span></div>
+    <h2 class="h-lg rv" id="floor-title" style="max-width:14ch;margin-bottom:16px">Walk the floor before you visit.</h2>
+    <p class="dim rv" style="max-width:34em;margin-bottom:48px">Hover, tap or tab through the rooms to see size, capacity and price. Ground floor shown.</p>
+    <div class="plan-wrap">
+      <div class="fp wipe" id="fp">
+        <svg viewBox="0 0 800 540" role="group" aria-label="Interactive ground floor plan" id="fpSvg">
+          <!-- sawtooth roof hint -->
+          <path class="static" d="M20 20h760v500H20z"/>
+          <path d="M20 20l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14l40-14v14" fill="none" stroke="rgba(200,245,66,.35)" stroke-width="1.5"/>
+          <g id="rooms"></g>
+          <!-- entrance -->
+          <path d="M360 520h80" stroke="#151514" stroke-width="6"/>
+          <path d="M360 520a40 40 0 0 1 40-40" fill="none" stroke="rgba(238,236,228,.35)" stroke-dasharray="4 4"/>
+          <text x="400" y="536" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#A9A79E">ENTRANCE</text>
+          <g transform="translate(400 448)" aria-hidden="true"><circle r="18" fill="none" stroke="rgba(238,236,228,.3)"/><path d="M0-14l5 14H-5z" fill="#C8F542"/><text y="30" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#A9A79E">N</text></g>
+        </svg>
+        <div class="room-chips" id="roomChips" role="group" aria-label="Rooms"></div>
+        <div class="legend mono"><span><i style="background:var(--bg-3)"></i>Bookable</span><span><i style="background:var(--lime);border-color:var(--lime)"></i>Selected</span><span><i style="border-style:dashed"></i>Shared / circulation</span></div>
+      </div>
+      <aside class="room-card" id="roomCard" aria-live="polite" aria-atomic="true"></aside>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERS (placeholders) -->
+<section class="sec" id="members" aria-labelledby="members-title" style="padding-bottom:0">
+  <div class="shell">
+    <div class="sec-label mono"><span class="lime">05</span><span>Members</span></div>
+    <h2 class="h-md rv" id="members-title" style="margin-bottom:32px">What members say</h2>
+    <div class="reviews">
+      <div class="ph rv"><span class="ph-tag">To fill in</span><p>Placeholder. Add a real quote from a member, with their permission: their words, name and what they make here.</p></div>
+      <div class="ph rv"><span class="ph-tag">To fill in</span><p>Placeholder. Show a real project made in the space, such as a shoot on the cyc or a product built in the workshop, with the maker's permission.</p></div>
+      <div class="ph rv"><span class="ph-tag">To fill in</span><p>Placeholder. Link to your public reviews page once you have one.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" aria-labelledby="faq-title">
+  <div class="shell faq">
+    <header>
+      <div class="sec-label mono"><span class="lime">06</span><span>FAQ</span></div>
+      <h2 class="h-md rv" id="faq-title">The questions people ask on the tour.</h2>
+    </header>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact" aria-labelledby="contact-title" style="background:var(--bg-2)">
+  <div class="shell contact">
+    <div class="contact-side">
+      <div class="sec-label mono"><span class="lime">07</span><span>Visit</span></div>
+      <h2 class="h-lg rv" id="contact-title">Come see it on a Tuesday.</h2>
+      <p class="dim rv" style="margin-top:20px;max-width:28em">Tours run every weekday at 10:00 and 16:00, and take about twenty minutes. Bring your laptop; the first day is on us.</p>
+      <dl class="rv">
+        <div><dt>Address</dt><dd data-cfg="address"></dd></div>
+        <div><dt>Email</dt><dd><a data-cfg-link="email"></a></dd></div>
+        <div><dt>Front desk</dt><dd data-cfg="hours"></dd></div>
+      </dl>
+      <a class="btn" id="dirLink" target="_blank" rel="noopener" style="margin-top:28px">Get directions <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+    <div class="form-wrap" id="formWrap">
+      <form class="form" id="tourForm" novalidate>
+        <div class="two">
+          <div class="fld"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" placeholder="Your name" aria-describedby="ce-name"><span class="err" id="ce-name"></span></div>
+          <div class="fld"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" placeholder="you@studio.com" aria-describedby="ce-email"><span class="err" id="ce-email"></span></div>
+        </div>
+        <fieldset class="fld" style="border:0;padding:0;margin:0">
+          <legend class="mono dim" style="margin-bottom:12px">I'm interested in</legend>
+          <div class="radios" id="interest"></div>
+        </fieldset>
+        <div class="fld"><label for="c-date">Preferred tour day</label>
+          <select id="c-date" name="tourDay"></select>
+        </div>
+        <div class="fld"><label for="c-msg">Tell us about your work <span style="text-transform:none">(optional)</span></label><textarea id="c-msg" name="message" placeholder="e.g. Two-person design studio, need a lockable room and the photo cyc twice a month"></textarea></div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+          <button class="btn btn--lime" type="submit" id="sendBtn">Request a tour <span class="arr" aria-hidden="true">→</span></button>
+        </div>
+        <div id="formStatus" role="alert"></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot-big" aria-hidden="true" data-cfg="name"></div>
+    <div class="foot-row mono">
+      <span><span class="demo-chip">Demo</span>&nbsp; Portfolio demo with sample content. The tour form only sends once a form endpoint is connected.</span>
+      <span>© <span id="yr"></span> <span data-cfg="name"></span></span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="stickyCta"><a class="btn btn--lime" href="#contact">Book a free tour <span class="arr" aria-hidden="true">→</span></a></div>
+
+<script>
+/* ==================================================
+   CONFIG — swap these for a real client
+   ================================================== */
+const CONFIG = {
+  name: "Sawtooth Works",
+  district: "Old Mill District",
+  address: "9 Spindle Row, Old Mill District",
+  email: "tours@example.com",
+  hours: "Staffed Mon–Fri, 8:00–19:00",
+  currency: "USD",
+  locale: "en-US",
+  yearlyMonthsFree: 2,
+  /* Where tour requests are sent: YOUR server endpoint or a form service that accepts JSON POST.
+     Leave empty until it exists: the site then says clearly that the form is not connected. */
+  formEndpoint: ""
+};
+
+/* ==================================================
+   IMAGES — swap in real photos.
+   One entry per space, in order. Empty = generated art.
+   HERO_IMAGE sits behind the hero headline.
+   ================================================== */
+const SPACE_IMAGES = ["", "", "", ""];  // e.g. ["img/open-floor.jpg", "img/studio.jpg", ...]
+const HERO_IMAGE = "";
+
+/* ==================================================
+   submitForm(data) — POSTs the tour request as JSON to CONFIG.formEndpoint.
+   Never put API tokens or passwords in this file: it is public.
+   Returns { ok:true } or { ok:false, reason:"not-configured" | "server" | "network" }.
+   ================================================== */
+async function submitForm(data) {
+  if (!CONFIG.formEndpoint) return { ok:false, reason:"not-configured" };
+  try {
+    const res = await fetch(CONFIG.formEndpoint, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body:JSON.stringify(data) });
+    return res.ok ? { ok:true } : { ok:false, reason:"server", status:res.status };
+  } catch (e) { return { ok:false, reason:"network" }; }
+}
+
+/* ================= DATA ================= */
+const SPACES = [
+  { name:"The Long Floor", tag:"Hot & fixed desks", desc:"Ninety desks under the north-light roof. Hot desks by the windows, fixed desks with lockable pedestals along the brick wall. Quiet hours 9–12 daily.", feats:["North light","Standing desks","Lockers"],
+    art:"linear-gradient(115deg,#2A2A27 0 30%,transparent 30%),repeating-linear-gradient(90deg,#33332F 0 46px,#2A2A27 46px 48px),linear-gradient(#C8F542,#C8F542)" },
+  { name:"Studios", tag:"Lockable, 12–30 m²", desc:"Fourteen private rooms with glass fronts, your own key, and walls you're allowed to pin things to.", feats:["24/7 key","Furnished or empty","2–8 people"],
+    art:"radial-gradient(circle at 70% 30%,#C8F542 0 18%,transparent 19%),linear-gradient(160deg,#3A3A35,#1E1E1C)" },
+  { name:"Photo cyc & booth", tag:"Bookable by the hour", desc:"A 6 m infinity cove with lighting grid, plus a treated podcast booth with four mics and a mixer.", feats:["Lighting grid","Blackout","4-mic booth"],
+    art:"radial-gradient(120% 90% at 50% 120%,#EEECE4 0 40%,#A9A79E 60%,#2A2A27 80%)" },
+  { name:"The Workshop", tag:"Wood, print, laser", desc:"Bench space, a laser cutter, a two-colour riso printer and hand tools. Inductions run every Thursday evening.", feats:["Laser cutter","Riso printer","Inductions"],
+    art:"repeating-linear-gradient(45deg,#2A2A27 0 14px,#33332F 14px 28px),linear-gradient(#151514,#151514)" }
+];
+const PLANS = [
+  { name:"Flex", for:"Freelancers who drift in three days a week.", monthly:189, feats:["Any hot desk, 24/7","5 meeting-room hours","Kit room access"] },
+  { name:"Fixed desk", for:"Your own desk, monitor arm and locking pedestal.", monthly:329, hot:true, feats:["Dedicated desk","10 meeting-room hours","Mail handling","2 cyc hours / month"] },
+  { name:"Studio", for:"A lockable room for a small team, 12–18 m².", monthly:890, feats:["Private studio, 2–4 people","20 meeting-room hours","Workshop induction","Logo on the door"] }
+];
+const AMENITIES = [
+  ["Fibre, two lines", "1 Gbps symmetric, with a failover line on a separate provider.", "M3 12a13 13 0 0 1 18 0M6 15.5a8 8 0 0 1 12 0M9.5 19a3 3 0 0 1 5 0"],
+  ["Coffee that's good", "Bean-to-cup on every floor and a proper espresso bar in the kitchen.", "M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 10h2a2 2 0 0 1 0 4h-2M8 3v3M12 3v3"],
+  ["Showers & bike store", "Four showers, towels, and secure indoor parking for 60 bikes.", "M5 17a3 3 0 1 0 0 .01M19 17a3 3 0 1 0 0 .01M5 17l4-8h6l4 8M9 9l3 8"],
+  ["Phone booths", "Eight sound-treated booths. No booking, just walk in.", "M7 3h10v18H7zM11 18h2"],
+  ["Kit room", "Borrow cameras, tripods, a projector or a soldering station.", "M3 7h18v12H3zM8 7V5h8v2M12 11v4"],
+  ["Events & crits", "Monthly show-and-tell, portfolio crits and a Friday wind-down.", "M4 20V10l8-6 8 6v10M9 20v-5h6v5"]
+];
+const ROOMS = [
+  { id:"floor", label:"Long Floor", sub:"90 desks", x:40, y:40, w:400, h:220, type:"Hot & fixed desks", size:420, cap:90, price:"$189", unit:"/mo per desk", desc:"The main open floor under the original north-light roof. Hot desks run along the windows; fixed desks line the brick wall." },
+  { id:"studioA", label:"Studio A", sub:"4 ppl", x:460, y:40, w:140, h:105, type:"Private studio", size:18, cap:4, price:"$890", unit:"/mo", desc:"Corner studio with two windows and a sink. Ask us about availability." },
+  { id:"studioB", label:"Studio B", sub:"2 ppl", x:460, y:155, w:140, h:105, type:"Private studio", size:12, cap:2, price:"$640", unit:"/mo", desc:"Compact room for a duo. Glass front onto the long floor, full-height pinboard wall." },
+  { id:"cyc", label:"Photo cyc", sub:"6 m cove", x:620, y:40, w:140, h:220, type:"Bookable studio", size:64, cap:12, price:"$45", unit:"/hour", desc:"White infinity cove with a 12-point lighting grid, blackout blinds and a separate changing room." },
+  { id:"kiln", label:"The Kiln", sub:"Meeting · 10", x:40, y:280, w:200, h:120, type:"Meeting room", size:32, cap:10, price:"$30", unit:"/hour", desc:"Our largest meeting room, in the old kiln room. 85-inch screen, whiteboard wall and a long oak table." },
+  { id:"booth", label:"Podcast", sub:"4 mics", x:260, y:280, w:110, h:120, type:"Recording booth", size:9, cap:4, price:"$25", unit:"/hour", desc:"Acoustically treated booth with four dynamic mics, an 8-channel mixer and a direct-to-drive recorder." },
+  { id:"kitchen", label:"Kitchen", sub:"Shared", x:460, y:280, w:300, h:120, type:"Shared space", size:80, cap:40, price:"Included", unit:"", desc:"Espresso bar, long tables and a dishwasher that somebody always empties. Fridays at 17:00: wind-down." },
+  { id:"workshop", label:"Workshop", sub:"Laser · riso", x:40, y:420, w:300, h:85, type:"Maker workshop", size:70, cap:8, price:"$60", unit:"/mo add-on", desc:"Benches, a 60 W laser cutter, a two-colour riso and hand tools. Induction required before first use." },
+  { id:"phones", label:"Phone booths", sub:"×8", x:460, y:420, w:300, h:85, type:"Walk-in booths", size:16, cap:8, price:"Included", unit:"", desc:"Eight single-person booths with a desk shelf, power and soft lighting. First come, first served." }
+];
+const FAQS = [
+  ["Can I try it before I commit?", "Yes. Your first day is free after a tour, and day passes are $28 at the front desk any day after that."],
+  ["How long is the contract?", "Flex and Fixed desk plans are month to month with 30 days' notice. Studios have a three-month minimum, then roll monthly. Yearly plans are paid up front."],
+  ["Is it really open 24/7?", "For members, yes. Fob access works around the clock; the front desk is staffed on weekdays from 8:00 to 19:00."],
+  ["Can I bring my dog?", "Well-behaved dogs are welcome on the long floor and in studios, but not in the kitchen, workshop or photo cyc."],
+  ["Do non-members book the cyc and podcast booth?", "They can, at a 30% higher hourly rate. Members get included hours and priority booking two weeks ahead."],
+  ["Can I register my business address here?", "Yes. Fixed desk and Studio members can use the address for mail and company registration at no extra cost."]
+];
+const INTERESTS = ["Hot desk", "Fixed desk", "Studio", "Cyc / booth", "Workshop"];
+
+/* ================= HELPERS ================= */
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => [...el.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money = n => new Intl.NumberFormat(CONFIG.locale, { style:"currency", currency:CONFIG.currency, maximumFractionDigits:0 }).format(n);
+const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ================= CONFIG FILL ================= */
+$$("[data-cfg]").forEach(e => e.textContent = CONFIG[e.dataset.cfg]);
+$$("[data-cfg-link=email]").forEach(a => { a.textContent = CONFIG.email; a.href = "mailto:" + CONFIG.email; });
+$("#yr").textContent = new Date().getFullYear();
+if (HERO_IMAGE) $("#heroPhoto").style.backgroundImage = `url('${HERO_IMAGE}')`;
+document.title = `${CONFIG.name} — Desks & studios, month to month`;
+
+/* Ticker */
+const tickItems = ["Desks from $189", "Lockable studios", "6 m photo cyc", "Podcast booth", "Laser & riso", "Open 24/7", "First day free"];
+$("#ticker").innerHTML = [...tickItems, ...tickItems].map(t => `<span>${t}</span>`).join("");
+
+/* ================= SPACES ================= */
+$("#spacesList").innerHTML = SPACES.map((s, i) => `
+  <article class="space rv">
+    <div class="space-art">
+      <div class="img" style="${SPACE_IMAGES[i] ? `background-image:url('${esc(SPACE_IMAGES[i])}')` : `background:${s.art}`}" role="img" aria-label="${esc(s.name)} illustration"></div>
+      <span class="tag mono">${esc(s.tag)}</span>
+    </div>
+    <div>
+      <span class="space-num">0${i + 1} / 0${SPACES.length}</span>
+      <h3>${esc(s.name)}</h3>
+      <p class="dim">${esc(s.desc)}</p>
+      <ul>${s.feats.map(f => `<li>${esc(f)}</li>`).join("")}</ul>
+    </div>
+  </article>`).join("");
+
+/* ================= PRICING ================= */
+let yearly = false;
+function renderPlans(animate){
+  $("#plans").innerHTML = PLANS.map(p => {
+    const perMonth = yearly ? Math.round(p.monthly * (12 - CONFIG.yearlyMonthsFree) / 12) : p.monthly;
+    return `<article class="plan ${p.hot ? "hot" : ""}">
+      <div><h3>${esc(p.name)}</h3><p class="for">${esc(p.for)}</p></div>
+      <div>
+        <div class="amount"><strong data-to="${perMonth}">${money(perMonth)}</strong><span class="mono dim">/ month</span></div>
+        <p class="mono dim" style="margin-top:6px">${yearly ? `${money(perMonth * 12)} billed yearly <span class="amount" style="display:inline"><span class="was">${money(p.monthly * 12)}</span></span>` : "Billed monthly · cancel with 30 days' notice"}</p>
+      </div>
+      <ul class="feat">${p.feats.map(f => `<li>${esc(f)}</li>`).join("")}</ul>
+      <a class="btn ${p.hot ? "btn--lime" : ""}" href="#contact" data-plan="${esc(p.name)}">Choose ${esc(p.name)} <span class="arr" aria-hidden="true">→</span></a>
+    </article>`;
+  }).join("");
+  if (animate && !reduced()){
+    $$("[data-to]").forEach(el => {
+      const to = +el.dataset.to, from = Math.round(yearly ? to * 12 / (12 - CONFIG.yearlyMonthsFree) : to * (12 - CONFIG.yearlyMonthsFree) / 12);
+      const t0 = performance.now(), dur = 500;
+      const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = money(Math.round(from + (to - from) * e)); if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  }
+}
+$("#billing").addEventListener("click", e => {
+  yearly = !yearly;
+  const b = e.currentTarget;
+  b.setAttribute("aria-checked", String(yearly));
+  $(".lbl[data-l=m]", b).classList.toggle("cur", !yearly);
+  $(".lbl[data-l=y]", b).classList.toggle("cur", yearly);
+  renderPlans(true);
+});
+$("#plans").addEventListener("click", e => {
+  const a = e.target.closest("[data-plan]"); if (!a) return;
+  const map = { "Flex":"Hot desk", "Fixed desk":"Fixed desk", "Studio":"Studio" };
+  const r = $(`#interest input[value="${map[a.dataset.plan]}"]`); if (r) r.checked = true;
+});
+renderPlans(false);
+
+/* ================= AMENITIES ================= */
+$("#amenList").innerHTML = AMENITIES.map(([t, d, path]) => `<li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${path}"/></svg><strong>${esc(t)}</strong><span>${esc(d)}</span></li>`).join("");
+
+/* ================= FLOOR PLAN ================= */
+let pinned = "floor";
+const roomsG = $("#rooms");
+roomsG.innerHTML = ROOMS.map(r => {
+  const shared = r.price === "Included";
+  return `<g class="room" tabindex="0" role="button" data-room="${r.id}" aria-pressed="false" aria-label="${esc(r.label)}: ${esc(r.type)}, ${r.size} square meters, ${esc(r.price)}${esc(r.unit)}">
+    <rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="2" ${shared ? 'stroke-dasharray="6 5"' : ""}/>
+    <text x="${r.x + 14}" y="${r.y + 26}">${esc(r.label)}</text>
+    <text class="sub" x="${r.x + 14}" y="${r.y + 44}">${esc(r.sub)}</text>
+  </g>`;
+}).join("") +
+  // desks on the long floor (decorative)
+  `<g aria-hidden="true" pointer-events="none" fill="none" stroke="rgba(238,236,228,.18)">${Array.from({ length:18 }, (_, i) => `<rect x="${70 + (i % 6) * 60}" y="${110 + Math.floor(i / 6) * 48}" width="40" height="22" rx="2"/>`).join("")}</g>`;
+// keep the decorative desks below the room labels but above the fill
+const deskLayer = roomsG.lastElementChild; roomsG.insertBefore(deskLayer, roomsG.children[1]);
+
+function showRoom(id, fromPin){
+  const r = ROOMS.find(x => x.id === id);
+  const card = $("#roomCard");
+  card.innerHTML = `<div class="fresh">
+    <span class="mono lime">${esc(r.type)}</span>
+    <h3>${esc(r.label)}</h3>
+    <p class="dim">${esc(r.desc)}</p>
+    <div class="stats">
+      <div><span class="mono dim">Size</span><strong>${r.size} m²</strong></div>
+      <div><span class="mono dim">Capacity</span><strong>${r.cap}</strong></div>
+      <div><span class="mono dim">Floor</span><strong>G</strong></div>
+    </div>
+  </div>
+  <div class="price-line"><div><span class="mono dim">From</span><br><strong>${esc(r.price)}</strong> <span class="mono dim">${esc(r.unit)}</span></div><a class="btn btn--lime" href="#contact">Ask about it <span class="arr" aria-hidden="true">→</span></a></div>
+  <p class="mono room-hint" style="margin-top:16px">${fromPin ? "Selected · tap another room to compare" : "Previewing · click or press Enter to select"}</p>`;
+}
+function selectRoom(id){
+  pinned = id;
+  $$(".room", roomsG).forEach(g => { const on = g.dataset.room === id; g.classList.toggle("sel", on); g.setAttribute("aria-pressed", String(on)); });
+  $$("[data-chip]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.chip === id)));
+  showRoom(id, true);
+}
+roomsG.addEventListener("click", e => { const g = e.target.closest(".room"); if (g) selectRoom(g.dataset.room); });
+roomsG.addEventListener("keydown", e => {
+  const g = e.target.closest(".room"); if (!g) return;
+  if (e.key === "Enter" || e.key === " "){ e.preventDefault(); selectRoom(g.dataset.room); }
+});
+// hover preview only for real pointers (touch taps go straight to select)
+roomsG.addEventListener("pointerover", e => { if (e.pointerType !== "mouse") return; const g = e.target.closest(".room"); if (g && g.dataset.room !== pinned) showRoom(g.dataset.room, false); });
+roomsG.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") showRoom(pinned, true); });
+$("#roomChips").innerHTML = ROOMS.map(r => `<button type="button" data-chip="${r.id}" aria-pressed="false">${esc(r.label)}</button>`).join("");
+$("#roomChips").addEventListener("click", e => { const b = e.target.closest("[data-chip]"); if (b) selectRoom(b.dataset.chip); });
+selectRoom("floor");
+$("#fromPrice").textContent = money(Math.min(...PLANS.map(p => p.monthly)));
+$("#dirLink").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.address);
+
+/* ================= FAQ (native details, animated) ================= */
+$("#faqList").innerHTML = FAQS.map(([q, a], i) => `<details class="rv"><summary><span class="n">${String(i + 1).padStart(2, "0")}</span><span>${esc(q)}</span><span class="x" aria-hidden="true"></span></summary><p class="ans">${esc(a)}</p></details>`).join("");
+
+/* ================= CONTACT FORM ================= */
+$("#interest").innerHTML = INTERESTS.map((t, i) => `<label><input type="radio" name="interest" value="${t}" ${i === 0 ? "checked" : ""}><span>${t}</span></label>`).join("");
+(function tourDays(){
+  const sel = $("#c-date"), d = new Date(); let n = 0;
+  while (sel.options.length < 8 && n < 20){
+    n++; const day = new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+    if (day.getDay() === 0 || day.getDay() === 6) continue;
+    const label = day.toLocaleDateString(CONFIG.locale, { weekday:"long", month:"short", day:"numeric" });
+    sel.add(new Option(`${label} — 10:00`, `${label} 10:00`)); sel.add(new Option(`${label} — 16:00`, `${label} 16:00`));
+  }
+})();
+$("#tourForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.currentTarget, errs = {};
+  if (f.name.value.trim().length < 2) errs.name = "Tell us what to call you.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim())) errs.email = "We need a valid email to confirm the tour.";
+  ["name", "email"].forEach(k => { $("#ce-" + k).textContent = errs[k] || ""; f[k].setAttribute("aria-invalid", errs[k] ? "true" : "false"); });
+  if (Object.keys(errs).length){ f[Object.keys(errs)[0]].focus(); return; }
+  const btn = $("#sendBtn"), status = $("#formStatus"); btn.disabled = true; btn.firstChild.textContent = "Sending… "; status.innerHTML = "";
+  const data = Object.fromEntries(new FormData(f));
+  const res = await submitForm(data);
+  btn.disabled = false; btn.firstChild.textContent = "Request a tour ";
+  if (res.ok){
+    $("#formWrap").innerHTML = `<div class="done-msg" tabindex="-1" id="doneMsg">
+      <span class="mono lime">Request sent</span>
+      <h3>Thanks, ${esc(data.name.split(" ")[0])}.</h3>
+      <p class="dim">We'll email ${esc(data.email)} to confirm your tour on ${esc(data.tourDay)}.</p>
+    </div>`;
+    $("#doneMsg").focus(); return;
+  }
+  if (res.reason === "not-configured"){
+    const body = `Tour request\nName: ${data.name}\nEmail: ${data.email}\nInterested in: ${data.interest}\nPreferred day: ${data.tourDay}${data.message ? "\n\n" + data.message : ""}`;
+    status.innerHTML = `<div class="status status--warn"><strong>The tour form isn't connected yet.</strong><span class="dim">Nothing was sent. Email us to book your tour; your details are already filled in.</span>
+      <div class="row"><a class="btn btn--lime" href="mailto:${CONFIG.email}?subject=${encodeURIComponent("Tour request")}&body=${encodeURIComponent(body)}">Email the request <span class="arr" aria-hidden="true">→</span></a></div></div>`;
+  } else {
+    status.innerHTML = `<div class="status status--error"><strong>We couldn't send your request.</strong><span class="dim">Check your connection and try again.</span></div>`;
+  }
+});
+
+/* ================= NAV ================= */
+const nav = $("#nav"), burger = $("#burger"), overlay = $("#overlay");
+function setMenu(open){
+  overlay.classList.toggle("open", open);
+  burger.setAttribute("aria-expanded", String(open));
+  burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  document.body.style.overflow = open ? "hidden" : "";
+  if (open) setTimeout(() => $("a", overlay).focus(), 50);
+}
+burger.addEventListener("click", () => setMenu(!overlay.classList.contains("open")));
+overlay.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && overlay.classList.contains("open")){ setMenu(false); burger.focus(); } });
+const sticky = $("#stickyCta"), contactSec = $("#contact");
+addEventListener("scroll", () => {
+  nav.classList.toggle("solid", scrollY > 40);
+  const r = contactSec.getBoundingClientRect();
+  sticky.classList.toggle("show", scrollY > innerHeight * .8 && r.top > innerHeight);
+}, { passive:true });
+
+/* Active section highlight */
+const links = $$(".nav-links a");
+if ("IntersectionObserver" in window){
+  const secObs = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
+  }), { rootMargin:"-45% 0px -50% 0px" });
+  $$("section[id]").forEach(s => secObs.observe(s));
+}
+
+/* Scroll reveals */
+(function(){
+  const els = $$(".rv, .wipe");
+  if (reduced() || !("IntersectionObserver" in window)){ els.forEach(e => e.classList.add("on")); return; }
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add("on"); io.unobserve(en.target); } }), { rootMargin:"0px 0px -10% 0px" });
+  els.forEach(e => io.observe(e));
+})();
+</script>
+</body>
+</html>

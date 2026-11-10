@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember &amp; Oak — ресторан на живом огне в Минске</title>
+<meta name="description" content="Ember & Oak — ресторан на живом огне в Минске: сезонные блюда на дубовых углях, ужин при свечах и короткая винная карта. Бронь стола онлайн, оплата картой и через ЕРИП.">
+<meta name="theme-color" content="#16120F">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ember & Oak — ресторан на живом огне в Минске">
+<meta property="og:locale" content="ru_BY">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:description" content="Готовим на дубовых углях, подаём при свечах. Минск, ул. Мельничная, 14.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%2316120F'/%3E%3Cpath d='M16 6c4 5 6 8.5 6 12a6 6 0 0 1-12 0c0-2 .8-3.6 2.2-5 .3 2 1.3 3 2.6 3.2C14 13 14.4 9.6 16 6z' fill='%23E8913A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --coal:#16120F;
+  --coal-2:#1F1915;
+  --coal-3:#2A221C;
+  --cream:#F5EBDD;
+  --paper:#EFE4D2;
+  --paper-ink:#2A1E16;
+  --paper-muted:#6B5544;
+  --smoke:#C2B3A1;
+  --amber:#E8913A;
+  --amber-hi:#F5A65A;
+  --amber-text:#F2A963;
+  --ember:#B9531F;
+  --line:rgba(245,235,221,.12);
+  --serif:"Playfair Display", Georgia, serif;
+  --sans:"Manrope", system-ui, sans-serif;
+  --gut:clamp(18px, 5vw, 64px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:var(--coal);color:var(--cream);font:400 1.05rem/1.7 var(--sans);overflow-x:hidden}
+h1,h2,h3{margin:0;font-family:var(--serif);font-weight:700;line-height:1.05}
+p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+svg{display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--gut)}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--amber-hi);outline-offset:3px}
+.skip{position:fixed;left:12px;top:-60px;z-index:300;background:var(--amber);color:var(--coal);padding:10px 16px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+
+/* Buttons: squared, letter-spaced */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border:1.5px solid var(--amber);font:600 .82rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .3s var(--ease),color .3s,box-shadow .3s}
+.btn-line{background:transparent;color:var(--amber-text)}
+.btn-line:hover{background:rgba(232,145,58,.12)}
+.btn-solid{background:var(--amber);color:var(--coal)}
+.btn-solid:hover{background:var(--amber-hi);box-shadow:0 0 0 6px rgba(232,145,58,.18)}
+
+/* ================= HEADER ================= */
+.hdr{position:fixed;inset:0 0 auto 0;z-index:60;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.hdr.solid{background:rgba(22,18,15,.94);border-bottom-color:var(--line);backdrop-filter:blur(8px)}
+.hdr-row{display:flex;align-items:center;gap:20px;height:80px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.brand svg{width:34px;height:34px;color:var(--amber)}
+.brand b{font:700 1.35rem/1 var(--serif);letter-spacing:.01em;white-space:nowrap}
+.brand b i{font-style:italic;font-weight:500;color:var(--amber-text)}
+.hdr nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.hdr nav a{position:relative;text-decoration:none;font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;color:var(--smoke);padding:8px 0}
+.hdr nav a::after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:var(--amber);transition:right .35s var(--ease)}
+.hdr nav a:hover{color:var(--cream)}
+.hdr nav a:hover::after{right:0}
+.hdr-btns{display:flex;gap:10px}
+.burger{display:none;width:48px;height:48px;border:1px solid var(--line);background:none;cursor:pointer;place-items:center}
+.burger i{display:block;width:22px;height:1.5px;background:var(--cream);box-shadow:0 7px 0 var(--cream),0 -7px 0 var(--cream)}
+.overlay{position:fixed;inset:0;z-index:80;background:var(--coal);display:flex;flex-direction:column;justify-content:center;padding:80px var(--gut) 40px;opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.overlay.open{opacity:1;visibility:visible;transition:opacity .35s}
+.overlay ul{list-style:none;margin:0;padding:0}
+.overlay li{border-bottom:1px solid var(--line)}
+.overlay a.big{display:block;padding:18px 0;font:500 2.2rem/1.1 var(--serif);text-decoration:none}
+.overlay a.big:hover{color:var(--amber-text);font-style:italic}
+.overlay .close-x{position:absolute;top:16px;right:var(--gut)}
+.overlay .btn{margin-top:28px;width:100%}
+.close-x{width:48px;height:48px;border:1px solid var(--line);background:none;color:var(--cream);font-size:1.7rem;line-height:1;cursor:pointer}
+.close-x:hover{border-color:var(--amber)}
+@media (max-width:1000px){
+  .hdr nav,.hdr-btns .btn-line{display:none}
+  .burger{display:grid}
+}
+.btn{white-space:nowrap}
+@media (max-width:420px){
+  .hdr-row{gap:8px}
+  .brand{gap:8px}
+  .brand svg{width:28px;height:28px}
+  .brand b{font-size:1rem}
+  .hdr-btns .btn{min-height:44px;padding:0 10px;letter-spacing:.06em;font-size:.7rem}
+  .burger{width:44px;height:44px}
+}
+
+/* ================= HERO ================= */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:120px 0 72px;overflow:hidden;isolation:isolate}
+.hero-art{position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(55% 60% at 78% 70%, rgba(232,145,58,.38), transparent 62%),
+  radial-gradient(35% 40% at 70% 95%, rgba(185,83,31,.45), transparent 70%),
+  radial-gradient(80% 60% at 10% 0%, rgba(80,50,30,.4), transparent 70%), var(--coal)}
+.hero-art svg{position:absolute;right:-4%;bottom:0;width:min(80vw,820px);height:auto}
+.flick{animation:flick 3.2s ease-in-out infinite alternate;transform-origin:50% 100%}
+.flick.b{animation-duration:2.4s;animation-delay:-1s}
+@keyframes flick{0%{transform:scaleY(1) skewX(0)}50%{transform:scaleY(1.06) skewX(-2deg)}100%{transform:scaleY(.96) skewX(2deg)}}
+.spark{animation:rise 5s linear infinite;opacity:0}
+@keyframes rise{0%{transform:translateY(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-260px);opacity:0}}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 12px var(--amber)}
+.hero h1{font-size:clamp(3rem,9vw,7.4rem);font-weight:500;letter-spacing:-.02em;margin:22px 0 24px;max-width:11ch}
+.hero h1 em{color:var(--amber-text)}
+.hero .tag{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--smoke);max-width:30em}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.scroll-cue{position:absolute;right:var(--gut);bottom:72px;writing-mode:vertical-rl;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--smoke)}
+@media (max-width:700px){.scroll-cue{display:none}}
+
+/* ================= ABOUT ================= */
+.about{padding:clamp(80px,12vw,150px) 0}
+.about-grid{display:grid;gap:56px}
+.kicker{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--amber-text)}
+.about h2{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:500;margin:16px 0 28px}
+.about h2 em{color:var(--amber-text)}
+.about .story p{color:var(--smoke);max-width:34em}
+.about .story p+p{margin-top:18px}
+.day{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+.day li{position:relative;padding:0 0 34px 34px}
+.day li::before{content:"";position:absolute;left:-6px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--coal);border:1.5px solid var(--amber)}
+.day time{font:700 1.5rem/1 var(--serif);color:var(--amber-text)}
+.day h3{font:600 1.1rem/1.3 var(--sans);margin:6px 0 4px}
+.day p{color:var(--smoke);font-size:.98rem}
+.pillars{display:grid;gap:0;margin-top:72px;border-top:1px solid var(--line)}
+.pillar{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:28px 0;border-bottom:1px solid var(--line)}
+.pillar svg{width:40px;height:40px;color:var(--amber)}
+.pillar h3{font-size:1.4rem;font-weight:500;margin-bottom:6px}
+.pillar p{color:var(--smoke)}
+@media (min-width:900px){
+  .about-grid{grid-template-columns:1.2fr .8fr;align-items:start}
+  .pillars{grid-template-columns:repeat(3,1fr);border-top:0}
+  .pillar{grid-template-columns:1fr;border-bottom:0;border-left:1px solid var(--line);padding:0 32px}
+  .pillar:first-child{border-left:0;padding-left:0}
+}
+
+/* ================= MENU (printed card) ================= */
+.menu-sec{padding:clamp(70px,10vw,130px) 0;background:linear-gradient(180deg,var(--coal),var(--coal-2))}
+.menu-card{position:relative;max-width:980px;margin:0 auto;background:var(--paper);color:var(--paper-ink);padding:clamp(28px,6vw,72px) clamp(20px,6vw,80px);box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+.menu-card::before{content:"";position:absolute;inset:12px;border:1px solid rgba(42,30,22,.25);pointer-events:none}
+.menu-head{text-align:center;margin-bottom:34px}
+.menu-head .kicker{color:#8A4A1C}
+.menu-head h2{font-size:clamp(2.4rem,6vw,4rem);font-weight:500;font-style:italic;margin-top:10px}
+.menu-head p{color:var(--paper-muted);margin-top:10px;font-size:.98rem}
+.menu-tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 26px;margin-bottom:34px;border-bottom:1px solid rgba(42,30,22,.2);padding-bottom:4px}
+.menu-tabs button{background:none;border:0;padding:12px 2px;font:600 .82rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--paper-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-5px;min-height:44px}
+.menu-tabs button:hover{color:var(--paper-ink)}
+.menu-tabs button[aria-selected="true"]{color:var(--paper-ink);border-bottom-color:#8A4A1C}
+.menu-tabs button:focus-visible{outline-color:#8A4A1C}
+.dishes{list-style:none;margin:0;padding:0;display:grid;gap:26px 56px}
+@media (min-width:820px){.dishes{grid-template-columns:1fr 1fr}}
+.dish{animation:fade .45s var(--ease)}
+.dish-top{display:flex;align-items:baseline;gap:10px}
+.dish h3{font:700 1.2rem/1.3 var(--serif)}
+.dish .dots{flex:1;border-bottom:1.5px dotted rgba(42,30,22,.4);transform:translateY(-4px);min-width:20px}
+.dish .price{font:700 1.15rem/1 var(--serif);color:#8A4A1C}
+.dish p{color:var(--paper-muted);font-size:.95rem;margin-top:4px}
+.dish .tags{display:flex;gap:6px;margin-top:6px}
+.dish .tags span{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(42,30,22,.35);padding:1px 6px;color:var(--paper-muted)}
+.menu-foot{text-align:center;color:var(--paper-muted);font-size:.85rem;margin-top:40px;font-style:italic}
+[role="tabpanel"][hidden]{display:none}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ================= REVIEWS ================= */
+.reviews{padding:clamp(80px,11vw,140px) 0;overflow:hidden}
+.rev-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:40px}
+.rev-head h2{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:500}
+.rev-nav{display:flex;gap:8px}
+.rev-nav button{width:52px;height:52px;border:1px solid var(--line);background:none;color:var(--cream);cursor:pointer;font-size:1.3rem}
+.rev-nav button:hover{border-color:var(--amber)}
+.rev-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(86%,560px);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;scrollbar-width:thin;scrollbar-color:var(--coal-3) transparent}
+.rev{scroll-snap-align:start;margin:0;padding:40px 34px;background:var(--coal-2);border-top:2px solid var(--amber);position:relative}
+.rev::before{content:"“";position:absolute;right:24px;top:-6px;font:700 7rem/1 var(--serif);color:rgba(232,145,58,.14)}
+.rev blockquote{margin:0;font:500 1.35rem/1.45 var(--serif);font-style:italic}
+.rev figcaption{margin-top:24px;font-size:.88rem;letter-spacing:.08em;color:var(--smoke)}
+.rev figcaption b{display:block;color:var(--cream);letter-spacing:.02em;font-size:1rem;font-weight:600}
+.fict{margin-top:22px;font-size:.85rem;color:var(--smoke)}
+
+/* ================= RESERVE ================= */
+.reserve{padding:clamp(80px,11vw,140px) 0;background:radial-gradient(60% 80% at 100% 0%, rgba(232,145,58,.12), transparent 60%), var(--coal-2)}
+.reserve-grid{display:grid;gap:48px;align-items:start}
+@media (min-width:980px){.reserve-grid{grid-template-columns:.8fr 1.2fr}}
+.reserve h2{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:500;margin:16px 0 20px}
+.reserve .lead{color:var(--smoke)}
+.facts{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:18px}
+.facts li{display:grid;grid-template-columns:120px 1fr;gap:12px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.facts span{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-text);padding-top:4px}
+
+/* Form (shared by page section and drawer) */
+.ticket{background:var(--coal);border:1px solid var(--line);padding:clamp(22px,4vw,40px);position:relative}
+.form{display:grid;gap:22px}
+.two{display:grid;gap:22px}
+@media (min-width:640px){.two{grid-template-columns:1fr 1fr}}
+.f{display:grid;gap:8px}
+.f label,.f .lbl{font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke)}
+.f label small{text-transform:none;letter-spacing:0;font-weight:400}
+.f input,.f textarea{width:100%;min-height:50px;padding:12px 0;border:0;border-bottom:1.5px solid rgba(245,235,221,.3);background:transparent;font-size:1.05rem;transition:border-color .25s}
+.f textarea{min-height:80px;resize:vertical}
+.f input:focus,.f textarea:focus{outline:none;border-bottom-color:var(--amber)}
+.f input[type="date"]{color-scheme:dark}
+.f [aria-invalid="true"]{border-bottom-color:#FF9B85}
+.err{font-size:.86rem;color:#FF9B85;font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative}
+.chips input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.chips span{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid rgba(245,235,221,.25);font-variant-numeric:tabular-nums;font-size:.95rem;transition:all .2s}
+.chips label:hover span{border-color:var(--amber)}
+.chips input:checked+span{background:var(--amber);border-color:var(--amber);color:var(--coal);font-weight:600}
+.chips input:focus-visible+span{outline:2px solid var(--amber-hi);outline-offset:2px}
+.chips .none{color:var(--smoke);font-size:.95rem;padding:10px 0}
+.stepper{display:inline-flex;align-items:center;border:1px solid rgba(245,235,221,.25);width:max-content}
+.stepper button{width:48px;height:48px;border:0;background:none;color:var(--cream);font-size:1.3rem;cursor:pointer}
+.stepper button:hover{background:rgba(232,145,58,.12)}
+.stepper output{min-width:64px;text-align:center;font:700 1.2rem/1 var(--serif)}
+.note{font-size:.85rem;color:var(--smoke)}
+.done{display:grid;gap:18px}
+.done .stub{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px dashed rgba(245,235,221,.3)}
+.done .stub svg{width:44px;height:44px;color:var(--amber)}
+.done h3{font-size:1.8rem;font-weight:500}
+.done dl{margin:0;display:grid;gap:10px}
+.done dl div{display:grid;grid-template-columns:110px 1fr;gap:12px}
+.done dt{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke);padding-top:3px}
+.done dd{margin:0;overflow-wrap:anywhere}
+
+/* Drawer */
+.drawer{position:fixed;inset:0;z-index:90;visibility:hidden}
+.drawer.open{visibility:visible}
+.drawer .scrim{position:absolute;inset:0;background:rgba(10,8,6,.65);opacity:0;transition:opacity .35s}
+.drawer.open .scrim{opacity:1}
+.drawer .panel{position:absolute;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--coal-2);border-left:1px solid var(--line);overflow-y:auto;transform:translateX(100%);transition:transform .45s var(--ease);padding:24px clamp(18px,4vw,36px) 40px}
+.drawer.open .panel{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px}
+.drawer-head h2{font-size:1.9rem;font-weight:500}
+body.lock{overflow:hidden}
+
+.lang-btn{min-width:48px;height:48px;border:1px solid var(--line);background:none;color:var(--cream);font:600 .78rem/1 var(--sans);letter-spacing:.14em;cursor:pointer;transition:border-color .2s}
+.lang-btn:hover{border-color:var(--amber)}
+.lang-btn.wide{width:100%;margin-top:12px}
+@media (max-width:1000px){.hdr-row>.lang-btn{display:none}}
+.overlay .lang-btn{color:var(--cream)}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:.9rem;color:var(--smoke);cursor:pointer}
+.consent input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--amber);flex:none}
+.consent a{color:var(--amber-text)}
+.facts a{color:var(--amber-text)}
+.privacy{margin-top:40px;border-top:1px solid var(--line);padding-top:16px}
+.privacy summary{cursor:pointer;color:var(--cream);font-weight:600}
+.privacy .tmp{font-weight:400;font-size:.8rem;color:var(--amber-text);margin-left:8px}
+.privacy p{margin-top:12px;color:var(--smoke);font-size:.92rem;max-width:60em}
+.requisites{margin-top:12px;font-size:.82rem;color:var(--smoke)}
+
+/* ================= FOOTER ================= */
+footer{padding:80px 0 36px;border-top:1px solid var(--line)}
+.foot{display:grid;gap:40px}
+@media (min-width:860px){.foot{grid-template-columns:1.3fr 1fr 1fr}}
+.foot h2{font-size:.78rem;font-family:var(--sans);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--amber-text);margin-bottom:16px}
+.foot p,.foot td,.foot th{color:var(--smoke);font-size:.98rem}
+.foot table{border-collapse:collapse}
+.foot th{text-align:left;font-weight:400;padding:3px 24px 3px 0}
+.foot td{padding:3px 0;color:var(--cream)}
+.social{display:flex;gap:10px;margin-top:20px}
+.social a{width:44px;height:44px;border:1px solid var(--line);display:grid;place-items:center;transition:border-color .2s}
+.social a:hover{border-color:var(--amber)}
+.social svg{width:18px;height:18px}
+.wordmark{font:500 clamp(3.4rem,13vw,10rem)/.9 var(--serif);font-style:italic;color:var(--coal-3);margin-top:60px;white-space:nowrap;overflow:hidden}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:24px;font-size:.82rem;color:var(--smoke)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+  .spark{opacity:.6}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержимому</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-row">
+    <a class="brand" href="#top" aria-label="Ember & Oak — наверх">
+      <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="17" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M18 8c4 5 6 8.5 6 12a6 6 0 0 1-12 0c0-2 .8-3.6 2.2-5 .3 2 1.3 3 2.6 3.2C16 15 16.4 11.6 18 8z" fill="currentColor"/></svg>
+      <b>Ember <i>&amp;</i> Oak</b>
+    </a>
+    <nav aria-label="Основная навигация">
+      <ul><li><a href="#about">О нас</a></li><li><a href="#menu">Меню</a></li><li><a href="#reviews">Отзывы</a></li><li><a href="#contact">Контакты</a></li></ul>
+    </nav>
+    <button class="lang-btn" type="button" data-lang-btn aria-label="Switch to English" lang="en">EN</button>
+    <div class="hdr-btns">
+      <a class="btn btn-line" href="#menu" data-to-menu>Смотреть меню</a>
+      <button class="btn btn-solid" type="button" data-reserve>Забронировать</button>
+    </div>
+    <button class="burger" type="button" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="overlay"><i></i></button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Меню сайта">
+  <button class="close-x" type="button" data-close-overlay aria-label="Закрыть меню">×</button>
+  <ul>
+    <li><a class="big" href="#about">О нас</a></li>
+    <li><a class="big" href="#menu">Меню</a></li>
+    <li><a class="big" href="#reviews">Отзывы</a></li>
+    <li><a class="big" href="#contact">Контакты</a></li>
+  </ul>
+  <a class="btn btn-line" href="#menu" data-to-menu>Смотреть меню</a>
+  <button class="lang-btn wide" type="button" data-lang-btn aria-label="Switch to English" lang="en">EN</button>
+</div>
+
+<main id="main">
+<span id="top"></span>
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 800 600" fill="none">
+      <defs>
+        <linearGradient id="f1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#F5A65A"/><stop offset=".6" stop-color="#E8913A" stop-opacity=".55"/><stop offset="1" stop-color="#E8913A" stop-opacity="0"/></linearGradient>
+        <linearGradient id="f2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#B9531F"/><stop offset="1" stop-color="#B9531F" stop-opacity="0"/></linearGradient>
+      </defs>
+      <g class="flick"><path d="M430 600c-70-90-30-190 40-260 10 70 55 105 100 115-12-95 25-190 105-260-25 120 70 200 70 305 0 45-12 75-35 100z" fill="url(#f1)"/></g>
+      <g class="flick b"><path d="M300 600c-40-70-14-140 35-190 6 48 36 72 66 80-6-66 18-132 72-180-12 84 48 140 48 210 0 34-9 58-24 80z" fill="url(#f2)"/></g>
+      <path d="M230 590h420" stroke="#5A3A24" stroke-width="18" stroke-linecap="round"/>
+      <path d="M260 572l140-20M520 574l-150-24" stroke="#3E2A1C" stroke-width="16" stroke-linecap="round"/>
+      <g fill="#F5A65A">
+        <circle class="spark" cx="470" cy="420" r="2.5" style="animation-delay:0s"/>
+        <circle class="spark" cx="520" cy="440" r="2" style="animation-delay:1.2s"/>
+        <circle class="spark" cx="410" cy="450" r="1.8" style="animation-delay:2.1s"/>
+        <circle class="spark" cx="560" cy="400" r="2.2" style="animation-delay:3s"/>
+        <circle class="spark" cx="380" cy="470" r="1.6" style="animation-delay:3.8s"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap">
+    <p class="status"><i aria-hidden="true"></i><span id="openStatus">Кухня на живом огне · Минск</span></p>
+    <h1 id="hero-h">Готовим на дубовых углях, <em>подаём при свечах.</em></h1>
+    <p class="tag">Сезонные блюда из одного открытого очага, короткая винная карта и столы для долгих ужинов.</p>
+    <div class="hero-btns">
+      <a class="btn btn-line" href="#menu" data-to-menu>Смотреть меню</a>
+      <button class="btn btn-solid" type="button" data-reserve>Забронировать</button>
+    </div>
+  </div>
+  <span class="scroll-cue" aria-hidden="true">Листайте · огонь уже горит</span>
+</section>
+
+<section class="about" id="about" aria-labelledby="about-h">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="story reveal">
+        <span class="kicker">Очаг</span>
+        <h2 id="about-h">Один огонь, который разжигают каждый день <em>в четыре.</em></h2>
+        <p>Ember &amp; Oak начался с одного кирпичного очага в здании бывшей мельницы. Через него до сих пор проходит каждое блюдо: овощи томятся в углях, рыба — на решётке, а хлеб печётся, пока огонь затухает.</p>
+        <p>Готовим из того, что за неделю привезли фермеры из-под Минска, поэтому меню короткое и часто меняется. Спросите официанта, что приехало сегодня утром.</p>
+      </div>
+      <ol class="day reveal" aria-label="Один день у очага">
+        <li><time>16:00</time><h3>Разжигаем огонь</h3><p>Дуб и яблоня, никакого газа. На хорошие угли уходит час.</p></li>
+        <li><time>17:00</time><h3>Первые гости</h3><p>Открываем двери. Места у стойки смотрят прямо на огонь и поваров.</p></li>
+        <li><time>22:30</time><h3>Последние угли</h3><p>На затухающем огне печём хлеб на завтра и коптим масло.</p></li>
+      </ol>
+    </div>
+    <div class="pillars">
+      <article class="pillar reveal"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 4c6 7 9 12 9 17a9 9 0 0 1-18 0c0-3 1.2-5.6 3.4-7.6.4 3 2 4.6 4 5C17.6 13 18.2 8 20 4z"/></svg><div><h3>Всё на огне</h3><p>Без фритюра и газовой плиты. Дымок и корочка — от дров, а не из бутылки.</p></div></article>
+      <article class="pillar reveal"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 32c7-2 11-8 11-17 0-4-1-7-3-10 9 2 16 9 16 19a9 9 0 0 1-9 9z"/><path d="M8 32c4-5 8-9 13-12"/></svg><div><h3>С ближайших ферм</h3><p>Короткое меню из того, что собрали на этой неделе фермеры Минской области.</p></div></article>
+      <article class="pillar reveal"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 4h12l-2 13a4 4 0 0 1-8 0z"/><path d="M20 21v13M13 34h14"/></svg><div><h3>Двадцать бутылок</h3><p>Короткая винная карта, любое вино можно взять бокалом.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="menu-sec" id="menu" aria-labelledby="menu-h">
+  <div class="wrap">
+    <div class="menu-card reveal">
+      <header class="menu-head">
+        <span class="kicker">Каталог</span>
+        <h2 id="menu-h">Меню на сегодня</h2>
+        <p>Блюда удобно делить на компанию. Расскажите об аллергиях — кухня подстроится.</p>
+      </header>
+      <div class="menu-tabs" role="tablist" aria-label="Разделы меню" id="menuTabs"></div>
+      <div id="menuPanels"></div>
+      <p class="menu-foot">Пример меню для демо · цены в BYN, обслуживание включено · V вегетарианское · GF без глютена</p>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews" aria-labelledby="rev-h">
+  <div class="wrap">
+    <div class="rev-head">
+      <div><span class="kicker">Отзывы</span><h2 id="rev-h" style="margin-top:14px">Что говорят за столом</h2></div>
+      <div class="rev-nav"><button type="button" data-rev="-1" aria-label="Предыдущий отзыв">←</button><button type="button" data-rev="1" aria-label="Следующий отзыв">→</button></div>
+    </div>
+    <div class="rev-track" id="revTrack" tabindex="0" aria-label="Отзывы гостей, листайте вбок">
+      <figure class="rev"><blockquote><p>Морковь из углей звучит просто, а оказалась лучшим, что я ела за год. Сидели три часа, и никто нас не торопил.</p></blockquote><figcaption><b>Мирослава Звездочётова</b>Вымышленная гостья · ужин в годовщину</figcaption></figure>
+      <figure class="rev"><blockquote><p>Сидели у стойки и смотрели, как повара работают с огнём. Ради лепёшки со взбитым салом стоит вернуться.</p></blockquote><figcaption><b>Тихон Огнецветов</b>Вымышленный гость · места у стойки</figcaption></figure>
+      <figure class="rev"><blockquote><p>Тепло, полумрак и можно спокойно поговорить. В пятницу нашли стол на шестерых и без суеты учли аллергию на орехи.</p></blockquote><figcaption><b>Злата Медовикова</b>Вымышленная гостья · стол на шестерых</figcaption></figure>
+    </div>
+    <p class="fict">Примеры отзывов для демо. Гости вымышлены.</p>
+  </div>
+</section>
+
+<section class="reserve" id="reserve" aria-labelledby="res-h">
+  <div class="wrap reserve-grid">
+    <div class="reveal">
+      <span class="kicker">Бронирование</span>
+      <h2 id="res-h">Забронируйте стол у огня.</h2>
+      <p class="lead">Держим стол 15 минут. Компаниям больше 8 человек и на банкет — по телефону или в Viber.</p>
+      <ul class="facts">
+        <li><span>Ужин</span><div id="hoursLine"></div></li>
+        <li><span>Адрес</span><div>ул. Мельничная, 14, Минск</div></li>
+        <li><span>Телефон</span><div>+375 (29) 000-14-27</div></li>
+        <li><span>Оплата</span><div>Наличные, банковские карты (в т.ч. Белкарт), ЕРИП</div></li>
+        <li><span>Мессенджеры</span><div><a href="viber://chat?number=%2B375290001427">Viber</a> · <a href="https://t.me/">Telegram</a> <small style="color:var(--smoke)">(заглушки)</small></div></li>
+        <li><span>Карта</span><div><a href="https://yandex.by/maps/?text=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%2C%2014" target="_blank" rel="noopener">Открыть в Яндекс Картах</a></div></li>
+      </ul>
+    </div>
+    <div class="ticket reveal" id="pageForm"></div>
+  </div>
+</section>
+</main>
+
+<footer id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <h2 class="sr-only" id="contact-h">Контакты</h2>
+    <div class="foot">
+      <div>
+        <h2>Как нас найти</h2>
+        <p>ул. Мельничная, 14, Минск</p>
+        <p>Телефон: +375 (29) 000-14-27</p>
+        <p>hello@emberandoak.example</p>
+        <div class="social">
+          <a href="#" aria-label="Instagram (ссылка-заглушка)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="viber://chat?number=%2B375290001427" aria-label="Viber (номер-заглушка)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c5 0 8 2.6 8 7.6 0 4.6-3 7.3-8 7.3-.9 0-1.8-.1-2.6-.3L6 20v-3.3C4.7 15.3 4 13.2 4 10.6 4 5.6 7 3 12 3z"/><path d="M9.5 8.5c.4 2.5 2.2 4.4 4.8 5"/></svg></a>
+          <a href="https://t.me/" aria-label="Telegram (ссылка-заглушка)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/><path d="M9 13l8-6"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h2>Часы работы</h2>
+        <table><caption class="sr-only">Часы работы</caption><tbody id="hoursTable"></tbody></table>
+      </div>
+      <div>
+        <h2>Полезно знать</h2>
+        <p>Работаем только на ужин. Места у стойки каждый вечер оставляем для гостей без брони. С собаками — на террасу.</p>
+      </div>
+    </div>
+    <details class="privacy" id="privacy">
+      <summary>Политика обработки персональных данных <span class="tmp">шаблон, нужна проверка юриста</span></summary>
+      <p>Шаблон для демо. Мы обрабатываем имя и номер телефона только для бронирования стола и связи с вами по брони, в соответствии с Законом Республики Беларусь «О защите персональных данных» № 99-З от 7 мая 2021 г. Данные не передаются третьим лицам и удаляются после визита, если вы не дали иного согласия. Чтобы отозвать согласие или удалить данные, напишите на hello@emberandoak.example. Перед публикацией текст должен проверить юрист.</p>
+    </details>
+    <p class="requisites">ООО «Эмбер энд Оук», УНП 000000000, г. Минск — демо-реквизиты</p>
+    <div class="wordmark" aria-hidden="true">Ember &amp; Oak</div>
+    <div class="legal"><span>© <span id="yr"></span> Ember &amp; Oak · демо-сайт, ресторан и цены вымышлены</span><span>Брони на этом демо никуда не отправляются.</span></div>
+  </div>
+</footer>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="scrim" data-close-drawer></div>
+  <aside class="panel" role="dialog" aria-modal="true" aria-labelledby="drawer-h">
+    <div class="drawer-head"><h2 id="drawer-h">Бронь стола</h2><button class="close-x" type="button" data-close-drawer aria-label="Закрыть форму брони">×</button></div>
+    <div id="drawerForm"></div>
+  </aside>
+</div>
+
+<script>
+const LANG_KEY = "eo-lang";
+/* =========================================================
+   ДАННЫЕ РЕСТОРАНА — часы, меню, бронь (цены в BYN)
+   ========================================================= */
+const R = {
+  hours: { 0:["17:00","22:00"], 1:null, 2:["17:00","23:00"], 3:["17:00","23:00"], 4:["17:00","23:00"], 5:["17:00","23:30"], 6:["17:00","23:30"] },
+  lastSeatingBeforeClose: 90,
+  maxGuests: 8,
+  menu: [
+    { id:"starters", label:{ ru:"Закуски", en:"Starters" }, items:[
+      { n:{ ru:"Морковь из углей", en:"Ember-roasted carrots" }, d:{ ru:"Морковь, запечённая в углях, лабне, жжёный мёд и обжаренные семечки.", en:"Carrots cooked in the coals, labneh, burnt honey and toasted seeds." }, p:18, t:["V","GF"] },
+      { n:{ ru:"Лепёшка из очага", en:"Hearth flatbread" }, d:{ ru:"Хрустящая лепёшка на закваске со взбитым салом и розмариновой солью.", en:"Blistered sourdough with whipped lardo and rosemary salt." }, p:12, t:[] },
+      { n:{ ru:"Печёный лук-порей", en:"Charred leeks" }, d:{ ru:"Молодой порей, соус ромеско с фундуком и яйцо всмятку.", en:"Young leeks, hazelnut romesco and a soft-boiled egg." }, p:19, t:["V"] },
+      { n:{ ru:"Рийет из копчёной форели", en:"Smoked trout rillette" }, d:{ ru:"Форель на дубовом дыму, маринованный шалот и ржаной хлеб с гриля.", en:"Oak-smoked trout, pickled shallot and grilled rye." }, p:22, t:[] } ]},
+    { id:"mains", label:{ ru:"Основные блюда", en:"Mains" }, items:[
+      { n:{ ru:"Рибай сухой выдержки", en:"Dry-aged ribeye" }, d:{ ru:"300 г на дубовых углях, масло с костным мозгом и печёная зелень.", en:"300 g over oak, bone-marrow butter and charred greens." }, p:79, t:["GF"] },
+      { n:{ ru:"Дорадо на решётке", en:"Whole grilled dorado" }, d:{ ru:"Целая рыба с гриля, фенхель, лимон и ореховое масло.", en:"Whole fish from the grill with fennel, lemon and brown butter." }, p:52, t:["GF"] },
+      { n:{ ru:"Цыплёнок на углях", en:"Coal-roasted half chicken" }, d:{ ru:"Половина цыплёнка в рассоле, запечённая на углях, соус с копчёным чесноком.", en:"Brined, roasted over embers, smoked garlic jus." }, p:39, t:["GF"] },
+      { n:{ ru:"Сельдерей из золы", en:"Ash-baked celeriac" }, d:{ ru:"Корень сельдерея, запечённый целиком в золе, грибной бульон и шнитт-лук.", en:"Celeriac baked whole in the ashes, mushroom broth and chives." }, p:32, t:["V","GF"] } ]},
+    { id:"desserts", label:{ ru:"Десерты", en:"Desserts" }, items:[
+      { n:{ ru:"Тарт с жжёным мёдом", en:"Burnt honey tart" }, d:{ ru:"Медовый крем с карамельной корочкой и крем-фреш.", en:"Honey custard tart with a caramelised top and crème fraîche." }, p:16, t:["V"] },
+      { n:{ ru:"Фрукты с гриля", en:"Grilled stone fruit" }, d:{ ru:"Сезонные фрукты с решётки и мороженое с копчёной ванилью.", en:"Seasonal fruit from the grill, smoked vanilla ice cream." }, p:15, t:["V","GF"] },
+      { n:{ ru:"Тёмный шоколад", en:"Dark chocolate pot" }, d:{ ru:"Густой шоколадный крем, морская соль и овсяный крамбл.", en:"Rich chocolate pot, sea salt and toasted oat crumble." }, p:15, t:["V"] } ]},
+    { id:"drinks", label:{ ru:"Напитки", en:"Drinks" }, items:[
+      { n:{ ru:"Олд фэшн с дымком", en:"Smoked old fashioned" }, d:{ ru:"Ржаной виски, клён, биттер и дубовый дым.", en:"Rye whiskey, maple, bitters and a curl of oak smoke." }, p:22, t:[] },
+      { n:{ ru:"Красное вино, бокал", en:"House red, by the glass" }, d:{ ru:"Натуральное красное, бутылка меняется. Спросите, что открыли сегодня.", en:"A rotating low-intervention red. Ask for tonight's bottle." }, p:17, t:[] },
+      { n:{ ru:"Спритц «Уголёк»", en:"Ember spritz" }, d:{ ru:"Красный апельсин, горький аперитив, просекко и содовая.", en:"Blood orange, bitter aperitivo, prosecco and soda." }, p:19, t:[] },
+      { n:{ ru:"Лимонад с огня", en:"Fire-roasted lemonade" }, d:{ ru:"Обожжённые лимоны, тимьян и газированная вода. Без алкоголя.", en:"Charred lemons, thyme and sparkling water. Alcohol-free." }, p:9, t:[] } ]}
+  ]
+};
+
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+const dayName = d => L(["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"], ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"])[d];
+const dayNameIn = d => L(["в воскресенье","в понедельник","во вторник","в среду","в четверг","в пятницу","в субботу"], ["on Sundays","on Mondays","on Tuesdays","on Wednesdays","on Thursdays","on Fridays","on Saturdays"])[d];
+const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+const hhmm = m => `${String(Math.floor(m / 60)).padStart(2,"0")}:${String(m % 60).padStart(2,"0")}`;
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const fromIso = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const byn = n => `${n} BYN`;
+const go = el => el.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block:"start" });
+
+/* =========================================================
+   ЯЗЫК (RU по умолчанию, EN по кнопке)
+   Статичный текст в HTML написан по-русски; EN — словарь ниже.
+   Динамический текст в скриптах использует L("рус", "eng").
+   ========================================================= */
+let lang = (() => { try { return localStorage.getItem(LANG_KEY) || "ru"; } catch (e) { return "ru"; } })();
+const L = (ru, en) => lang === "en" ? en : ru;
+const loc = () => lang === "en" ? "en-GB" : "ru-RU";
+const EN = {
+"Мирослава Звездочётова": "Miroslava Zvezdochyotova",
+"Вымышленная гостья · ужин в годовщину": "Fictional guest · anniversary dinner",
+"Тихон Огнецветов": "Tikhon Ognetsvetov",
+"Вымышленный гость · места у стойки": "Fictional guest · counter seats",
+"Злата Медовикова": "Zlata Medovikova",
+"Вымышленная гостья · стол на шестерых": "Fictional guest · table for six",
+"Бронь стола": "Book a Table",
+"Ember & Oak — ресторан на живом огне в Минске": "Ember & Oak — Wood-fire restaurant in Minsk",
+"Брони на этом демо никуда не отправляются.": "Reservations on this demo are not sent anywhere.",
+"Бронирование": "Reservations",
+"Перейти к содержимому": "Skip to content",
+"Ember & Oak — наверх": "Ember and Oak — back to top",
+"Основная навигация": "Main",
+"Каталог": "Catalog",
+"О нас": "About",
+"Меню": "Catalog",
+"Отзывы": "Reviews",
+"Контакты": "Contact",
+"Смотреть меню": "View Menu",
+"Забронировать": "Book a Table",
+"Открыть меню": "Open menu",
+"Меню сайта": "Site menu",
+"Закрыть меню": "Close menu",
+"Кухня на живом огне · Минск": "Wood-fire kitchen · Minsk",
+"Готовим на дубовых углях,": "Cooked over oak, served by",
+"подаём при свечах.": "candlelight.",
+"Сезонные блюда из одного открытого очага, короткая винная карта и столы для долгих ужинов.": "Seasonal plates from a single open hearth, a short wine list and tables made for long dinners.",
+"Листайте · огонь уже горит": "Scroll · the fire is lit",
+"Очаг": "The hearth",
+"Один огонь, который разжигают каждый день": "One fire, lit every afternoon",
+"в четыре.": "at four.",
+"Ember & Oak начался с одного кирпичного очага в здании бывшей мельницы. Через него до сих пор проходит каждое блюдо: овощи томятся в углях, рыба — на решётке, а хлеб печётся, пока огонь затухает.": "Ember & Oak started with a single brick hearth in a former flour mill. Every dish still passes through it: vegetables buried in the coals, fish laid on the grill, bread baked as the fire dies down.",
+"Готовим из того, что за неделю привезли фермеры из-под Минска, поэтому меню короткое и часто меняется. Спросите официанта, что приехало сегодня утром.": "We cook with what a few nearby farms bring us that week, so the menu is short and changes often. Ask your server what came in this morning.",
+"Один день у очага": "A day at the hearth",
+"Разжигаем огонь": "The fire is lit",
+"Дуб и яблоня, никакого газа. На хорошие угли уходит час.": "Oak and apple wood, never gas. It takes an hour to build good embers.",
+"Первые гости": "First tables",
+"Открываем двери. Места у стойки смотрят прямо на огонь и поваров.": "Doors open. Counter seats face the fire if you want to watch the cooks.",
+"Последние угли": "Last embers",
+"На затухающем огне печём хлеб на завтра и коптим масло.": "The dying fire bakes tomorrow's bread and smokes the butter.",
+"Всё на огне": "Everything over fire",
+"Без фритюра и газовой плиты. Дымок и корочка — от дров, а не из бутылки.": "No fryer, no gas range. Smoke and char come from the wood, not a bottle.",
+"С ближайших ферм": "From nearby farms",
+"Короткое меню из того, что собрали на этой неделе фермеры Минской области.": "A short menu built around what's harvested this week, not what's in a catalogue.",
+"Двадцать бутылок": "Twenty bottles",
+"Короткая винная карта, любое вино можно взять бокалом.": "A short wine list, every bottle also poured by the glass.",
+"Меню на сегодня": "Tonight's menu",
+"Блюда удобно делить на компанию. Расскажите об аллергиях — кухня подстроится.": "Plates are made to share. Tell us about allergies and the kitchen will adapt.",
+"Разделы меню": "Menu sections",
+"Пример меню для демо · цены в BYN, обслуживание включено · V вегетарианское · GF без глютена": "Sample menu for this demo · prices include service · V vegetarian · GF gluten-free",
+"Что говорят за столом": "Overheard at the table",
+"Предыдущий отзыв": "Previous review",
+"Следующий отзыв": "Next review",
+"Отзывы гостей, листайте вбок": "Guest reviews, scroll horizontally",
+"Морковь из углей звучит просто, а оказалась лучшим, что я ела за год. Сидели три часа, и никто нас не торопил.": "The ember-roasted carrots sound simple and were the best thing I ate all year. We stayed three hours and nobody rushed us.",
+"Мирослава Звездочётова Вымышленная гостья · ужин в годовщину": "Marigold Featherstone Fictional guest · anniversary dinner",
+"Сидели у стойки и смотрели, как повара работают с огнём. Ради лепёшки со взбитым салом стоит вернуться.": "We sat at the counter and watched the cooks work the fire. The flatbread with whipped lardo is reason enough to come back.",
+"Тихон Огнецветов Вымышленный гость · места у стойки": "Bartholomew Quince Fictional guest · counter seats",
+"Тепло, полумрак и можно спокойно поговорить. В пятницу нашли стол на шестерых и без суеты учли аллергию на орехи.": "Warm, dark and quiet enough to talk. They found room for six of us on a Friday and handled a nut allergy without fuss.",
+"Злата Медовикова Вымышленная гостья · стол на шестерых": "Odessa Wrenfield Fictional guest · table for six",
+"Примеры отзывов для демо. Гости вымышлены.": "Sample reviews written for this demo. The guests are fictional.",
+"Забронируйте стол у огня.": "Hold a table by the fire.",
+"Держим стол 15 минут. Компаниям больше 8 человек и на банкет — по телефону или в Viber.": "We keep tables for 15 minutes. For more than 8 guests or private dining, please call us.",
+"Ужин": "Dinner",
+"Адрес": "Address",
+"Телефон": "Phone",
+"ул. Мельничная, 14, Минск": "14 Melnichnaya St, Minsk",
+"Телефон: +375 (29) 000-14-27": "Phone: +375 (29) 000-14-27",
+"Как нас найти": "Find us",
+"Часы работы": "Opening hours",
+"Полезно знать": "Good to know",
+"Работаем только на ужин. Места у стойки каждый вечер оставляем для гостей без брони. С собаками — на террасу.": "Dinner only. Counter seats are kept for walk-ins every evening. Dogs are welcome on the terrace.",
+"Instagram (ссылка-заглушка)": "Instagram (placeholder link)",
+"Ember & Oak · демо-сайт, ресторан и цены вымышлены": "Ember & Oak · demo website, the restaurant and prices are fictional",
+"Закрыть форму брони": "Close reservation form",
+"Viber (номер-заглушка)": "Viber (placeholder number)",
+"Telegram (ссылка-заглушка)": "Telegram (placeholder link)",
+"Оплата": "Payment",
+"Наличные, банковские карты (в т.ч. Белкарт), ЕРИП": "Cash, bank cards (incl. Belkart), ERIP",
+"Мессенджеры": "Messengers",
+"(заглушки)": "(placeholders)",
+"Карта": "Map",
+"Открыть в Яндекс Картах": "Open in Yandex Maps",
+"Политика обработки персональных данных": "Personal data processing policy",
+"шаблон, нужна проверка юриста": "template, needs legal review",
+"Шаблон для демо. Мы обрабатываем имя и номер телефона только для бронирования стола и связи с вами по брони, в соответствии с Законом Республики Беларусь «О защите персональных данных» № 99-З от 7 мая 2021 г. Данные не передаются третьим лицам и удаляются после визита, если вы не дали иного согласия. Чтобы отозвать согласие или удалить данные, напишите на hello@emberandoak.example. Перед публикацией текст должен проверить юрист.": "Demo template. We process your name and phone number only to book your table and contact you about it, in line with the Law of the Republic of Belarus No. 99-Z of 7 May 2021 “On Personal Data Protection”. Data is not shared with third parties and is deleted after your visit unless you agree otherwise. To withdraw consent or have your data deleted, email hello@emberandoak.example. A lawyer must review this text before publishing.",
+"ООО «Эмбер энд Оук», УНП 000000000, г. Минск — демо-реквизиты": "Ember & Oak LLC, UNP 000000000, Minsk — demo company details",
+"Мельничная, 14, Минск": "14 Melnichnaya St, Minsk"
+};
+const _origText = new WeakMap(), _origAttr = new WeakMap();
+const _norm = s => s.replace(/\s+/g, " ").trim();
+function applyStatic(){
+  document.documentElement.lang = lang;
+  const walk = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT,
+    { acceptNode: n => (n.nodeName === "SCRIPT" || n.nodeName === "STYLE") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  let n;
+  while ((n = walk.nextNode())){
+    if (n.nodeType === 3){
+      if (!_origText.has(n)) _origText.set(n, n.nodeValue);
+      const ru = _origText.get(n), k = _norm(ru);
+      const out = lang === "en" && EN[k] ? ru.match(/^\s*/)[0] + EN[k] + ru.match(/\s*$/)[0] : ru;
+      if (n.nodeValue !== out) n.nodeValue = out;
+    } else {
+      for (const a of ["aria-label", "placeholder", "title", "content"]){
+        if (!n.hasAttribute(a) || (a === "content" && n.nodeName !== "META")) continue;
+        let m = _origAttr.get(n); if (!m){ m = {}; _origAttr.set(n, m); }
+        if (!(a in m)) m[a] = n.getAttribute(a);
+        const v = lang === "en" && EN[_norm(m[a])] ? EN[_norm(m[a])] : m[a];
+        if (n.getAttribute(a) !== v) n.setAttribute(a, v);
+      }
+    }
+  }
+  document.querySelectorAll("[data-lang-btn]").forEach(b => {
+    b.textContent = lang === "en" ? "RU" : "EN";
+    b.setAttribute("aria-label", lang === "en" ? "Переключить на русский язык" : "Switch to English");
+    b.setAttribute("lang", lang === "en" ? "ru" : "en");
+  });
+}
+function setLang(next){
+  lang = next;
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage unavailable */ }
+  rerender();
+  applyStatic();
+}
+document.addEventListener("click", e => { if (e.target.closest("[data-lang-btn]")) setLang(lang === "en" ? "ru" : "en"); });
+
+/* Телефон РБ: +375 (29) 123-45-67, также принимаем 80 29 123 45 67 */
+function byDigits(v){ let d = v.replace(/\D/g, ""); if (d.startsWith("80") && d.length === 11) d = "375" + d.slice(2); return d; }
+const isByPhone = v => /^375(17|25|29|33|44)\d{7}$/.test(byDigits(v));
+function maskPhone(input){
+  input.addEventListener("input", () => {
+    let d = byDigits(input.value);
+    if (!d.startsWith("375")) return;
+    d = d.slice(0, 12);
+    const p = [d.slice(0, 3), d.slice(3, 5), d.slice(5, 8), d.slice(8, 10), d.slice(10, 12)];
+    let out = "+" + p[0];
+    if (p[1]) out += " (" + p[1] + (p[1].length === 2 ? ")" : "");
+    if (p[2]) out += " " + p[2];
+    if (p[3]) out += "-" + p[3];
+    if (p[4]) out += "-" + p[4];
+    input.value = out;
+  });
+}
+
+
+/* Шапка + полноэкранное меню */
+const hdr = $("#hdr"), overlay = $("#overlay"), burger = $("#burger");
+const onScroll = () => hdr.classList.toggle("solid", scrollY > 30);
+addEventListener("scroll", onScroll, { passive:true }); onScroll();
+function setOverlay(open){
+  overlay.classList.toggle("open", open);
+  burger.setAttribute("aria-expanded", String(open));
+  document.body.classList.toggle("lock", open);
+  if (open) $(".big", overlay).focus(); else burger.focus({ preventScroll:true });
+}
+burger.addEventListener("click", () => setOverlay(true));
+$("[data-close-overlay]").addEventListener("click", () => setOverlay(false));
+$$(".overlay a").forEach(a => a.addEventListener("click", () => { overlay.classList.remove("open"); burger.setAttribute("aria-expanded","false"); document.body.classList.remove("lock"); }));
+$$('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+  const id = a.getAttribute("href"); if (id.length < 2) return;
+  const t = $(id); if (!t) return;
+  e.preventDefault();
+  if (t.tagName === "DETAILS") t.open = true;
+  go(t); history.replaceState(null, "", id);
+  if (a.hasAttribute("data-to-menu")) setTimeout(() => $("#menuTabs [aria-selected='true']").focus({ preventScroll:true }), reduced() ? 0 : 600);
+}));
+
+/* Статус «открыто» + часы */
+function renderHours(){
+  const now = new Date(), h = R.hours[now.getDay()], m = now.getHours() * 60 + now.getMinutes();
+  let txt = L("Сегодня выходной · ждём вас завтра с 17:00", "Closed today · back tomorrow from 17:00");
+  if (h && m < toMin(h[0])) txt = L(`Сегодня открываемся в ${h[0]}`, `Open tonight from ${h[0]}`);
+  else if (h && m < toMin(h[1])) txt = L(`Огонь горит · открыто до ${h[1]}`, `The fire is lit · open until ${h[1]}`);
+  $("#openStatus").textContent = txt;
+  $("#hoursTable").innerHTML = [1,2,3,4,5,6,0].map(d => `<tr><th scope="row">${dayName(d)}</th><td>${R.hours[d] ? R.hours[d].join("–") : L("Выходной", "Closed")}</td></tr>`).join("");
+  $("#hoursLine").textContent = L("Вт–Вс с 17:00 · понедельник — выходной", "Tue–Sun from 17:00 · closed Mondays");
+  $("#yr").textContent = now.getFullYear();
+}
+
+/* Вкладки меню */
+let menuTab = 0;
+function renderMenu(){
+  const tabs = $("#menuTabs"), panels = $("#menuPanels");
+  tabs.innerHTML = R.menu.map((c, i) => `<button type="button" role="tab" id="t-${c.id}" aria-controls="p-${c.id}" aria-selected="${i === menuTab}" tabindex="${i === menuTab ? 0 : -1}">${L(c.label.ru, c.label.en)}</button>`).join("");
+  panels.innerHTML = R.menu.map((c, i) => `<div role="tabpanel" id="p-${c.id}" aria-labelledby="t-${c.id}" ${i === menuTab ? "" : "hidden"}><ul class="dishes">${c.items.map(it => `
+    <li class="dish"><div class="dish-top"><h3>${esc(L(it.n.ru, it.n.en))}</h3><span class="dots" aria-hidden="true"></span><span class="price">${byn(it.p)}</span></div><p>${esc(L(it.d.ru, it.d.en))}</p>${it.t.length ? `<div class="tags">${it.t.map(x => `<span>${x}</span>`).join("")}</div>` : ""}</li>`).join("")}</ul></div>`).join("");
+}
+(function(){
+  const tabs = $("#menuTabs");
+  const pick = b => {
+    $$("[role=tab]", tabs).forEach((t, i) => { const on = t === b; t.setAttribute("aria-selected", on); t.tabIndex = on ? 0 : -1; if (on) menuTab = i; });
+    $$("[role=tabpanel]", $("#menuPanels")).forEach(p => p.hidden = p.id !== b.getAttribute("aria-controls"));
+  };
+  tabs.addEventListener("click", e => { const b = e.target.closest("[role=tab]"); if (b) pick(b); });
+  tabs.addEventListener("keydown", e => {
+    const list = $$("[role=tab]", tabs), i = list.indexOf(document.activeElement);
+    const n = { ArrowRight:(i + 1) % list.length, ArrowLeft:(i - 1 + list.length) % list.length, Home:0, End:list.length - 1 }[e.key];
+    if (n !== undefined){ e.preventDefault(); list[n].focus(); pick(list[n]); }
+  });
+})();
+
+/* Слайдер отзывов */
+$$("[data-rev]").forEach(b => b.addEventListener("click", () => {
+  const t = $("#revTrack"), card = $(".rev", t);
+  t.scrollBy({ left: +b.dataset.rev * (card.offsetWidth + 24), behavior: reduced() ? "auto" : "smooth" });
+}));
+
+/* Форма брони (на странице и в боковой панели) */
+function slots(dateStr){
+  if (!dateStr) return null;
+  const d = fromIso(dateStr), h = R.hours[d.getDay()];
+  if (!h) return [];
+  const now = new Date(), today = iso(now) === dateStr, nowM = now.getHours() * 60 + now.getMinutes() + 30, out = [];
+  for (let t = toMin(h[0]); t <= toMin(h[1]) - R.lastSeatingBeforeClose; t += 30) if (!today || t >= nowM) out.push(hhmm(t));
+  return out;
+}
+function formHTML(p){
+  const max = new Date(); max.setDate(max.getDate() + 60);
+  return `<form class="form" id="${p}F" novalidate>
+    <div class="two">
+      <div class="f"><label for="${p}-name">${L("Имя", "Name")}</label><input id="${p}-name" name="name" autocomplete="name" aria-describedby="${p}-name-e"><span class="err" id="${p}-name-e"></span></div>
+      <div class="f"><label for="${p}-phone">${L("Телефон", "Phone")}</label><input id="${p}-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+375 (29) 123-45-67" aria-describedby="${p}-phone-e"><span class="err" id="${p}-phone-e"></span></div>
+    </div>
+    <div class="two">
+      <div class="f"><label for="${p}-date">${L("Дата", "Date")}</label><input id="${p}-date" name="date" type="date" min="${iso(new Date())}" max="${iso(max)}" aria-describedby="${p}-date-e"><span class="err" id="${p}-date-e"></span></div>
+      <div class="f"><span class="lbl" id="${p}-g-l">${L("Гостей", "Guests")}</span>
+        <div class="stepper" role="group" aria-labelledby="${p}-g-l"><button type="button" data-g="-1" aria-label="${L("Меньше гостей", "Fewer guests")}">−</button><output id="${p}-guests" aria-live="polite">2</output><button type="button" data-g="1" aria-label="${L("Больше гостей", "More guests")}">+</button></div>
+        <input type="hidden" name="guests" value="2">
+      </div>
+    </div>
+    <fieldset class="f" style="border:0;padding:0;margin:0">
+      <legend class="lbl" style="margin-bottom:8px">${L("Время", "Time")}</legend>
+      <div class="chips" id="${p}-times"><span class="none">${L("Выберите дату, чтобы увидеть свободное время.", "Choose a date to see available times.")}</span></div>
+      <span class="err" id="${p}-time-e"></span>
+    </fieldset>
+    <div class="f"><label for="${p}-comment">${L("Комментарий", "Comment")} <small>${L("(необязательно)", "(optional)")}</small></label><textarea id="${p}-comment" name="comment" rows="2" placeholder="${L("Аллергии, повод, детский стульчик…", "Allergies, an occasion, a high chair…")}"></textarea></div>
+    <div><label class="consent"><input type="checkbox" name="consent" aria-describedby="${p}-consent-e"><span>${L("Согласен(на) на обработку имени и телефона для брони.", "I agree to the processing of my name and phone number for this booking.")} <a href="#privacy">${L("Политика обработки данных", "Privacy policy")}</a></span></label><span class="err" id="${p}-consent-e"></span></div>
+    <button class="btn btn-solid" type="submit">${L("Забронировать стол", "Book a Table")}</button>
+    <p class="note">${L("Демо: форма проверяется в браузере, данные никуда не отправляются.", "Demo: the form is checked in your browser and nothing is sent.")}</p>
+  </form>`;
+}
+function mountForm(box, p){
+  box.innerHTML = formHTML(p);
+  const f = $(`#${p}F`, box);
+  maskPhone(f.phone);
+  const drawTimes = () => {
+    const list = slots(f.date.value), wrap = $(`#${p}-times`, box), keep = (f.querySelector("input[name=time]:checked") || {}).value;
+    if (list === null){ wrap.innerHTML = `<span class="none">${L("Выберите дату, чтобы увидеть свободное время.", "Choose a date to see available times.")}</span>`; return; }
+    if (!list.length){ const wd = fromIso(f.date.value).getDay(); wrap.innerHTML = `<span class="none">${R.hours[wd] ? L("На сегодня свободных столов не осталось. Выберите другую дату.", "No tables left today. Try another date.") : L(`Мы не работаем ${dayNameIn(wd)}.`, `We're closed ${dayNameIn(wd)}.`)}</span>`; return; }
+    wrap.innerHTML = list.map(t => `<label><input type="radio" name="time" value="${t}" ${t === keep ? "checked" : ""}><span>${t}</span></label>`).join("");
+  };
+  f.date.addEventListener("change", drawTimes);
+  $$("[data-g]", f).forEach(b => b.addEventListener("click", () => {
+    const n = Math.min(R.maxGuests, Math.max(1, +f.guests.value + +b.dataset.g));
+    f.guests.value = n; $(`#${p}-guests`, f).textContent = n;
+  }));
+  f.addEventListener("submit", e => {
+    e.preventDefault();
+    const v = k => (f[k] && f[k].value || "").trim(), errs = {};
+    const time = (f.querySelector("input[name=time]:checked") || {}).value;
+    if (v("name").length < 2) errs.name = L("Как к вам обращаться?", "Please tell us your name.");
+    if (!isByPhone(v("phone"))) errs.phone = L("Введите белорусский номер: +375 (29) 123-45-67.", "Enter a Belarus number, e.g. +375 29 123 45 67.");
+    if (!v("date")) errs.date = L("Выберите дату.", "Please choose a date.");
+    else if (v("date") < iso(new Date())) errs.date = L("Эта дата уже прошла.", "That date has passed.");
+    else if (!R.hours[fromIso(v("date")).getDay()]) errs.date = L(`Мы не работаем ${dayNameIn(fromIso(v("date")).getDay())}.`, `We're closed ${dayNameIn(fromIso(v("date")).getDay())}.`);
+    if (!errs.date && !time) errs.time = L("Выберите время.", "Please pick a time.");
+    if (!f.consent.checked) errs.consent = L("Нужно согласие на обработку данных.", "Please give your consent to continue.");
+    ["name","phone","date"].forEach(k => { $(`#${p}-${k}-e`, f).textContent = errs[k] || ""; f[k].setAttribute("aria-invalid", errs[k] ? "true" : "false"); });
+    $(`#${p}-time-e`, f).textContent = errs.time || "";
+    $(`#${p}-consent-e`, f).textContent = errs.consent || "";
+    const first = ["name","phone","date","time","consent"].find(k => errs[k]);
+    if (first){ (first === "time" ? (f.querySelector("input[name=time]") || f.date) : f[first]).focus(); return; }
+    const when = fromIso(v("date")).toLocaleDateString(loc(), { weekday:"long", day:"numeric", month:"long" });
+    box.innerHTML = `<div class="done" role="status" tabindex="-1" id="${p}Done">
+      <div class="stub"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="22" cy="22" r="20"/><path d="M13 22.5l6 6 12-13"/></svg><div><h3>${L("Заявка на стол готова", "Table requested")}</h3><p class="note">${L("Демо: ничего не отправлено. Вот что вы ввели.", "Demo only: nothing was sent. Here's what you entered.")}</p></div></div>
+      <dl>
+        <div><dt>${L("Имя", "Name")}</dt><dd>${esc(v("name"))}</dd></div>
+        <div><dt>${L("Телефон", "Phone")}</dt><dd>${esc(v("phone"))}</dd></div>
+        <div><dt>${L("Дата", "Date")}</dt><dd>${when}</dd></div>
+        <div><dt>${L("Время", "Time")}</dt><dd>${time}</dd></div>
+        <div><dt>${L("Гостей", "Guests")}</dt><dd>${esc(f.guests.value)}</dd></div>
+        ${v("comment") ? `<div><dt>${L("Комментарий", "Comment")}</dt><dd>${esc(v("comment"))}</dd></div>` : ""}
+      </dl>
+      <button class="btn btn-line" type="button" data-again>${L("Новая бронь", "Make another reservation")}</button>
+    </div>`;
+    $(`#${p}Done`, box).focus();
+    $("[data-again]", box).addEventListener("click", () => { mountForm(box, p); $(`#${p}-name`, box).focus(); });
+  });
+}
+
+/* Боковая панель брони */
+const drawer = $("#drawer"); let back = null;
+function openDrawer(){
+  back = document.activeElement;
+  if (overlay.classList.contains("open")) setOverlay(false);
+  mountForm($("#drawerForm"), "dr");
+  drawer.classList.add("open"); drawer.setAttribute("aria-hidden", "false"); document.body.classList.add("lock");
+  setTimeout(() => $("#dr-name").focus(), 60);
+}
+function closeDrawer(){
+  if (!drawer.classList.contains("open")) return;
+  drawer.classList.remove("open"); drawer.setAttribute("aria-hidden", "true"); document.body.classList.remove("lock");
+  if (back) back.focus();
+}
+$$("[data-reserve]").forEach(b => b.addEventListener("click", openDrawer));
+$$("[data-close-drawer]").forEach(b => b.addEventListener("click", closeDrawer));
+$("#drawer").addEventListener("click", e => { if (e.target.closest('a[href="#privacy"]')) closeDrawer(); });
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  if (drawer.classList.contains("open")) closeDrawer();
+  else if (overlay.classList.contains("open")) setOverlay(false);
+});
+document.addEventListener("focusin", e => {
+  if (drawer.classList.contains("open") && !$(".panel", drawer).contains(e.target)) $(".panel button, .panel input", drawer).focus();
+});
+
+/* Перерисовка динамических частей при смене языка */
+function rerender(){
+  renderHours(); renderMenu();
+  mountForm($("#pageForm"), "pg");
+  if (drawer.classList.contains("open")) mountForm($("#drawerForm"), "dr");
+}
+rerender();
+applyStatic();
+
+/* Появление блоков */
+(function(){
+  const els = $$(".reveal");
+  if (reduced() || !("IntersectionObserver" in window)) return els.forEach(e => e.classList.add("in"));
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting){ x.target.classList.add("in"); io.unobserve(x.target); } }), { rootMargin:"0px 0px -8% 0px" });
+  els.forEach(e => io.observe(e));
+})();
+</script>
+</body>
+</html>

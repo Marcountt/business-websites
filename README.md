@@ -2,7 +2,7 @@
 
 # 🌐 Business Websites
 
-**Four mobile-first websites for small businesses — a coffee shop, a dental clinic, a coworking space and a clothing store.**
+**Seven mobile-first websites for small businesses — a coffee shop, a dental clinic, a coworking space, a clothing store, and three booking sites for the Belarusian market: a restaurant, a yoga studio and a barbershop.**
 
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"/>
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3"/>
@@ -27,6 +27,25 @@ Each site is a single HTML file with no frameworks and no build step: it loads f
 | [🦷 Willowbrook Dental Studio](dental-clinic/) | Dental clinic | Online booking with date and time slots, price list, EN / RU |
 | [🧑‍💻 Sawtooth Works](coworking/) | Coworking space | Interactive floor plan, plans and prices, tour booking |
 | [🧥 Skandic Shop](clothing-store/) | Clothing store | Catalog, filters, cart, order via Telegram |
+
+### 🇧🇾 Booking sites for Belarus (RU / EN)
+
+Three individually designed sites, each with its own layout and booking flow. Russian is the main language (written in the HTML, so search engines index it), with an EN switch.
+
+| Site | Business | Highlights |
+|---|---|---|
+| [🔥 Ember & Oak](restaurant/) | Restaurant | Printed-style menu with tabs, slide-in table booking with time chips and guest counter |
+| [🧘 Still Water](yoga-studio/) | Yoga studio | Weekly schedule grid, class-based booking dialog, review carousel, first-visit FAQ |
+| [💈 Iron & Blade](barbershop/) | Barbershop | Barber profiles, 4-step booking wizard that respects each barber's working days |
+
+Localized for Belarus:
+- prices in **BYN**;
+- **+375** phone validation with an input mask;
+- Minsk addresses, **Viber / Telegram** and **Yandex Maps** links;
+- payment by cash, cards (incl. Belkart) and **ERIP**;
+- a required personal-data consent with a privacy policy template under **Law of the Republic of Belarus No. 99-Z** (marked for legal review).
+
+The booking forms run in the browser and send nothing. They check the date, the 30-minute time slots within opening hours, the phone number and the consent, then show a confirmation.
 
 ## ✨ What every site has
 

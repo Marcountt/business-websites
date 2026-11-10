@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iron &amp; Blade — барбершоп в Минске</title>
+<meta name="description" content="Iron & Blade — барбершоп в Минске на четыре кресла: мужские стрижки, оформление бороды и бритьё с горячим полотенцем. Цены в BYN, запись к мастеру онлайн, оплата картой и через ЕРИП.">
+<meta name="theme-color" content="#0D0D0C">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Iron & Blade — барбершоп в Минске">
+<meta property="og:locale" content="ru_BY">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:description" content="Чёткие стрижки, горячие полотенца, без спешки. Запись онлайн.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230D0D0C'/%3E%3Cpath d='M9 23L23 9' stroke='%23C9A24A' stroke-width='2.4' stroke-linecap='round'/%3E%3Ccircle cx='9.5' cy='22.5' r='3' fill='none' stroke='%23C9A24A' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0D0D0C;
+  --iron:#161615;
+  --iron-2:#1F1E1C;
+  --steel:#2B2A27;
+  --bone:#F1ECE2;
+  --ash:#B6AE9F;
+  --gold:#C9A24A;
+  --gold-hi:#DDB860;
+  --gold-text:#D7B464;
+  --rust:#8E3B22;
+  --line:rgba(241,236,226,.12);
+  --display:"Oswald", "Arial Narrow", Impact, sans-serif;
+  --body:"IBM Plex Sans", system-ui, sans-serif;
+  --gut:clamp(16px, 4.5vw, 56px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:110px}
+body{margin:0;background:var(--black);color:var(--bone);font:400 1.02rem/1.65 var(--body);overflow-x:hidden}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:600;letter-spacing:.02em;line-height:.92;text-transform:uppercase}
+p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+svg{display:block}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--gut)}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--gold-hi);outline-offset:3px}
+.skip{position:fixed;left:12px;top:-60px;z-index:300;background:var(--gold);color:var(--black);padding:10px 16px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+.label{font:600 .76rem/1 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--gold-text)}
+
+/* Buttons: hard-edged, offset shadow */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:2px solid var(--gold);font:600 1.35rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s,color .2s}
+.btn-o{background:transparent;color:var(--gold-text)}
+.btn-o:hover{background:var(--gold);color:var(--black)}
+.btn-g{background:var(--gold);color:var(--black);box-shadow:5px 5px 0 var(--rust)}
+.btn-g:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--rust)}
+.btn-g:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--rust)}
+
+/* ================= MARQUEE + HEADER ================= */
+.strip{background:var(--gold);color:var(--black);overflow:hidden;white-space:nowrap;font:600 1.05rem/1 var(--display);letter-spacing:.08em}
+.strip-track{display:inline-flex;gap:40px;padding:9px 0 9px 40px;animation:slide 30s linear infinite}
+.strip-track span::after{content:"✂";margin-left:40px}
+@keyframes slide{to{transform:translateX(-50%)}}
+.bar{position:sticky;top:0;z-index:60;background:var(--black);border-bottom:1px solid var(--line)}
+.bar-row{display:flex;align-items:center;gap:22px;height:76px}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.mark svg{width:40px;height:40px;color:var(--gold)}
+.mark b{font:600 1.9rem/1 var(--display);letter-spacing:.04em;white-space:nowrap}
+.mark b i{font-style:normal;color:var(--gold-text)}
+.bar nav ul{display:flex;list-style:none;margin:0;padding:0}
+.bar nav a{display:block;padding:10px 14px;font:600 1.3rem/1 var(--display);letter-spacing:.06em;text-decoration:none;color:var(--ash);transition:color .2s}
+.bar nav a:hover{color:var(--gold-text)}
+.bar-btns{display:flex;gap:12px}
+.hamb{display:none;width:52px;height:52px;border:2px solid var(--line);background:none;cursor:pointer;place-items:center;font:600 1.1rem/1 var(--display);letter-spacing:.08em;color:var(--bone)}
+.full{position:fixed;inset:0;z-index:90;background:var(--gold);color:var(--black);padding:22px var(--gut) 36px;display:flex;flex-direction:column;clip-path:circle(0 at calc(100% - 40px) 40px);visibility:hidden;transition:clip-path .6s var(--ease),visibility 0s .6s}
+.full.open{clip-path:circle(150% at calc(100% - 40px) 40px);visibility:visible;transition:clip-path .6s var(--ease)}
+.full-top{display:flex;justify-content:space-between;align-items:center}
+.full-top b{font:600 1.8rem/1 var(--display)}
+.full ul{list-style:none;margin:auto 0;padding:0}
+.full a.huge{display:block;font:600 clamp(3.4rem,16vw,6rem)/1 var(--display);text-decoration:none;padding:4px 0}
+.full a.huge:hover{color:var(--rust)}
+.full .btn{border-color:var(--black);color:var(--black)}
+.full .btn:hover{background:var(--black);color:var(--gold)}
+.full :focus-visible{outline-color:var(--black)}
+.xbtn{width:52px;height:52px;border:2px solid currentColor;background:none;cursor:pointer;font-size:1.8rem;line-height:1;color:inherit}
+@media (max-width:1040px){
+  .bar nav,.bar-btns .btn-o{display:none}
+  .hamb{display:grid}
+}
+.btn{white-space:nowrap}
+@media (max-width:420px){
+  .bar-row{gap:8px}
+  .mark{gap:8px}
+  .mark svg{width:30px;height:30px}
+  .mark b{font-size:1.15rem}
+  .bar-btns .btn{min-height:46px;padding:0 9px;font-size:.95rem;letter-spacing:.03em;box-shadow:3px 3px 0 var(--rust)}
+  .hamb{width:46px;height:46px;font-size:1rem}
+}
+
+/* ================= HERO ================= */
+.hero{position:relative;padding:clamp(48px,8vw,100px) 0 0;overflow:hidden}
+.hero-grid{display:grid;gap:30px;align-items:end}
+@media (min-width:900px){.hero-grid{grid-template-columns:1.25fr .75fr}}
+.hero h1{font-size:clamp(3.2rem,13vw,8.6rem);line-height:.92;letter-spacing:0}
+.hero h1 span{display:block}
+.hero h1 .outline{color:transparent;-webkit-text-stroke:2px var(--gold)}
+.hero h1 .gold{color:var(--gold-text)}
+.hero .lede{max-width:30em;color:var(--ash);font-size:1.1rem;margin:26px 0 30px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px}
+.pole{position:relative;justify-self:center;width:min(220px,46vw);margin-bottom:-2px}
+.pole svg{width:100%;height:auto}
+.stripes{animation:spin 2.6s linear infinite}
+@keyframes spin{to{transform:translateY(-84px)}}
+.ritual{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:56px}
+.ritual div{padding:22px 14px;border-left:1px solid var(--line)}
+.ritual div:first-child{border-left:0;padding-left:0}
+.ritual b{display:block;font:600 2.4rem/1 var(--display);color:var(--gold-text)}
+.ritual span{font-size:.92rem;color:var(--ash)}
+@media (max-width:560px){.ritual{grid-template-columns:1fr}.ritual div{border-left:0;border-top:1px solid var(--line);padding-left:0}.ritual div:first-child{border-top:0}}
+
+/* ================= ABOUT (angled band) ================= */
+.about{position:relative;margin-top:80px;padding:clamp(90px,12vw,150px) 0;background:var(--iron);clip-path:polygon(0 4vw,100% 0,100% calc(100% - 4vw),0 100%)}
+.about-grid{display:grid;gap:48px}
+@media (min-width:960px){.about-grid{grid-template-columns:1fr 1fr;align-items:start}}
+.about h2{font-size:clamp(3rem,8vw,6rem);margin:16px 0 22px}
+.about .copy p{color:var(--ash);max-width:34em}
+.about .copy p+p{margin-top:16px}
+.tiles{display:grid;gap:14px}
+.tile{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;padding:24px;background:var(--black);border:1px solid var(--line);transition:border-color .25s,transform .25s var(--ease)}
+.tile:hover{border-color:var(--gold);transform:translateX(6px)}
+.tile .num{font:600 3.4rem/.8 var(--display);color:var(--gold-text)}
+.tile svg{width:30px;height:30px;color:var(--gold);margin-bottom:8px}
+.tile h3{font-size:1.9rem;margin-bottom:6px}
+.tile p{color:var(--ash);font-size:.97rem}
+
+/* ================= SERVICES ================= */
+.services{padding:clamp(80px,10vw,130px) 0}
+.svc-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:34px}
+.svc-head h2{font-size:clamp(3rem,8vw,6rem)}
+.svc-head p{color:var(--ash);max-width:24em}
+.big-tabs{display:flex;flex-wrap:wrap;gap:0 4px;margin-bottom:12px;border-bottom:2px solid var(--line)}
+.big-tabs button{background:none;border:0;padding:8px 14px 10px;font:600 clamp(1.7rem,4.4vw,2.8rem)/1 var(--display);letter-spacing:.03em;color:#6F6A61;cursor:pointer;position:relative;min-height:44px;transition:color .2s}
+.big-tabs button:hover{color:var(--bone)}
+.big-tabs button[aria-selected="true"]{color:var(--gold-text)}
+.big-tabs button[aria-selected="true"]::after{content:"";position:absolute;left:14px;right:14px;bottom:-2px;height:4px;background:var(--gold)}
+.svc-list{list-style:none;margin:0;padding:0}
+.svc{display:grid;grid-template-columns:52px 1fr auto;gap:6px 18px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);animation:up .4s var(--ease)}
+.svc .idx{font:600 1.6rem/1 var(--display);color:#6F6A61}
+.svc h3{font-size:2rem}
+.svc .meta{grid-column:2/3;font-size:.92rem;color:var(--ash)}
+.svc .right{grid-row:1/3;grid-column:3;display:flex;align-items:center;gap:18px}
+.svc .price{font:600 2.2rem/1 var(--display);color:var(--gold-text)}
+.svc .book{min-height:44px;padding:0 14px;border:1.5px solid var(--line);background:none;font:600 1.15rem/1 var(--display);letter-spacing:.06em;color:var(--bone);cursor:pointer;transition:border-color .2s,color .2s}
+.svc .book:hover{border-color:var(--gold);color:var(--gold-text)}
+@media (max-width:640px){
+  .svc{grid-template-columns:36px 1fr}
+  .svc .right{grid-row:auto;grid-column:2;justify-content:space-between;margin-top:6px}
+}
+.svc-note{margin-top:20px;font-size:.88rem;color:var(--ash)}
+[role="tabpanel"][hidden]{display:none}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ================= TEAM ================= */
+.team{padding:0 0 clamp(80px,10vw,130px)}
+.team h2{font-size:clamp(2.6rem,6vw,4.4rem);margin:14px 0 30px}
+.barbers{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.barber{background:var(--iron);border:1px solid var(--line);overflow:hidden}
+.barber .portrait{aspect-ratio:4/3;background:linear-gradient(160deg,var(--steel),var(--iron-2));display:grid;place-items:center}
+.barber .portrait svg{width:62%;height:auto}
+.barber .info{padding:20px}
+.barber h3{font-size:2rem}
+.barber p{color:var(--ash);font-size:.95rem;margin-top:4px}
+.barber .days{margin-top:10px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-text)}
+
+/* ================= REVIEWS ================= */
+.reviews{padding:clamp(80px,10vw,130px) 0;background:var(--iron)}
+.reviews h2{font-size:clamp(3rem,8vw,6rem);margin:14px 0 46px}
+.cards{display:grid;gap:30px}
+@media (min-width:900px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{margin:0;padding:30px 26px;background:var(--bone);color:var(--black);transform:rotate(-1.5deg);box-shadow:8px 8px 0 var(--gold);transition:transform .3s var(--ease)}
+.card:nth-child(2){transform:rotate(1.2deg)}
+.card:nth-child(3){transform:rotate(-.6deg)}
+.card:hover{transform:rotate(0) translateY(-4px)}
+.card blockquote{margin:0;font-size:1.08rem;line-height:1.55}
+.card blockquote::before{content:"“";display:block;font:600 4rem/.6 var(--display);color:var(--rust);margin-bottom:10px}
+.card figcaption{margin-top:18px;font:600 1.4rem/1 var(--display);letter-spacing:.04em}
+.card figcaption small{display:block;font:500 .78rem/1.4 var(--body);letter-spacing:.08em;text-transform:uppercase;color:#5D564C;margin-top:4px}
+.fict{margin-top:34px;font-size:.86rem;color:var(--ash)}
+
+/* ================= BOOK BAND ================= */
+.book-band{padding:clamp(80px,10vw,130px) 0}
+.band{display:grid;gap:30px;padding:clamp(28px,5vw,56px);border:2px solid var(--gold);position:relative}
+@media (min-width:900px){.band{grid-template-columns:1.2fr .8fr;align-items:center}}
+.band h2{font-size:clamp(3rem,8vw,5.6rem)}
+.band p{color:var(--ash);margin-top:14px;max-width:30em}
+.band ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.band li{display:flex;justify-content:space-between;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);font-size:.98rem}
+.band li span{color:var(--ash)}
+
+/* ================= WIZARD (full-screen sheet) ================= */
+dialog.wiz{width:100%;max-width:980px;height:100%;max-height:100dvh;margin:0 0 0 auto;padding:0;border:0;background:var(--iron);color:var(--bone);display:none;flex-direction:column}
+dialog.wiz[open]{display:flex;animation:slideIn .45s var(--ease)}
+dialog.wiz::backdrop{background:rgba(0,0,0,.72)}
+@keyframes slideIn{from{transform:translateX(40px);opacity:0}to{transform:none;opacity:1}}
+.wiz-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px var(--gut);border-bottom:1px solid var(--line)}
+.wiz-head h2{font-size:2.2rem}
+.progress{display:flex;gap:6px;padding:16px var(--gut) 0}
+.progress li{flex:1;list-style:none}
+.progress .seg{height:5px;background:var(--steel)}
+.progress li.on .seg{background:var(--gold)}
+.progress .cap{display:block;margin-top:8px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.progress li.on .cap{color:var(--bone)}
+@media (max-width:520px){.progress .cap{display:none}}
+.progress{margin:0}
+.wiz-body{flex:1;overflow-y:auto;padding:24px var(--gut)}
+.wiz-body h3{font-size:2.6rem;margin-bottom:6px}
+.wiz-body .sub{color:var(--ash);margin-bottom:22px}
+.wiz-foot{display:flex;justify-content:space-between;gap:12px;padding:16px var(--gut) max(16px,env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--black)}
+.wiz-foot .btn{flex:1 1 140px}
+@media (min-width:560px){.wiz-foot .btn{flex:0 0 auto}}
+.opts{display:grid;gap:10px}
+.opt{position:relative;display:block}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer;z-index:1}
+.opt .box{display:grid;grid-template-columns:1fr auto;gap:4px 14px;padding:16px 18px;border:1.5px solid var(--line);background:var(--black);transition:border-color .2s,background .2s}
+.opt:hover .box{border-color:var(--ash)}
+.opt input:checked+.box{border-color:var(--gold);background:#1A1710;box-shadow:inset 4px 0 0 var(--gold)}
+.opt input:focus-visible+.box{outline:3px solid var(--gold-hi);outline-offset:2px}
+.opt b{font:600 1.6rem/1 var(--display);letter-spacing:.03em}
+.opt small{grid-column:1;color:var(--ash);font-size:.88rem}
+.opt .pr{grid-row:1/3;grid-column:2;align-self:center;font:600 1.7rem/1 var(--display);color:var(--gold-text)}
+.grp{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);margin:18px 0 8px}
+.grp:first-child{margin-top:0}
+.fld{display:grid;gap:6px}
+.fld label,.fld .lb{font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
+.fld label small{text-transform:none;letter-spacing:0;font-weight:400}
+.fld input,.fld select,.fld textarea{width:100%;min-height:52px;padding:12px 14px;border:1.5px solid var(--line);background:var(--black);color:var(--bone);transition:border-color .2s}
+.fld input[type="date"]{color-scheme:dark}
+.fld select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23D7B464' stroke-width='1.8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:12px;padding-right:40px}
+.fld select option{background:var(--iron)}
+.fld textarea{min-height:90px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--gold)}
+.fld [aria-invalid="true"]{border-color:#FF9B85}
+.e{font-size:.86rem;color:#FF9B85;font-weight:500}
+.cols2{display:grid;gap:16px}
+@media (min-width:640px){.cols2{grid-template-columns:1fr 1fr}}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:8px;margin-top:6px}
+.slots label{position:relative}
+.slots input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.slots span{display:grid;place-items:center;min-height:46px;border:1.5px solid var(--line);font-variant-numeric:tabular-nums;font-weight:600;transition:all .2s}
+.slots label:hover span{border-color:var(--ash)}
+.slots input:checked+span{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.slots input:focus-visible+span{outline:3px solid var(--gold-hi);outline-offset:2px}
+.empty{color:var(--ash);padding:14px 0}
+.summary{margin-top:22px;padding:16px 18px;border:1px dashed var(--line);font-size:.95rem;color:var(--ash)}
+.summary b{color:var(--bone)}
+.receipt{max-width:560px;display:grid;gap:18px}
+.receipt .stamp{width:84px;height:84px;border:3px solid var(--gold);border-radius:50%;display:grid;place-items:center;transform:rotate(-12deg);color:var(--gold-text);font:600 1.15rem/1 var(--display);letter-spacing:.06em;text-align:center}
+.receipt dl{margin:0;display:grid;border-top:1px solid var(--line)}
+.receipt dl div{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.receipt dt{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);padding-top:3px}
+.receipt dd{margin:0;overflow-wrap:anywhere}
+
+.lang-btn{min-width:52px;height:52px;border:2px solid var(--line);background:none;color:var(--bone);font:600 1rem/1 var(--display);letter-spacing:.08em;cursor:pointer;transition:border-color .2s}
+.lang-btn:hover{border-color:var(--gold)}
+.lang-btn.wide{width:100%;margin-top:12px;border-color:var(--black);color:var(--black)}
+@media (max-width:1040px){.bar-row>.lang-btn{display:none}}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:.92rem;color:var(--ash);cursor:pointer;margin-top:16px}
+.consent input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--gold);flex:none}
+.consent a,.band a{color:var(--gold-text)}
+.privacy{margin-top:40px;padding-top:16px;border-top:1px solid var(--line)}
+.privacy summary{cursor:pointer;font-weight:600}
+.privacy .tmp{font-weight:400;font-size:.8rem;color:var(--gold-text);margin-left:8px}
+.privacy p{margin-top:10px;color:var(--ash);font-size:.92rem;max-width:62em}
+.requisites{margin-top:10px;font-size:.84rem;color:var(--ash)}
+
+/* ================= FOOTER ================= */
+footer{border-top:1px solid var(--line);padding:70px 0 30px}
+.f-grid{display:grid;gap:36px}
+@media (min-width:860px){.f-grid{grid-template-columns:1.2fr 1fr 1fr}}
+footer h2{font-size:2rem;color:var(--gold-text);margin-bottom:12px}
+footer p,footer th{color:var(--ash)}
+footer table{border-collapse:collapse}
+footer th{text-align:left;font-weight:400;padding:3px 22px 3px 0}
+footer td{padding:3px 0}
+.soc{display:flex;gap:8px;margin-top:16px}
+.soc a{width:46px;height:46px;border:1.5px solid var(--line);display:grid;place-items:center;transition:background .2s,color .2s,border-color .2s}
+.soc a:hover{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.soc svg{width:19px;height:19px}
+.f-bot{margin-top:46px;padding-top:16px;border-top:1px solid var(--line);font-size:.84rem;color:var(--ash);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+body.locked{overflow:hidden}
+
+.rise{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.001ms!important}
+  .rise{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержимому</a>
+
+<div class="strip" aria-hidden="true"><div class="strip-track">
+  <span>Без записи — если кресло свободно</span><span>Горячее полотенце к каждой услуге</span><span>Без выходных</span><span>Кофе, чай или холодный квас, пока ждёте</span>
+  <span>Без записи — если кресло свободно</span><span>Горячее полотенце к каждой услуге</span><span>Без выходных</span><span>Кофе, чай или холодный квас, пока ждёте</span>
+</div></div>
+
+<header class="bar">
+  <div class="wrap bar-row">
+    <a class="mark" href="#home" aria-label="Iron & Blade — наверх">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="1.5" width="37" height="37" rx="3"/><path d="M12 28L28 12"/><path d="M24.5 8.5l7 7-3.5 3.5-7-7z" fill="currentColor"/><circle cx="12.5" cy="27.5" r="3.4"/></svg>
+      <b>Iron <i>&amp;</i> Blade</b>
+    </a>
+    <nav aria-label="Основная навигация"><ul><li><a href="#about">О нас</a></li><li><a href="#services">Услуги</a></li><li><a href="#reviews">Отзывы</a></li><li><a href="#contact">Контакты</a></li></ul></nav>
+    <button class="lang-btn" type="button" data-lang-btn aria-label="Switch to English" lang="en">EN</button>
+    <div class="bar-btns">
+      <a class="btn btn-o" href="#services" data-services>Услуги и цены</a>
+      <button class="btn btn-g" type="button" data-book>Записаться</button>
+    </div>
+    <button class="hamb" type="button" id="hamb" aria-label="Открыть меню" aria-expanded="false" aria-controls="full">Меню</button>
+  </div>
+</header>
+
+<div class="full" id="full" role="dialog" aria-modal="true" aria-label="Меню сайта">
+  <div class="full-top"><b>Iron &amp; Blade</b><button class="xbtn" type="button" data-close-full aria-label="Закрыть меню">×</button></div>
+  <ul>
+    <li><a class="huge" href="#about">О нас</a></li>
+    <li><a class="huge" href="#services">Услуги</a></li>
+    <li><a class="huge" href="#reviews">Отзывы</a></li>
+    <li><a class="huge" href="#contact">Контакты</a></li>
+  </ul>
+  <a class="btn btn-o" href="#services" data-services>Услуги и цены</a>
+  <button class="lang-btn wide" type="button" data-lang-btn aria-label="Switch to English" lang="en">EN</button>
+</div>
+
+<main id="main">
+<section class="hero" id="home" aria-labelledby="hero-h">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="label">Барбершоп · Минск</span>
+        <h1 id="hero-h" style="margin-top:18px"><span>Чёткие стрижки.</span><span class="outline">Горячие полотенца.</span><span class="gold">Без спешки.</span></h1>
+        <p class="lede">Классический барберинг с современным взглядом. Каждая стрижка начинается с разговора и заканчивается горячим полотенцем.</p>
+        <div class="hero-btns">
+          <a class="btn btn-o" href="#services" data-services>Услуги и цены</a>
+          <button class="btn btn-g" type="button" data-book>Записаться</button>
+        </div>
+      </div>
+      <div class="pole" aria-hidden="true">
+        <svg viewBox="0 0 160 420" fill="none">
+          <defs><clipPath id="glass"><rect x="40" y="62" width="80" height="290" rx="10"/></clipPath></defs>
+          <rect x="52" y="10" width="56" height="18" rx="4" fill="#C9A24A"/>
+          <path d="M40 28h80l-6 34H46z" fill="#2B2A27" stroke="#C9A24A" stroke-width="2"/>
+          <rect x="40" y="62" width="80" height="290" rx="10" fill="#F1ECE2"/>
+          <g clip-path="url(#glass)"><g class="stripes">
+            <path d="M0 40l160-92M0 82l160-92M0 124l160-92M0 166l160-92M0 208l160-92M0 250l160-92M0 292l160-92M0 334l160-92M0 376l160-92M0 418l160-92M0 460l160-92" stroke="#8E3B22" stroke-width="16"/>
+            <path d="M0 61l160-92M0 103l160-92M0 145l160-92M0 187l160-92M0 229l160-92M0 271l160-92M0 313l160-92M0 355l160-92M0 397l160-92M0 439l160-92M0 481l160-92" stroke="#1F3550" stroke-width="10"/>
+          </g></g>
+          <rect x="40" y="62" width="80" height="290" rx="10" stroke="#C9A24A" stroke-width="3"/>
+          <rect x="52" y="70" width="10" height="270" rx="5" fill="#fff" opacity=".35"/>
+          <path d="M46 352h68l6 34H40z" fill="#2B2A27" stroke="#C9A24A" stroke-width="2"/>
+          <rect x="52" y="386" width="56" height="18" rx="4" fill="#C9A24A"/>
+          <rect x="30" y="404" width="100" height="12" fill="#2B2A27"/>
+        </svg>
+      </div>
+    </div>
+    <div class="ritual">
+      <div><b>01 · Разговор</b><span>Ваши волосы, укладка и образ, который вы хотите.</span></div>
+      <div><b>02 · Стрижка</b><span>Ножницы, машинка или бритва — без спешки.</span></div>
+      <div><b>03 · Полотенце</b><span>Горячее полотенце и холодный финиш — каждый раз.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about" aria-labelledby="about-h">
+  <div class="wrap about-grid">
+    <div class="copy rise">
+      <span class="label">О барбершопе</span>
+      <h2 id="about-h">Четыре кресла в старом литейном цехе.</h2>
+      <p>Iron &amp; Blade — в бывшем литейном цехе на Литейной: кирпичные стены, стальные балки и четыре кожаных кресла. Мы хотели место, где можно спокойно обсудить, чего вы хотите, и уйти похожим на себя — только аккуратнее.</p>
+      <p>Без записи принимаем, если кресло свободно. Запись гарантирует время у выбранного мастера.</p>
+    </div>
+    <div class="tiles">
+      <article class="tile rise"><span class="num">01</span><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 16.5L20 4M15.5 16.5L4 4"/></svg><h3>Сначала разговор</h3><p>Перед стрижкой коротко обсуждаем ваши волосы и то, как вы их укладываете.</p></div></article>
+      <article class="tile rise"><span class="num">02</span><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 10h16v4a8 8 0 0 1-16 0z"/><path d="M8 6c0-1.5 1-2 2-2M12 6c0-1.5 1-2 2-2M16 6c0-1.5 1-2 2-2"/></svg><h3>Полотенце — всегда</h3><p>Входит в каждую услугу — от стрижки под машинку до королевского бритья.</p></div></article>
+      <article class="tile rise"><span class="num">03</span><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 3h12M8 3v6a4 4 0 0 0 8 0V3"/><path d="M12 13v8M9 21h6"/></svg><h3>Напиток от нас</h3><p>Кофе, чай или холодный квас, пока ждёте своей очереди.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services" aria-labelledby="svc-h">
+  <div class="wrap">
+    <div class="svc-head rise">
+      <div><span class="label">Каталог</span><h2 id="svc-h" style="margin-top:14px">Услуги и цены</h2></div>
+      <p>В каждую услугу входят консультация и горячее полотенце. Время указано примерно.</p>
+    </div>
+    <div class="big-tabs" role="tablist" aria-label="Категории услуг" id="svcTabs"></div>
+    <div id="svcPanels"></div>
+    <p class="svc-note">Пример услуг и цен для демо · цены в BYN · оплата: наличные, карты (в т.ч. Белкарт), ЕРИП.</p>
+  </div>
+</section>
+
+<section class="team" id="team" aria-labelledby="team-h">
+  <div class="wrap">
+    <span class="label">Барберы</span>
+    <h2 id="team-h">Выберите мастера</h2>
+    <div class="barbers" id="barbers"></div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews" aria-labelledby="rev-h">
+  <div class="wrap">
+    <span class="label">Отзывы</span>
+    <h2 id="rev-h">Из кресла</h2>
+    <div class="cards">
+      <figure class="card rise"><blockquote><p>Первый барбер, который спросил, как я укладываюсь по утрам. Стрижка и через три недели выглядела как надо.</p></blockquote><figcaption>Фаддей Железнов<small>Вымышленный клиент · фейд</small></figcaption></figure>
+      <figure class="card rise"><blockquote><p>Бритьё с горячим полотенцем — настоящий ритуал. Записался перед своей свадьбой, вернусь перед свадьбой брата.</p></blockquote><figcaption>Корней Пепельный<small>Вымышленный клиент · королевское бритьё</small></figcaption></figure>
+      <figure class="card rise"><blockquote><p>Бороде дали форму, а не просто укоротили. Записался с телефона меньше чем за минуту.</p></blockquote><figcaption>Игнат Терновой<small>Вымышленный клиент · оформление бороды</small></figcaption></figure>
+    </div>
+    <p class="fict">Примеры отзывов для демо. Клиенты вымышлены.</p>
+  </div>
+</section>
+
+<section class="book-band" aria-labelledby="band-h">
+  <div class="wrap">
+    <div class="band rise">
+      <div>
+        <span class="label">Запись</span>
+        <h2 id="band-h" style="margin-top:14px">Ваше время, ваш мастер.</h2>
+        <p>Выберите услугу, мастера и удобное время. Опаздываете? Позвоните или напишите в Viber — постараемся сохранить вашу запись.</p>
+        <div style="margin-top:26px"><button class="btn btn-g" type="button" data-book>Записаться</button></div>
+      </div>
+      <ul>
+        <li><span>Будни и суббота</span><b>09:00–20:00</b></li>
+        <li><span>Воскресенье</span><b>10:00–16:00</b></li>
+        <li><span>Телефон</span><b>+375 (44) 000-44-82</b></li>
+        <li><span>Оплата</span><b>Наличные, карты, ЕРИП</b></li>
+        <li><span>Мессенджеры</span><b><a href="viber://chat?number=%2B375440004482">Viber</a> · <a href="https://t.me/">Telegram</a></b></li>
+        <li><span>Карта</span><b><a href="https://yandex.by/maps/?text=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB.%20%D0%9B%D0%B8%D1%82%D0%B5%D0%B9%D0%BD%D0%B0%D1%8F%2C%2088" target="_blank" rel="noopener">Яндекс Карты</a></b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <h2 id="contact-h">Iron &amp; Blade</h2>
+        <p>ул. Литейная, 88, Минск</p>
+        <p>Телефон: +375 (44) 000-44-82</p>
+        <p>chair@ironandblade.example</p>
+        <div class="soc">
+          <a href="#" aria-label="Instagram (ссылка-заглушка)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="TikTok (ссылка-заглушка)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3v11a4 4 0 1 1-4-4"/><path d="M14 3c.5 3 2.5 5 6 5"/></svg></a>
+          <a href="viber://chat?number=%2B375440004482" aria-label="Viber (номер-заглушка)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c5 0 8 2.6 8 7.6 0 4.6-3 7.3-8 7.3-.9 0-1.8-.1-2.6-.3L6 20v-3.3C4.7 15.3 4 13.2 4 10.6 4 5.6 7 3 12 3z"/><path d="M9.5 8.5c.4 2.5 2.2 4.4 4.8 5"/></svg></a>
+          <a href="https://t.me/" aria-label="Telegram (ссылка-заглушка)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/><path d="M9 13l8-6"/></svg></a>
+        </div>
+      </div>
+      <div><h2>Часы работы</h2><table><caption class="sr-only">Часы работы</caption><tbody id="hoursTable"></tbody></table></div>
+      <div><h2>Как добраться</h2><p>Две минуты от остановки «Литейная». Вход со двора — ищите полосатый столб.</p></div>
+    </div>
+    <details class="privacy" id="privacy">
+      <summary>Политика обработки персональных данных <span class="tmp">шаблон, нужна проверка юриста</span></summary>
+      <p>Шаблон для демо. Мы обрабатываем имя и номер телефона только для записи к мастеру и связи с вами по записи, в соответствии с Законом Республики Беларусь «О защите персональных данных» № 99-З от 7 мая 2021 г. Данные не передаются третьим лицам. Чтобы отозвать согласие или удалить данные, напишите на chair@ironandblade.example. Перед публикацией текст должен проверить юрист.</p>
+    </details>
+    <p class="requisites">ООО «Айрон энд Блейд», УНП 000000000, г. Минск — демо-реквизиты</p>
+    <div class="f-bot"><span>© <span id="yr"></span> Iron &amp; Blade · демо-сайт, барбершоп, мастера и цены вымышлены</span><span>Записи на этом демо никуда не отправляются.</span></div>
+  </div>
+</footer>
+
+<dialog class="wiz" id="wiz" aria-labelledby="wiz-h">
+  <div class="wiz-head"><h2 id="wiz-h">Запись к барберу</h2><button class="xbtn" type="button" id="wizX" aria-label="Закрыть запись">×</button></div>
+  <ol class="progress" id="progress" aria-label="Шаги записи"></ol>
+  <form id="wizForm" novalidate style="display:contents">
+    <div class="wiz-body" id="wizBody"></div>
+    <div class="wiz-foot" id="wizFoot"></div>
+  </form>
+</dialog>
+
+<script>
+const LANG_KEY = "ib-lang";
+/* =========================================================
+   ДАННЫЕ БАРБЕРШОПА — часы, услуги (BYN), мастера
+   ========================================================= */
+const B = {
+  hours: { 0:["10:00","16:00"], 1:["09:00","20:00"], 2:["09:00","20:00"], 3:["09:00","20:00"], 4:["09:00","20:00"], 5:["09:00","20:00"], 6:["09:00","20:00"] },
+  services: [
+    { id:"cuts", label:{ ru:"Стрижки", en:"Haircuts" }, items:[
+      { id:"classic", n:{ ru:"Классическая стрижка", en:"Classic cut" }, d:{ ru:"Ножницы или машинка, мытьё, укладка и горячее полотенце.", en:"Scissor or clipper cut, wash, style and hot towel." }, min:45, p:40 },
+      { id:"fade", n:{ ru:"Фейд", en:"Skin fade" }, d:{ ru:"Плавный переход до кожи, сверху — любая длина.", en:"Precise fade to the skin, blended into any length on top." }, min:45, p:45 },
+      { id:"buzz", n:{ ru:"Под машинку", en:"Buzz cut" }, d:{ ru:"Одна длина и аккуратная линия на шее.", en:"One length all over with a neat neckline." }, min:30, p:25 },
+      { id:"kids", n:{ ru:"Детская стрижка", en:"Kids' cut" }, d:{ ru:"Быстро и терпеливо, для детей до 12 лет.", en:"Patient, quick cut for clients under 12." }, min:30, p:25 } ]},
+    { id:"beard", label:{ ru:"Борода", en:"Beard" }, items:[
+      { id:"sculpt", n:{ ru:"Оформление бороды", en:"Beard sculpt" }, d:{ ru:"Форма, длина и контуры, масло для бороды.", en:"Shape, length and lines, finished with beard oil." }, min:30, p:30 },
+      { id:"tidy", n:{ ru:"Коррекция бороды", en:"Beard tidy" }, d:{ ru:"Быстро подровнять и обновить контур.", en:"Quick trim and edge-up between full sculpts." }, min:15, p:18 },
+      { id:"colour", n:{ ru:"Тонирование бороды", en:"Beard colour blend" }, d:{ ru:"Деликатно убираем седину в тон вашей бороде.", en:"Subtle colour to soften grey, matched to your shade." }, min:30, p:35 } ]},
+    { id:"shave", label:{ ru:"Бритьё", en:"Shave" }, items:[
+      { id:"hot", n:{ ru:"Бритьё с горячим полотенцем", en:"Hot-towel shave" }, d:{ ru:"Опасная бритва, горячие полотенца и холодный финиш.", en:"Straight-razor shave, hot towels and a cold finish." }, min:45, p:45 },
+      { id:"royal", n:{ ru:"Королевское бритьё", en:"Royal shave" }, d:{ ru:"Самое долгое бритьё, с массажем лица и маской.", en:"Our longest shave, with face massage and a mask." }, min:60, p:60 },
+      { id:"head", n:{ ru:"Бритьё головы", en:"Head shave" }, d:{ ru:"Гладко, бритвой.", en:"A smooth razor finish for a clean head." }, min:30, p:35 } ]},
+    { id:"combos", label:{ ru:"Комбо", en:"Combos" }, items:[
+      { id:"cutbeard", n:{ ru:"Стрижка и борода", en:"Cut & beard" }, d:{ ru:"Любая стрижка и оформление бороды.", en:"Any haircut plus a full beard sculpt." }, min:75, p:65 },
+      { id:"cutshave", n:{ ru:"Стрижка и бритьё", en:"Cut & shave" }, d:{ ru:"Любая стрижка и бритьё с горячим полотенцем.", en:"Any haircut with a hot-towel shave." }, min:90, p:75 },
+      { id:"full", n:{ ru:"Всё и сразу", en:"The full service" }, d:{ ru:"Стрижка, борода, королевское бритьё и напиток от нас.", en:"Cut, beard sculpt, royal shave and a drink on us." }, min:120, p:110 } ]}
+  ],
+  barbers: [
+    { id:"any", n:{ ru:"Любой свободный", en:"Any available" }, spec:{ ru:"Первый свободный мастер на ваше время", en:"First free barber at your time" }, days:[0,1,2,3,4,5,6] },
+    { id:"vic", n:{ ru:"Виктор Гальский", en:"Viktor Galsky" }, spec:{ ru:"Фейды и современные стрижки", en:"Fades and modern cuts" }, days:[1,2,3,4,5], look:{ skin:"#C68B62", hair:"#1E1915", beard:true } },
+    { id:"ruta", n:{ ru:"Рута Олешко", en:"Ruta Oleshko" }, spec:{ ru:"Ножницы и длинные волосы", en:"Scissor work and long hair" }, days:[2,3,4,5,6], look:{ skin:"#E0B48F", hair:"#3B2416", beard:false, bun:true } },
+    { id:"sol", n:{ ru:"Сол Маркевич", en:"Sol Markevich" }, spec:{ ru:"Бороды и классическое бритьё", en:"Beards and traditional shaves" }, days:[0,1,4,5,6], look:{ skin:"#D9A47E", hair:"#6B4428", beard:true } }
+  ],
+  maxPeople: 3
+};
+const ALL = B.services.flatMap(g => g.items.map(i => ({ ...i, cat:g.label })));
+
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const fromIso = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+const hhmm = m => `${String(Math.floor(m / 60)).padStart(2,"0")}:${String(m % 60).padStart(2,"0")}`;
+
+/* =========================================================
+   ЯЗЫК (RU по умолчанию, EN по кнопке)
+   Статичный текст в HTML написан по-русски; EN — словарь ниже.
+   Динамический текст в скриптах использует L("рус", "eng").
+   ========================================================= */
+let lang = (() => { try { return localStorage.getItem(LANG_KEY) || "ru"; } catch (e) { return "ru"; } })();
+const L = (ru, en) => lang === "en" ? en : ru;
+const loc = () => lang === "en" ? "en-GB" : "ru-RU";
+const EN = {
+"Запись к барберу": "Book a Chair",
+"Меню": "Menu",
+"Iron & Blade — барбершоп в Минске": "Iron & Blade — Barbershop in Minsk",
+"Записи на этом демо никуда не отправляются.": "Bookings on this demo are not sent anywhere.",
+"Перейти к содержимому": "Skip to content",
+"Без записи — если кресло свободно": "Walk-ins welcome when a chair is free",
+"Горячее полотенце к каждой услуге": "Hot towel with every service",
+"Без выходных": "Open seven days",
+"Кофе, чай или холодный квас, пока ждёте": "Coffee, tea or a cold beer while you wait",
+"Iron & Blade — наверх": "Iron and Blade — back to top",
+"Основная навигация": "Main",
+"Каталог": "Catalog",
+"О нас": "About",
+"Услуги": "Catalog",
+"Отзывы": "Reviews",
+"Контакты": "Contact",
+"Услуги и цены": "Services & prices",
+"Записаться": "Book a Chair",
+"Открыть меню": "Open menu",
+"Меню сайта": "Site menu",
+"Закрыть меню": "Close menu",
+"Барбершоп · Минск": "Barbershop · Minsk",
+"Чёткие стрижки.": "Sharp cuts.",
+"Горячие полотенца.": "Hot towels.",
+"Без спешки.": "No rush.",
+"Классический барберинг с современным взглядом. Каждая стрижка начинается с разговора и заканчивается горячим полотенцем.": "Classic barbering with a modern edge. Every cut starts with a proper consultation and ends with a hot towel.",
+"01 · Разговор": "01 · Consult",
+"Ваши волосы, укладка и образ, который вы хотите.": "Your hair, your routine, the look you want.",
+"02 · Стрижка": "02 · Cut",
+"Ножницы, машинка или бритва — без спешки.": "Scissor, clipper or razor, never rushed.",
+"03 · Полотенце": "03 · Hot towel",
+"Горячее полотенце и холодный финиш — каждый раз.": "A hot towel and a cold finish, every time.",
+"О барбершопе": "About the shop",
+"Четыре кресла в старом литейном цехе.": "Four chairs in an old ironworks.",
+"Iron & Blade — в бывшем литейном цехе на Литейной: кирпичные стены, стальные балки и четыре кожаных кресла. Мы хотели место, где можно спокойно обсудить, чего вы хотите, и уйти похожим на себя — только аккуратнее.": "Iron & Blade sits in a converted ironworks on Foundry Street: brick walls, steel beams and four leather chairs. We built it as the kind of shop where you can sit down, talk through what you want and leave looking like yourself, only sharper.",
+"Без записи принимаем, если кресло свободно. Запись гарантирует время у выбранного мастера.": "Walk-ins are welcome whenever a chair is free. Booking guarantees your time with the barber you choose.",
+"Сначала разговор": "Consultation first",
+"Перед стрижкой коротко обсуждаем ваши волосы и то, как вы их укладываете.": "Every cut starts with a short chat about your hair and how you style it.",
+"Полотенце — всегда": "Hot towel, always",
+"Входит в каждую услугу — от стрижки под машинку до королевского бритья.": "Included with every service, from a buzz cut to the royal shave.",
+"Напиток от нас": "A drink on the house",
+"Кофе, чай или холодный квас, пока ждёте своей очереди.": "Coffee, tea, or a cold beer while you wait. Alcohol-free options too.",
+"В каждую услугу входят консультация и горячее полотенце. Время указано примерно.": "Every service includes a consultation and a hot towel. Times are approximate.",
+"Категории услуг": "Service categories",
+"Пример услуг и цен для демо · цены в BYN · оплата: наличные, карты (в т.ч. Белкарт), ЕРИП.": "Sample services and prices for this demo.",
+"Барберы": "The barbers",
+"Выберите мастера": "Pick your barber",
+"Из кресла": "From the chair",
+"Первый барбер, который спросил, как я укладываюсь по утрам. Стрижка и через три недели выглядела как надо.": "First barber who asked how I actually style my hair in the morning. The cut still looked right three weeks later.",
+"Фаддей Железнов": "Faddey Zheleznov",
+"Вымышленный клиент · фейд": "Fictional client · skin fade",
+"Бритьё с горячим полотенцем — настоящий ритуал. Записался перед своей свадьбой, вернусь перед свадьбой брата.": "The hot-towel shave is a proper ritual. Booked it before my wedding and I'll be back for my brother's.",
+"Корней Пепельный": "Korney Pepelny",
+"Вымышленный клиент · королевское бритьё": "Fictional client · royal shave",
+"Бороде дали форму, а не просто укоротили. Записался с телефона меньше чем за минуту.": "They shaped my beard instead of just shortening it. Booking took less than a minute on my phone.",
+"Игнат Терновой": "Ignat Ternovoy",
+"Вымышленный клиент · оформление бороды": "Fictional client · beard sculpt",
+"Примеры отзывов для демо. Клиенты вымышлены.": "Sample reviews written for this demo. The clients are fictional.",
+"Запись": "Book your chair",
+"Ваше время, ваш мастер.": "Your time, your barber.",
+"Выберите услугу, мастера и удобное время. Опаздываете? Позвоните или напишите в Viber — постараемся сохранить вашу запись.": "Choose a service, a barber and a time that suits you. Running late? Call us and we'll do our best to keep your slot.",
+"Будни и суббота": "Weekdays & Saturday",
+"Воскресенье": "Sunday",
+"Телефон": "Phone",
+"ул. Литейная, 88, Минск": "88 Liteynaya St, Minsk",
+"Телефон: +375 (44) 000-44-82": "Phone: +375 (44) 000-44-82",
+"Instagram (ссылка-заглушка)": "Instagram (placeholder link)",
+"TikTok (ссылка-заглушка)": "TikTok (placeholder link)",
+"Часы работы": "Opening hours",
+"Как добраться": "Getting here",
+"Две минуты от остановки «Литейная». Вход со двора — ищите полосатый столб.": "Two minutes from the Foundry Street tram stop. The entrance is in the courtyard, look for the striped pole.",
+"Iron & Blade · демо-сайт, барбершоп, мастера и цены вымышлены": "Iron & Blade · demo website, the shop, barbers and prices are fictional",
+"Закрыть запись": "Close booking",
+"Шаги записи": "Booking steps",
+"Viber (номер-заглушка)": "Viber (placeholder number)",
+"Telegram (ссылка-заглушка)": "Telegram (placeholder link)",
+"Оплата": "Payment",
+"Наличные, карты, ЕРИП": "Cash, cards, ERIP",
+"Мессенджеры": "Messengers",
+"Карта": "Map",
+"Яндекс Карты": "Yandex Maps",
+"Политика обработки персональных данных": "Personal data processing policy",
+"шаблон, нужна проверка юриста": "template, needs legal review",
+"Шаблон для демо. Мы обрабатываем имя и номер телефона только для записи к мастеру и связи с вами по записи, в соответствии с Законом Республики Беларусь «О защите персональных данных» № 99-З от 7 мая 2021 г. Данные не передаются третьим лицам. Чтобы отозвать согласие или удалить данные, напишите на chair@ironandblade.example. Перед публикацией текст должен проверить юрист.": "Demo template. We process your name and phone number only to book you with a barber and contact you about it, in line with the Law of the Republic of Belarus No. 99-Z of 7 May 2021 “On Personal Data Protection”. Data is not shared with third parties. To withdraw consent or have your data deleted, email chair@ironandblade.example. A lawyer must review this text before publishing.",
+"ООО «Айрон энд Блейд», УНП 000000000, г. Минск — демо-реквизиты": "Iron & Blade LLC, UNP 000000000, Minsk — demo company details"
+};
+const _origText = new WeakMap(), _origAttr = new WeakMap();
+const _norm = s => s.replace(/\s+/g, " ").trim();
+function applyStatic(){
+  document.documentElement.lang = lang;
+  const walk = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT,
+    { acceptNode: n => (n.nodeName === "SCRIPT" || n.nodeName === "STYLE") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  let n;
+  while ((n = walk.nextNode())){
+    if (n.nodeType === 3){
+      if (!_origText.has(n)) _origText.set(n, n.nodeValue);
+      const ru = _origText.get(n), k = _norm(ru);
+      const out = lang === "en" && EN[k] ? ru.match(/^\s*/)[0] + EN[k] + ru.match(/\s*$/)[0] : ru;
+      if (n.nodeValue !== out) n.nodeValue = out;
+    } else {
+      for (const a of ["aria-label", "placeholder", "title", "content"]){
+        if (!n.hasAttribute(a) || (a === "content" && n.nodeName !== "META")) continue;
+        let m = _origAttr.get(n); if (!m){ m = {}; _origAttr.set(n, m); }
+        if (!(a in m)) m[a] = n.getAttribute(a);
+        const v = lang === "en" && EN[_norm(m[a])] ? EN[_norm(m[a])] : m[a];
+        if (n.getAttribute(a) !== v) n.setAttribute(a, v);
+      }
+    }
+  }
+  document.querySelectorAll("[data-lang-btn]").forEach(b => {
+    b.textContent = lang === "en" ? "RU" : "EN";
+    b.setAttribute("aria-label", lang === "en" ? "Переключить на русский язык" : "Switch to English");
+    b.setAttribute("lang", lang === "en" ? "ru" : "en");
+  });
+}
+function setLang(next){
+  lang = next;
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage unavailable */ }
+  rerender();
+  applyStatic();
+}
+document.addEventListener("click", e => { if (e.target.closest("[data-lang-btn]")) setLang(lang === "en" ? "ru" : "en"); });
+
+/* Телефон РБ: +375 (29) 123-45-67, также принимаем 80 29 123 45 67 */
+function byDigits(v){ let d = v.replace(/\D/g, ""); if (d.startsWith("80") && d.length === 11) d = "375" + d.slice(2); return d; }
+const isByPhone = v => /^375(17|25|29|33|44)\d{7}$/.test(byDigits(v));
+function maskPhone(input){
+  input.addEventListener("input", () => {
+    let d = byDigits(input.value);
+    if (!d.startsWith("375")) return;
+    d = d.slice(0, 12);
+    const p = [d.slice(0, 3), d.slice(3, 5), d.slice(5, 8), d.slice(8, 10), d.slice(10, 12)];
+    let out = "+" + p[0];
+    if (p[1]) out += " (" + p[1] + (p[1].length === 2 ? ")" : "");
+    if (p[2]) out += " " + p[2];
+    if (p[3]) out += "-" + p[3];
+    if (p[4]) out += "-" + p[4];
+    input.value = out;
+  });
+}
+
+const tx = o => L(o.ru, o.en);
+const byn = n => `${n} BYN`;
+const dayName = d => L(["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"], ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"])[d];
+const dayShort = d => L(["Вс","Пн","Вт","Ср","Чт","Пт","Сб"], ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"])[d];
+const onDay = d => L(["по воскресеньям","по понедельникам","по вторникам","по средам","по четвергам","по пятницам","по субботам"], ["on Sundays","on Mondays","on Tuesdays","on Wednesdays","on Thursdays","on Fridays","on Saturdays"])[d];
+const daysText = b => b.days.length === 7 ? L("каждый день", "every day") : b.days.slice().sort((a, c) => ((a + 6) % 7) - ((c + 6) % 7)).map(dayShort).join(", ");
+
+/* Полноэкранное меню */
+const full = $("#full"), hamb = $("#hamb");
+function setFull(open){
+  full.classList.toggle("open", open); hamb.setAttribute("aria-expanded", String(open)); document.body.classList.toggle("locked", open);
+  if (open) setTimeout(() => $(".huge", full).focus(), 120); else hamb.focus({ preventScroll:true });
+}
+hamb.addEventListener("click", () => setFull(true));
+$("[data-close-full]").addEventListener("click", () => setFull(false));
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"]'); if (!a) return;
+  const id = a.getAttribute("href"), t = id.length > 1 && $(id); if (!t) return;
+  e.preventDefault();
+  if (full.classList.contains("open")){ full.classList.remove("open"); hamb.setAttribute("aria-expanded","false"); document.body.classList.remove("locked"); }
+  if (wiz.open && a.closest("dialog")) wiz.close();
+  if (t.tagName === "DETAILS") t.open = true;
+  t.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block:"start" });
+  history.replaceState(null, "", id);
+  if (a.hasAttribute("data-services")) setTimeout(() => $("#svcTabs [aria-selected='true']").focus({ preventScroll:true }), reduced() ? 0 : 650);
+});
+
+/* Вкладки услуг */
+let svcTab = 0;
+function renderServices(){
+  const tabs = $("#svcTabs"), panels = $("#svcPanels");
+  tabs.innerHTML = B.services.map((g, i) => `<button type="button" role="tab" id="st-${g.id}" aria-controls="sp-${g.id}" aria-selected="${i === svcTab}" tabindex="${i === svcTab ? 0 : -1}">${tx(g.label)}</button>`).join("");
+  panels.innerHTML = B.services.map((g, i) => `<div role="tabpanel" id="sp-${g.id}" aria-labelledby="st-${g.id}" ${i === svcTab ? "" : "hidden"}><ul class="svc-list">${g.items.map((s, k) => `
+    <li class="svc"><span class="idx" aria-hidden="true">${String(k + 1).padStart(2,"0")}</span><h3>${esc(tx(s.n))}</h3>
+      <div class="right"><span class="price">${byn(s.p)}</span><button class="book" type="button" data-book="${s.id}">${L("Записаться", "Book")}<span class="sr-only"> ${esc(tx(s.n))}</span></button></div>
+      <p class="meta">${esc(tx(s.d))} · ${s.min} ${L("мин", "min")}</p></li>`).join("")}</ul></div>`).join("");
+}
+(function(){
+  const tabs = $("#svcTabs");
+  const pick = b => {
+    $$("[role=tab]", tabs).forEach((t, i) => { const on = t === b; t.setAttribute("aria-selected", on); t.tabIndex = on ? 0 : -1; if (on) svcTab = i; });
+    $$("[role=tabpanel]", $("#svcPanels")).forEach(p => p.hidden = p.id !== b.getAttribute("aria-controls"));
+  };
+  tabs.addEventListener("click", e => { const b = e.target.closest("[role=tab]"); if (b) pick(b); });
+  tabs.addEventListener("keydown", e => {
+    const l = $$("[role=tab]", tabs), i = l.indexOf(document.activeElement);
+    const n = { ArrowRight:(i + 1) % l.length, ArrowLeft:(i - 1 + l.length) % l.length, Home:0, End:l.length - 1 }[e.key];
+    if (n !== undefined){ e.preventDefault(); l[n].focus(); pick(l[n]); }
+  });
+})();
+
+/* Мастера с иллюстрированными портретами */
+function portrait(b){
+  const P = b.look;
+  return `<svg viewBox="0 0 160 140" aria-hidden="true">
+    <path d="M20 140c4-30 28-44 60-44s56 14 60 44z" fill="#C9A24A"/>
+    <path d="M62 96l18 20 18-20" fill="none" stroke="#0D0D0C" stroke-width="3"/>
+    <rect x="70" y="80" width="20" height="18" fill="${P.skin}"/>
+    ${P.bun ? `<circle cx="80" cy="24" r="12" fill="${P.hair}"/>` : ""}
+    <ellipse cx="80" cy="58" rx="26" ry="30" fill="${P.skin}"/>
+    <path d="M54 54c0-22 12-32 26-32s26 10 26 32c-4-10-14-15-26-15s-22 5-26 15z" fill="${P.hair}"/>
+    ${P.beard ? `<path d="M56 62c2 22 12 32 24 32s22-10 24-32c-4 8-12 12-24 12s-20-4-24-12z" fill="${P.hair}"/>` : ""}
+    <circle cx="70" cy="58" r="2.6" fill="#0D0D0C"/><circle cx="90" cy="58" r="2.6" fill="#0D0D0C"/>
+    <path d="M73 ${P.beard ? 76 : 72}q7 4 14 0" stroke="#0D0D0C" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </svg>`;
+}
+function renderBarbers(){
+  $("#barbers").innerHTML = B.barbers.filter(b => b.id !== "any").map(b => `
+    <article class="barber rise in"><div class="portrait">${portrait(b)}</div>
+      <div class="info"><h3>${esc(tx(b.n))}</h3><p>${esc(tx(b.spec))}</p><p class="days">${daysText(b)}</p>
+      <button class="btn btn-o" type="button" data-book data-barber="${b.id}" style="margin-top:16px;width:100%">${L("Записаться к мастеру", "Book with")} ${lang === "en" ? esc(b.n.en.split(" ")[0]) : ""}</button></div>
+    </article>`).join("");
+}
+function renderHours(){
+  $("#hoursTable").innerHTML = [1,2,3,4,5,6,0].map(d => `<tr><th scope="row">${dayName(d)}</th><td>${B.hours[d].join("–")}</td></tr>`).join("");
+  $("#yr").textContent = new Date().getFullYear();
+}
+
+/* ================= Мастер записи ================= */
+const wiz = $("#wiz"), body = $("#wizBody"), foot = $("#wizFoot"), form = $("#wizForm");
+const STEPS = () => [L("Услуга", "Service"), L("Мастер", "Barber"), L("Дата и время", "Date & time"), L("Контакты", "Your details")];
+const fresh = () => ({ step:0, service:null, barber:"any", date:"", time:"", name:"", phone:"", people:"1", comment:"", consent:false, done:false });
+let st = fresh(), opener = null;
+
+function freeSlots(dateStr, svcId, barberId){
+  if (!dateStr) return [];
+  const d = fromIso(dateStr), h = B.hours[d.getDay()], svc = ALL.find(s => s.id === svcId), barber = B.barbers.find(b => b.id === barberId);
+  if (!h || !svc || !barber.days.includes(d.getDay())) return [];
+  const now = new Date(), today = iso(now) === dateStr, nowM = now.getHours() * 60 + now.getMinutes() + 30, out = [];
+  for (let t = toMin(h[0]); t + svc.min <= toMin(h[1]); t += 30) if (!today || t >= nowM) out.push(hhmm(t));
+  return out;
+}
+function progress(all){
+  $("#progress").innerHTML = STEPS().map((s, i) => `<li class="${all || i <= st.step ? "on" : ""}" ${!all && i === st.step ? 'aria-current="step"' : ""}><div class="seg"></div><span class="cap">${i + 1}. ${s}</span></li>`).join("");
+}
+function stepHTML(){
+  const svc = ALL.find(s => s.id === st.service), barber = B.barbers.find(b => b.id === st.barber);
+  if (st.step === 0) return `<h3 tabindex="-1">${L("Выберите услугу", "Choose a service")}</h3><p class="sub">${L("В каждую услугу входят консультация и горячее полотенце.", "Every service includes a consultation and a hot towel.")}</p>
+    <div class="opts" role="radiogroup" aria-label="${L("Услуга", "Service")}">${B.services.map(g => `<p class="grp">${tx(g.label)}</p>` + g.items.map(s => `
+      <label class="opt"><input type="radio" name="service" value="${s.id}" ${st.service === s.id ? "checked" : ""}><span class="box"><b>${esc(tx(s.n))}</b><small>${s.min} ${L("мин", "min")} · ${esc(tx(s.d))}</small><span class="pr">${byn(s.p)}</span></span></label>`).join("")).join("")}</div>
+    <p class="e" id="e-service" role="alert"></p>`;
+  if (st.step === 1) return `<h3 tabindex="-1">${L("Выберите мастера", "Choose your barber")}</h3><p class="sub">${esc(tx(svc.n))} · ${svc.min} ${L("мин", "min")}</p>
+    <div class="opts" role="radiogroup" aria-label="${L("Мастер", "Barber")}">${B.barbers.map(b => `
+      <label class="opt"><input type="radio" name="barber" value="${b.id}" ${st.barber === b.id ? "checked" : ""}><span class="box"><b>${esc(tx(b.n))}</b><small>${esc(tx(b.spec))} · ${daysText(b)}</small></span></label>`).join("")}</div>`;
+  if (st.step === 2){
+    const max = new Date(); max.setDate(max.getDate() + 45);
+    const list = freeSlots(st.date, st.service, st.barber);
+    let slotHTML = `<p class="empty">${L("Выберите дату, чтобы увидеть время.", "Choose a date to see times.")}</p>`;
+    if (st.date && !list.length){
+      const wd = fromIso(st.date).getDay();
+      slotHTML = `<p class="empty">${!barber.days.includes(wd) ? L(`${tx(barber.n)} не работает ${onDay(wd)}. Выберите другой день или «Любой свободный».`, `${tx(barber.n)} doesn't work ${onDay(wd)}. Pick another day or "Any available".`) : L("На этот день свободного времени не осталось.", "No times left on this day.")}</p>`;
+    } else if (list.length){
+      slotHTML = `<div class="slots" role="radiogroup" aria-label="${L("Время", "Time")}">${list.map(t => `<label><input type="radio" name="time" value="${t}" ${st.time === t ? "checked" : ""}><span>${t}</span></label>`).join("")}</div>`;
+    }
+    return `<h3 tabindex="-1">${L("Дата и время", "Pick a date and time")}</h3><p class="sub">${esc(tx(svc.n))} · ${esc(tx(barber.n))} · ${L("шаг 30 минут в часы работы", "30-minute steps within opening hours")}</p>
+      <div class="fld" style="max-width:320px"><label for="w-date">${L("Дата", "Date")}</label><input id="w-date" name="date" type="date" min="${iso(new Date())}" max="${iso(max)}" value="${st.date}" aria-describedby="e-date"><span class="e" id="e-date"></span></div>
+      <fieldset style="border:0;padding:0;margin:20px 0 0"><legend class="fld"><span class="lb">${L("Время", "Time")}</span></legend>${slotHTML}<p class="e" id="e-time"></p></fieldset>`;
+  }
+  return `<h3 tabindex="-1">${L("Ваши контакты", "Your details")}</h3><p class="sub">${L("Чтобы подтвердить запись.", "So we can confirm your chair.")}</p>
+    <div class="cols2">
+      <div class="fld"><label for="w-name">${L("Имя", "Name")}</label><input id="w-name" name="name" autocomplete="name" value="${esc(st.name)}" aria-describedby="e-name"><span class="e" id="e-name"></span></div>
+      <div class="fld"><label for="w-phone">${L("Телефон", "Phone")}</label><input id="w-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+375 (29) 123-45-67" value="${esc(st.phone)}" aria-describedby="e-phone"><span class="e" id="e-phone"></span></div>
+    </div>
+    <div class="fld" style="margin-top:16px;max-width:220px"><label for="w-people">${L("Сколько человек", "People")}</label><select id="w-people" name="people">${Array.from({ length:B.maxPeople }, (_, k) => `<option ${String(k + 1) === st.people ? "selected" : ""}>${k + 1}</option>`).join("")}</select></div>
+    <div class="fld" style="margin-top:16px"><label for="w-comment">${L("Комментарий", "Comment")} <small>${L("(необязательно)", "(optional)")}</small></label><textarea id="w-comment" name="comment" rows="3" placeholder="${L("Фото-референс, чувствительная кожа, что-то ещё…", "A reference photo you'll bring, sensitive skin, anything else…")}">${esc(st.comment)}</textarea></div>
+    <label class="consent"><input type="checkbox" name="consent" ${st.consent ? "checked" : ""} aria-describedby="e-consent"><span>${L("Согласен(на) на обработку имени и телефона для записи.", "I agree to the processing of my name and phone number for this booking.")} <a href="#privacy">${L("Политика обработки данных", "Privacy policy")}</a></span></label>
+    <p class="e" id="e-consent"></p>
+    <div class="summary"><b>${esc(tx(svc.n))}</b> · <b>${esc(tx(barber.n))}</b> · <b>${fromIso(st.date).toLocaleDateString(loc(), { weekday:"long", day:"numeric", month:"long" })}</b>, <b>${st.time}</b> · ${byn(svc.p)}</div>
+    <p class="e" style="margin-top:10px;color:var(--ash)">${L("Демо: проверяем в браузере, ничего не отправляется. Оплата в барбершопе: наличные, карта или ЕРИП.", "Demo: checked in your browser, nothing is sent. Pay at the shop by cash, card or ERIP.")}</p>`;
+}
+function render(focusHead){
+  if (st.done) return receipt();
+  progress(false);
+  body.innerHTML = stepHTML();
+  foot.innerHTML = `${st.step > 0 ? `<button class="btn btn-o" type="button" data-back>${L("Назад", "Back")}</button>` : `<span></span>`}
+    <button class="btn btn-g" type="submit">${st.step < 3 ? L("Далее", "Continue") : L("Записаться", "Book a Chair")}</button>`;
+  body.scrollTop = 0;
+  const ph = $("#w-phone"); if (ph) maskPhone(ph);
+  if (focusHead) $("h3", body).focus();
+}
+function save(){
+  const fd = new FormData(form);
+  ["service","barber","date","time","name","phone","people","comment"].forEach(k => { if (fd.has(k)) st[k] = String(fd.get(k)).trim(); });
+  if (st.step === 3) st.consent = fd.has("consent");
+}
+function check(){
+  const err = (id, msg) => { const el = $("#" + id); if (el) el.textContent = msg; };
+  if (st.step === 0 && !st.service){ err("e-service", L("Выберите услугу.", "Please choose a service.")); $("input[name=service]", body).focus(); return false; }
+  if (st.step === 2){
+    const dateEl = $("#w-date"); let ok = true;
+    err("e-date", ""); err("e-time", ""); dateEl.setAttribute("aria-invalid", "false");
+    if (!st.date){ err("e-date", L("Выберите дату.", "Please choose a date.")); ok = false; }
+    else if (st.date < iso(new Date())){ err("e-date", L("Эта дата уже прошла.", "That date has passed.")); ok = false; }
+    if (!ok){ dateEl.setAttribute("aria-invalid", "true"); dateEl.focus(); return false; }
+    if (!st.time || !freeSlots(st.date, st.service, st.barber).includes(st.time)){ err("e-time", L("Выберите время.", "Please pick a time.")); ($("input[name=time]", body) || dateEl).focus(); return false; }
+  }
+  if (st.step === 3){
+    const errs = {};
+    if (st.name.length < 2) errs.name = L("Как к вам обращаться?", "Please enter your name.");
+    if (!isByPhone(st.phone)) errs.phone = L("Введите белорусский номер: +375 (29) 123-45-67.", "Enter a Belarus number, e.g. +375 29 123 45 67.");
+    if (!st.consent) errs.consent = L("Нужно согласие на обработку данных.", "Please give your consent to continue.");
+    ["name","phone"].forEach(k => { err("e-" + k, errs[k] || ""); $("#w-" + k).setAttribute("aria-invalid", errs[k] ? "true" : "false"); });
+    err("e-consent", errs.consent || "");
+    const first = ["name","phone","consent"].find(k => errs[k]);
+    if (first){ (first === "consent" ? $("input[name=consent]", body) : $("#w-" + first)).focus(); return false; }
+  }
+  return true;
+}
+function receipt(){
+  const svc = ALL.find(s => s.id === st.service), barber = B.barbers.find(b => b.id === st.barber);
+  progress(true);
+  body.innerHTML = `<div class="receipt" role="status" tabindex="-1" id="rcpt">
+    <div class="stamp" aria-hidden="true">${L("Кресло<br>ваше", "Chair<br>held")}</div>
+    <h3>${L("Ждём вас в кресле", "See you in the chair")}</h3>
+    <p class="sub" style="margin:0">${L("Демо: ничего не отправлено. Вот данные, которые вы ввели.", "Demo only: nothing was sent. Here are the details you entered.")}</p>
+    <dl>
+      <div><dt>${L("Услуга", "Service")}</dt><dd>${esc(tx(svc.n))} · ${svc.min} ${L("мин", "min")} · ${byn(svc.p)}</dd></div>
+      <div><dt>${L("Мастер", "Barber")}</dt><dd>${esc(tx(barber.n))}</dd></div>
+      <div><dt>${L("Дата", "Date")}</dt><dd>${fromIso(st.date).toLocaleDateString(loc(), { weekday:"long", day:"numeric", month:"long", year:"numeric" })}</dd></div>
+      <div><dt>${L("Время", "Time")}</dt><dd>${st.time}</dd></div>
+      <div><dt>${L("Имя", "Name")}</dt><dd>${esc(st.name)}</dd></div>
+      <div><dt>${L("Телефон", "Phone")}</dt><dd>${esc(st.phone)}</dd></div>
+      <div><dt>${L("Человек", "People")}</dt><dd>${esc(st.people)}</dd></div>
+      ${st.comment ? `<div><dt>${L("Комментарий", "Comment")}</dt><dd>${esc(st.comment)}</dd></div>` : ""}
+    </dl>
+  </div>`;
+  foot.innerHTML = `<button class="btn btn-o" type="button" data-again>${L("Новая запись", "Book another")}</button><button class="btn btn-g" type="button" data-done>${L("Готово", "Done")}</button>`;
+  $("#rcpt").focus();
+}
+form.addEventListener("change", e => {
+  save();
+  if (e.target.name === "service" || e.target.name === "barber") st.time = "";
+  if (e.target.name === "date"){ st.time = ""; render(false); $("#w-date").focus(); }
+});
+form.addEventListener("submit", e => {
+  e.preventDefault(); save();
+  if (!check()) return;
+  if (st.step < 3){ st.step++; render(true); } else { st.done = true; receipt(); }
+});
+foot.addEventListener("click", e => {
+  if (e.target.closest("[data-back]")){ save(); st.step--; render(true); }
+  if (e.target.closest("[data-again]")){ st = fresh(); render(true); }
+  if (e.target.closest("[data-done]")) wiz.close();
+});
+function openWizard(svcId, barberId){
+  opener = document.activeElement;
+  if (full.classList.contains("open")) setFull(false);
+  st = fresh();
+  if (barberId) st.barber = barberId;
+  if (svcId && ALL.some(s => s.id === svcId)){ st.service = svcId; st.step = 1; }
+  render(false);
+  wiz.showModal(); document.body.classList.add("locked");
+  $("h3", body).focus();
+}
+document.addEventListener("click", e => { const b = e.target.closest("[data-book]"); if (b) openWizard(b.dataset.book || null, b.dataset.barber || null); });
+$("#wizX").addEventListener("click", () => wiz.close());
+wiz.addEventListener("click", e => {
+  if (e.target !== wiz) return;
+  const r = wiz.getBoundingClientRect();
+  if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) wiz.close();
+});
+wiz.addEventListener("close", () => { document.body.classList.remove("locked"); if (opener) opener.focus(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && full.classList.contains("open")) setFull(false); });
+
+function rerender(){
+  renderServices(); renderBarbers(); renderHours();
+  if (wiz.open){ save(); render(false); }
+}
+rerender();
+applyStatic();
+
+/* Появление блоков */
+(function(){
+  const els = $$(".rise:not(.in)");
+  if (reduced() || !("IntersectionObserver" in window)) return els.forEach(e => e.classList.add("in"));
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting){ x.target.classList.add("in"); io.unobserve(x.target); } }), { rootMargin:"0px 0px -8% 0px" });
+  els.forEach(e => io.observe(e));
+})();
+</script>
+</body>
+</html>
